@@ -1,0 +1,403 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 1999-11-09 23:36+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+
+#: src/support.c:136
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr ""
+
+#: src/support.c:145
+#, c-format
+msgid "Error loading pixmap file: %s"
+msgstr ""
+
+#: src/main.c:84
+#, c-format
+msgid ""
+"HDBENCH clone Ver %s Copyright (C) 1999 Yuuki NINOMIYA\n"
+"\n"
+"This is free software with ABSOLUTELY NO WARRANTY.\n"
+"For details please see the file COPYING.\n"
+"\n"
+"usage: hdbench [OPTIONS]\n"
+"\n"
+"options:\n"
+"  -h | --help          display this help and exit\n"
+"  -f | --font=FONT     font name used in TEXT of VIDEO\n"
+"  -t | --text=FONT     string written in TEXT of VIDEO\n"
+"  -V | --version       display version infomation and exit\n"
+"\n"
+msgstr ""
+
+#: src/main.c:103
+#, c-format
+msgid "HDBENCH clone Ver %s Copyright (C) 1999 Yuuki NINOMIYA\n"
+msgstr ""
+
+#: src/benchmark.c:64 src/benchmark.c:164 src/benchmark.c:440
+#: src/benchmark.c:651 src/getinfo.c:61 src/getinfo.c:185 src/getinfo.c:234
+#: src/getinfo.c:251 src/getinfo.c:258 src/getinfo.c:362 src/getinfo.c:382
+#: src/sighandler.c:161
+msgid "Cannot create a pipe.\n"
+msgstr ""
+
+#: src/shhopt.c:235 src/shhopt.c:261
+#, c-format
+msgid "invalid number `%s'\n"
+msgstr ""
+
+#: src/shhopt.c:238 src/shhopt.c:264
+#, c-format
+msgid "number `%s' to `%s' out of range\n"
+msgstr ""
+
+#: src/shhopt.c:369
+#, c-format
+msgid "unrecognized option `%s'\n"
+msgstr ""
+
+#: src/shhopt.c:382 src/shhopt.c:420
+#, c-format
+msgid "option `%s' requires an argument\n"
+msgstr ""
+
+#: src/shhopt.c:388
+#, c-format
+msgid "option `%s' doesn't allow an argument\n"
+msgstr ""
+
+#: src/shhopt.c:410
+#, c-format
+msgid "unrecognized option `-%c'\n"
+msgstr ""
+
+#: src/benchmark.c:70 src/benchmark.c:170 src/benchmark.c:446
+#: src/benchmark.c:657
+msgid "Cannot fork.\n"
+msgstr ""
+
+#: src/benchmark.c:233
+msgid "Color depth is not 16bit. Don't measure IMAGE or restart X in 16bpp."
+msgstr ""
+
+#: src/benchmark.c:510 src/benchmark.c:550 src/benchmark.c:581
+#, c-format
+msgid "Cannot create temporary file `%s'.\n"
+msgstr ""
+
+#: src/benchmark.c:520 src/benchmark.c:561
+#, c-format
+msgid "Writing temporary file `%s' failed.\n"
+msgstr ""
+
+#: src/benchmark.c:554
+msgid "Cannot get memory infomation.\n"
+msgstr ""
+
+#: src/benchmark.c:591
+#, c-format
+msgid "Reading temporary file `%s' failed.\n"
+msgstr ""
+
+#: src/benchmark.c:783
+msgid "HDBENCH clone"
+msgstr ""
+
+#: src/benchmark.c:794
+msgid "Cannot allocate color.\n"
+msgstr ""
+
+#: src/benchmark.c:802
+#, c-format
+msgid "Cannot load font `%s'.\n"
+msgstr ""
+
+#: src/benchmark.c:845
+msgid "Cannot install a signal handler of SIGALRM.\n"
+msgstr ""
+
+#: src/hdbench.c:79
+msgid "HDBENCH clone Ver "
+msgstr ""
+
+#: src/hdbench.c:96
+msgid "EXIT"
+msgstr ""
+
+#: src/hdbench.c:104
+msgid "COPY"
+msgstr ""
+
+#: src/hdbench.c:112
+msgid "PRINT"
+msgstr ""
+
+#: src/hdbench.c:120 src/hdbench.c:885
+msgid "SYSTEM"
+msgstr ""
+
+#: src/hdbench.c:128
+msgid "GRAPH"
+msgstr ""
+
+#: src/hdbench.c:136
+msgid "ALL"
+msgstr ""
+
+#: src/hdbench.c:144
+msgid "CPU"
+msgstr ""
+
+#: src/hdbench.c:152
+msgid "VIDEO"
+msgstr ""
+
+#: src/hdbench.c:160
+msgid "DISK"
+msgstr ""
+
+#: src/hdbench.c:168 src/hdbench.c:775
+msgid "HELP"
+msgstr ""
+
+#: src/hdbench.c:183
+msgid "TEXT"
+msgstr ""
+
+#: src/hdbench.c:197
+msgid "MEMORY"
+msgstr ""
+
+#: src/hdbench.c:211
+msgid "SCROLL"
+msgstr ""
+
+#: src/hdbench.c:225
+msgid "IMAGE"
+msgstr ""
+
+#: src/hdbench.c:299
+msgid "PLUGIN"
+msgstr ""
+
+#: src/hdbench.c:311
+msgid "Start"
+msgstr ""
+
+#: src/hdbench.c:318 src/hdbench.c:462
+msgid "OPTIONS"
+msgstr ""
+
+#: src/hdbench.c:327
+msgid "Copy results"
+msgstr ""
+
+#: src/hdbench.c:364
+msgid "CAPACITY"
+msgstr ""
+
+#: src/hdbench.c:378
+msgid "READ(KB/s)"
+msgstr ""
+
+#: src/hdbench.c:392
+msgid "RECTANGLE"
+msgstr ""
+
+#: src/hdbench.c:406
+msgid "FLOAT"
+msgstr ""
+
+#: src/hdbench.c:420
+msgid "INTEGER"
+msgstr ""
+
+#: src/hdbench.c:434
+msgid "CIRCLE"
+msgstr ""
+
+#: src/hdbench.c:448
+msgid "TOTAL"
+msgstr ""
+
+#: src/hdbench.c:479
+msgid "measure READ first(e.g. IDE busmaster)"
+msgstr ""
+
+#: src/hdbench.c:485
+msgid "copy the drive infomation,too"
+msgstr ""
+
+#: src/hdbench.c:491
+msgid "copy the only results"
+msgstr ""
+
+#: src/hdbench.c:496
+msgid "CD-ROM method(reading existent files)"
+msgstr ""
+
+#: src/hdbench.c:501
+msgid "measure IMAGE,too"
+msgstr ""
+
+#: src/hdbench.c:507
+msgid "WRITE(KB/s)"
+msgstr ""
+
+#: src/hdbench.c:522
+msgid "DRIVE"
+msgstr ""
+
+#: src/hdbench.c:547 src/hdbench.c:554 src/hdbench.c:561 src/hdbench.c:568
+msgid "Mesuring"
+msgstr ""
+
+#: src/hdbench.c:638
+msgid "Not implemented"
+msgstr ""
+
+#: src/hdbench.c:647
+msgid ""
+"\n"
+"\n"
+"  This function is not implemented.  \n"
+"\n"
+msgstr ""
+
+#: src/hdbench.c:657
+msgid " Damn "
+msgstr ""
+
+#: src/hdbench.c:683 src/hdbench.c:729
+msgid "No plugin"
+msgstr ""
+
+#: src/hdbench.c:692
+msgid ""
+"\n"
+"\n"
+"  Click to execute plugin DLL.  \n"
+"  But,there is no installed plugin.  \n"
+"\n"
+msgstr ""
+
+#: src/hdbench.c:702 src/hdbench.c:748 src/hdbench.c:796 src/hdbench.c:1152
+msgid "   OK   "
+msgstr ""
+
+#: src/hdbench.c:738
+msgid ""
+"\n"
+"\n"
+"  There is no installed plugin.  \n"
+"\n"
+msgstr ""
+
+#: src/hdbench.c:784
+msgid ""
+"\n"
+"HDBENCH clone\n"
+"\n"
+"a Graphical Benchmark Software\n"
+"\n"
+"Ver "
+msgstr ""
+
+#: src/hdbench.c:784
+msgid ""
+"\n"
+"\n"
+"   Copyright (C) 1999 Yuuki NINOMIYA   \n"
+"\n"
+"Read the documents to use.\n"
+msgstr ""
+
+#: src/hdbench.c:910
+#, c-format
+msgid "HDBENCH clone Ver %s"
+msgstr ""
+
+#: src/hdbench.c:928
+msgid " OS"
+msgstr ""
+
+#: src/hdbench.c:957
+msgid " CPU"
+msgstr ""
+
+#: src/hdbench.c:981
+msgid " Vendor"
+msgstr ""
+
+#: src/hdbench.c:1005
+msgid " Family"
+msgstr ""
+
+#: src/hdbench.c:1029
+msgid " Model"
+msgstr ""
+
+#: src/hdbench.c:1053
+msgid " Stepping"
+msgstr ""
+
+#: src/hdbench.c:1077
+msgid " Memory"
+msgstr ""
+
+#: src/hdbench.c:1088
+msgid "  Total"
+msgstr ""
+
+#: src/hdbench.c:1112
+msgid "  Free"
+msgstr ""
+
+#: src/hdbench.c:1158
+msgid "  Copy  "
+msgstr ""
+
+#: src/hdbench.c:1164
+msgid "Copyright (C) 1999 Yuuki NINOMIYA"
+msgstr ""
+
+#: src/getinfo.c:45
+msgid "Cannot open `/proc/meminfo'.\n"
+msgstr ""
+
+#: src/getinfo.c:72 src/getinfo.c:189
+msgid "Cannot execute `/sbin/sysctl'.\n"
+msgstr ""
+
+#: src/getinfo.c:109
+msgid "Cannot open `/proc/cpuinfo'.\n"
+msgstr ""
+
+#: src/getinfo.c:225
+msgid "Cannot get cpu infomation.\n"
+msgstr ""
+
+#: src/getinfo.c:238
+msgid "Cannot execute `uname'.\n"
+msgstr ""
+
+#: src/getinfo.c:263
+msgid "Cannot execute `grep' or open `XF86Config'.\n"
+msgstr ""
+
+#: src/getinfo.c:386
+msgid "Cannot execute `df'.\n"
+msgstr ""

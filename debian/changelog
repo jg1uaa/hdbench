@@ -1,0 +1,29 @@
+hdbench (0.14.1-1) unstable; urgency=low
+
+  * for 0.14.1
+
+ -- Yuuki NINOMIYA <gm@smn.enjoy.ne.jp>  Tue, 30 Nov 1999 21:50:29 +0900
+
+hdbench (0.14.0-1) unstable; urgency=low
+
+  * for 0.14.0
+
+ -- Yuuki NINOMIYA <gm@smn.enjoy.ne.jp>  Wed, 06 Oct 1999 22:38:12 +0900
+
+hdbench (0.13.0-1) unstable; urgency=low
+
+  * for 0.13.1
+
+ -- Yuuki NINOMIYA <gm@smn.enjoy.ne.jp>  Mon, 27 Sep 1999 04:17:23 +0900
+
+hdbench (0.13.0-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Yuuki NINOMIYA <gm@smn.enjoy.ne.jp>  Fri, 10 Sep 1999 09:59:48 +0900
+
+Local variables:
+mode: debian-changelog
+add-log-mailing-address: "gm@smn.enjoy.ne.jp"
+End:
+

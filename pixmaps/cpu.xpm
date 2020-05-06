@@ -1,0 +1,41 @@
+/* XPM */
+static char *cpu_xpm_data[] = {
+/* columns rows colors chars-per-pixel */
+"30 29 5 1",
+"  c Gray0",
+". c Gray50",
+"X c Yellow",
+"o c Gray75",
+"O c Gray100",
+/* pixels */
+"                         ooooo",
+"                         .oooo",
+"                         ..ooo",
+"                         ..ooo",
+"    XXXXXXXXXXXXXXX      ..Ooo",
+"    XXXXXXXXXXXXXXXo     ..oOo",
+"    XXX  X  XX X XXo     ..OoO",
+"    XX XXX X X X XXo     ..oOo",
+"    XX XXX  XX X XXo     ..OoO",
+"    XXX  X XXX   XXo     ..oOo",
+"    XXXXXXXXXXXXXXXo     ..OoO",
+"    XXXXXXXXXXXXXXXo     ..oOo",
+"    XXX.X.X.X.X.XXXo     ..OoO",
+"    XX.X.X.X.X.X.XXo     ..oOo",
+"    XXX.X.X.X.X.XXXo     ..OoO",
+"    XXXXXXXXXXXXXXXo     ..oOo",
+"    XXXXXXXXXXXXXXXo     ..OoO",
+"    XXXXXXXXXXXXXXXo     ..oOo",
+"     ooooooooooooooo     ..OoO",
+"                         ..oOo",
+"                         ..OoO",
+"                         ..oOo",
+"                         ..OoO",
+"                         ..oOo",
+"o..........................OoO",
+"oo.........................oOo",
+"oooOoOoOoOoOoOoOoOoOoOoOoOoooO",
+"ooooOoOoOoOoOoOoOoOoOoOoOoOooo",
+"oooooOoOoOoOoOoOoOoOoOoOoOoOoo"
+};
+

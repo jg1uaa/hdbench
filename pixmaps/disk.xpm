@@ -1,0 +1,46 @@
+/* XPM */
+static char *disk_xpm_data[] = {
+/* columns rows colors chars-per-pixel */
+"24 32 6 1",
+"  c Gray0",
+". c Gray50",
+"X c Red",
+"o c Yellow",
+"O c Gray75",
+"+ c Gray100",
+/* pixels */
+"OOOO..................+ ",
+"OOO..................+. ",
+"OO..................+.. ",
+"O..................+... ",
+"+++++++++++++++++++.... ",
+"+OOO.O.OOOOOOOOOOO..... ",
+"+OO.O.OOOOOOOOOOOO..... ",
+"+OOooooOOOOOOOOOOO..... ",
+"+OOooooOO.O.O.O.OO..... ",
+"+OOO.O.OOO.O.O.OOO..... ",
+"+OO.O.OOO.O.O.O.OO..... ",
+"+OOXXXXOOO.O.O.OOO..... ",
+"+OOXXXXOO.O.O.O.OO..... ",
+"+OOO.O.OOOOOOOOOOO..... ",
+"+OO.O.OOOOOOOOOOOO..... ",
+"+OOO.O.OOOOOOOOOOO..... ",
+"+OO.O.OOOOOOOOOOOO..... ",
+"+OOO.O.OOOOOOOOOOO..... ",
+"+OO.O.OOOOOOOOOOOO..... ",
+"+OOO.O.OOOOOOOOOOO..... ",
+"+OO.O.OOOOOOOOOOOO..... ",
+"+OOO.O.OOOOOOOOOOO..... ",
+"+OO.O.OOOOOOOOOOOO..... ",
+"+OOO.O.OOOOOOOOOOO..... ",
+"+OO.O.OOOOOOOOOOOO..... ",
+"+OOO.O.OOOOOOOOOOO..... ",
+"+OO.O.OOOOOOOOOOOO..... ",
+"+OOO.O.OOOOOOOOOOO.... O",
+"+OO.O.OOOOOOOOOOOO... OO",
+"+OOO.O.OOOOOOOOOOO.. OOO",
+"+OO.O.OOOOOOOOOOOO. OOOO",
+"                   OOOOO"
+};
+
+

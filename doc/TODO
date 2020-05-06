@@ -1,0 +1,9 @@
+* TODO (in order of priority)
+
+ + To use proc file system to get a drive infomation.
+
+ + To implement the option `measure READ first'.
+
+ + To implement the option `CD-ROM method'.
+
+ + To implement `GRAPH'.

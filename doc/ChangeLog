@@ -1,0 +1,77 @@
+* History
+
+ + 99/11/30 Ver 0.14.1
+   - Documents are modified.
+   - Remove static arrays in getinfo.c.
+
+ + 99/10/06 Ver 0.14.0
+   - The fatal bug is fixed that the routine measuring CPU performance
+     break CPU registers.
+   - The routine measuring ALL performance uses the routine measuring
+     CPU ,VIDEO, DISK.
+   - Uses gtk_input_add instead of signal for notifing the parent process
+     that measuring is finished.
+   - Uses gint, gchar... instead of int, char...
+   - Arrange the header files.
+   - When measure ALL, output CPU,VIDEO,DISK in phase.
+   - The bug is fixed created a zombie process.
+
+ + 99/09/27 Ver 0.13.1
+   - Uses shhopt instead of parseopt.
+   - Add `-V | --version' option.
+
+ + 99/09/06 Ver 0.13.0
+   - `PRINT' is implemented.
+   - When the color depth is 32bit, output 16777216 colors.
+   - Measuring IMAGE is implemented.
+
+ + 99/08/28 Ver 0.12.1
+   - The bug is fixed that judgment of X_LOCALE is always failed
+     in the configure script.
+   - The bug is fixed that output `media changed' to the drive infomation.
+   - Outputs the capacity, cache and CHS of IDE drives on Linux 2.2.x.
+
+ + 99/08/15 Ver 0.12.0
+   - The bug is fixed that the way checking popen() is wrong.
+   - The option `copy the drive infomation,too' is implemented.
+   - Make results database.
+
+ + 99/08/12 Ver 0.11.2
+   - The name is changed.
+
+ + 99/08/08 Ver 0.11.1
+   - Uses ioptparse instead of shhopt.
+   - Modify command line options.
+
+ + 99/08/06 Ver 0.11.0
+   - Uses the selection instead of the cut buffer.
+   - `COPY' is implemented.
+   - Modify the routine measuring integer performance.
+
+ + 99/08/04 Ver 0.10.0
+   - Rewrite measuring routines.
+   - `SYSTEM' is implemented.
+
+ + 99/08/02 Ver 0.9.0
+   - The fatal bug is fixed about measuring floating point.
+   - `HELP' is implemented.
+   - `~/.gtkrc' is read.
+   - Support for FreeBSD.
+   - Uses 14 pixel font.
+
+ + 99/07/30 Ver 0.8.0
+   - Support for autoconf, automake and gettext.
+   - Uses GAS instead of NASM.
+   - Separate measuring routines from the main process.
+   - When the dialog is active, the main window cannot be controlled.
+
+ + 99/05/03 Ver 0.7.0
+   - Rewrite measuring routines with the assembly language.
+   - Uses alarm() instead of gettimeofday()
+
+ + 99/04/24 Ver 0.6.0
+   - The interface is modified.
+
+ + 99/04/20 Ver 0.5.0
+   - Initial release.
+

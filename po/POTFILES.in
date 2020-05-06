@@ -1,0 +1,7 @@
+./src/support.c
+./src/main.c
+./src/sighandler.c
+./src/shhopt.c
+./src/benchmark.c
+./src/hdbench.c
+./src/getinfo.c

@@ -1,0 +1,52 @@
+* Acknowledgement
+
+Borrowed Code / Library
+=======================
+Sverre H. Huseby <sverrehu@online.no>
+http://home.sol.no/~sverrehu/
+  - shhopt (parsing command line options)
+
+Peter Mattis <petm@xcf.berkeley.edu>
+Spencer Kimball <spencer@xcf.berkeley.edu>
+Josh MacDonald <jmacd@xcf.berkeley.edu>
+and the GTK+ Team
+http://www.gtk.org/
+  - selection.c, selection.h
+
+
+Contributions
+=============
+
+
+Translations
+============
+
+
+Special Thanks
+==============
+EP82/KAZU <RXB02207@nifty.ne.jp>
+http://www.lares.dti.ne.jp/~ep82kazu/
+  - the author of original HDBENCH
+
+Damon Chaplin <glade@glade.pn.org>
+http://glade.pn.org/
+  - the author of user interface builder Glade
+
+
+Sending Results
+===============
+ICHIMIYA Katsuya <itimiya@kohken.co.jp>
+TAMASHIRO Masakazu <lf20103@cc.mie-u.ac.jp>
+Kazuki.I <cbc41240@pop21.odn.ne.jp>
+Masanobu Saitoh <ind@geocities.com>
+Yoshinori ARAI <yoshi@pisces.bekkoame.ne.jp>
+higashi
+Kouichi Nakashima <kouithi@bekkoame.ne.jp>
+Kazuaki Tauchi <tauchi@mb.aikis.or.jp>
+Nobuaki Nasu <nasu@mb.aikis.or.jp>
+OHTSUKA Masahito <negi@KU3G.org>
+Bas Denissen <bas.denissen@multiweb.nl>
+Gavin Cato <gavin@optus.net.au>
+Lars-Erik Stenholm <lasse@athega.se>
+Daniel Schramm <daniel.schramm@gmx.de>
+Takashi Kurusu <kurusu@hermes.esys.tsukuba.ac.jp>

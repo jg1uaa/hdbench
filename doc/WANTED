@@ -1,0 +1,38 @@
+* * *   YOUT RESULT IS INVITED NOW   * * *
+
+ A benchmark software without the comparable data is useless.
+ Please send your results to me according to the following procedure.
+
+
+1. measuring
+
+ Measure your benchmark. The configuration is the following.
+
+ + DRIVE is arbitrary.
+ + CAPACITY is 10MB
+ + Activate options : `measure READ first', `copy the drive infomation,too'
+                      `measure IMAGE,too'
+
+ Before measuring, exit processes as many as possible.
+Don't touch keyboard and mouse while measuring.
+ Measure CPU, VIDEO and DISK (or ALL).
+
+
+2. editing
+
+ After measuring, click COPY and paste to a editor.
+ If CPU clock or Display is `unknown', write it correctly.
+
+
+3. sending
+
+ Mail the results to Yuuki NINOMIYA <gm@smn.enjoy.ne.jp>.
+
+
+
+ I am looking forward to receiving you mail.
+
+
+-----------------------------------
+Yuuki NINOMIYA <gm@smn.enjoy.ne.jp>
+

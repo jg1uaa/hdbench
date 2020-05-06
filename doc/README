@@ -1,0 +1,180 @@
++-----------------------------------------------------------------------+
+|                                                                       |
+|                            HDBENCH clone                              |
+|                                                                       |
+|                  Copyright (C) 1999 Yuuki NINOMIYA                    |
+|                                                                       |
++-----------------------------------------------------------------------+
+
+   * * *   Your results is invited now. See WANTED for details.   * * *
+
+
+* Description
+
+ HDBENCH clone is a benchmark software like HDBENCH which is the most
+famous benchmark software for Windows in Japan.
+ It measures the performance of CPU (integer, floating point),
+video (rectangle, circle, text, scroll, image) and disk (read, write).
+
+
+* Features
+
+ + It looks like HDBENCH very much.
+
+ + A graphical benchmark software for Linux is rare.
+
+ + It may be trustworthy because of open source.
+
+ + Gettext is supported.
+
+
+* Requirements
+
+ GTK+ 1.2.0 or above is required. Get it from `http://www.gtk.org/'.
+ 4MB or above physical memory is required.
+ This software uses assembly language. It may work only Intel PC.
+
+
+* How to install
+
+ % ./configure
+ % make
+ # make install
+
+ If you want to use Japanese, specify fontset in `~/.gtkrc'.
+
+
+* Details of command line options
+
+usage: hdbench [OPTIONS]
+
+options:
+  -h | --help          display this help and exit
+  -f | --font=FONT     font name used in TEXT of VIDEO
+  -t | --text=FONT     string written in TEXT of VIDEO
+  -V | --version       display version infomation and exit
+
+
+* How to use
+
+ Exit all application programs before using HDBENCH clone.
+ While measuring, don't touch keyboard and mouse.
+
+ + ALL
+   Measure DISK, CPU, VIDEO.
+   The value of TOTAL is all value divided by 10.
+
+ + CPU
+   Measure the number of times calculating floating point and integer
+   per one second.
+
+ + VIDEO
+   Measure the number of times drawing rectangle, circle and text per
+   one second, and scroll in 3 seconds, IMAGE in 5 seconds.
+
+ + DISK
+   Measure the transferring bytes of reading and writing per
+   one second.
+   Specify DRIVE and CAPACITY. CAPACITY is 10MB by default.
+   When use CD-ROM, CAPACITY is 1/10.
+
+ + EXIT
+   Exit HDBENCH clone.
+
+ + COPY
+   Copy results to selection.
+
+ + PRINT
+   Print results. Write simply to lpr.
+
+ + SYSTEM
+   Display total memory, free memory, processor, OS, version of
+   HDBENCH clone, and CPU clock (if possible).
+   Copy system infomation to selection to click COPY in dialog.
+
+ + GRAPH
+   Display graph of results database. It is not implemented.
+
+ + HELP
+   About infomation.
+
+ + OPTIONS
+   Specify options. Now `copy the only results' and
+   `copy the drive infomation,too' are implemented.
+
+   - measure READ first (e.g. IDE busmaster)
+     Check it if READ is too high.
+
+   - copy the drive infomation,too
+     If check it and click COPY, copy the drive drive infomation
+     and video card name. 
+
+   - copy the only results
+     If check it and click COPY, copy the only results.
+
+   - CD-ROM method (reading existent files)
+     Measure only READ.
+
+   - measure IMAGE,too
+     Measure IMAGE.
+     Display 1000 rectangles using XPutImage. Its value is frame/sec.
+     The color depth must be 16bit to measure it. If the color depth
+     is not 16bit, display warning message and don't measure it.
+
+
+* Limits
+
+ None.
+
+
+* Tested OS
+
+ + Debian GNU/Linux 2.1
+ + Vine Linux 1.0
+ + Vine Linux 1.1
+ + FreeBSD(98) 3.0-RELEASE
+
+
+* Notice 
+
+ This software uses shhopt for parsing command line options.
+Shhopt is released under the Artistic License. You can use
+it separately under the Artistic License if you want.
+
+
+* Copying
+
+ The copyright of this software belongs to Yuuki NINOMIYA.
+ It is released under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2,
+or (at your option) any later version.
+ You can redistribute it and/or modify it under the GPL.
+
+
+* Request to users
+
+ I have an incomplete mastery of the English language, so please help
+correct the text of the documents and messages in this program.
+ Comments, suggestions, bug reports and patches are welcome.
+Please mail them to me at the following address.
+
+
+* Contact me
+
+ e-mail : gm@smn.enjoy.ne.jp
+
+
+* The latest version
+
+ http://www.enjoy.ne.jp/~gm/program/hdbench/
+
+
+* My webpage
+
+ Yuuki NINOMIYA's webpage
+ http://www.enjoy.ne.jp/~gm/
+
+
+-----------------------------------
+Yuuki NINOMIYA <gm@smn.enjoy.ne.jp>
+

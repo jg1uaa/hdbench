@@ -1,0 +1,440 @@
+# HDBENCH clone
+# Copyright (C) 1999 Yuuki NINOMIYA
+# Yuuki NINOMIYA <gm@smn.enjoy.ne.jp>, 1999.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"POT-Creation-Date: 1999-11-09 23:36+0900\n"
+"PO-Revision-Date: 1999-07-30 06:15+0900\n"
+"Last-Translator: Yuuki NINOMIYA <gm@smn.enjoy.ne.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=euc-jp\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/support.c:136
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "ピックスマップが見付かりません: %s"
+
+#: src/support.c:145
+#, c-format
+msgid "Error loading pixmap file: %s"
+msgstr "ピックスマップがロードできません: %s"
+
+#: src/main.c:84
+#, c-format
+msgid ""
+"HDBENCH clone Ver %s Copyright (C) 1999 Yuuki NINOMIYA\n"
+"\n"
+"This is free software with ABSOLUTELY NO WARRANTY.\n"
+"For details please see the file COPYING.\n"
+"\n"
+"usage: hdbench [OPTIONS]\n"
+"\n"
+"options:\n"
+"  -h | --help          display this help and exit\n"
+"  -f | --font=FONT     font name used in TEXT of VIDEO\n"
+"  -t | --text=FONT     string written in TEXT of VIDEO\n"
+"  -V | --version       display version infomation and exit\n"
+"\n"
+msgstr ""
+"HDBENCH clone Ver %s Copyright (C) 1999 Yuuki NINOMIYA\n"
+"\n"
+"これはフリーソフトウェアであり、動作に一切の保証はありません。\n"
+"詳細は COPYING.jp を読んでください。\n"
+"\n"
+"使用法: hdbench [オプション]\n"
+"\n"
+"オプション:\n"
+"  -h | --help          このヘルプを表示して終了\n"
+"  -f | --font=FONT     VIDEO の TEXT で使用するフォント名\n"
+"  -t | --text=FONT     VIDEO の TEXT で表示する文字列\n"
+"  -V | --version       バージョン情報を表示して終了\n"
+"\n"
+
+#: src/main.c:103
+#, c-format
+msgid "HDBENCH clone Ver %s Copyright (C) 1999 Yuuki NINOMIYA\n"
+msgstr ""
+
+#: src/benchmark.c:64 src/benchmark.c:164 src/benchmark.c:440
+#: src/benchmark.c:651 src/getinfo.c:61 src/getinfo.c:185 src/getinfo.c:234
+#: src/getinfo.c:251 src/getinfo.c:258 src/getinfo.c:362 src/getinfo.c:382
+#: src/sighandler.c:161
+msgid "Cannot create a pipe.\n"
+msgstr "パイプを生成できません。\n"
+
+#: src/shhopt.c:235 src/shhopt.c:261
+#, c-format
+msgid "invalid number `%s'\n"
+msgstr "`%s' は無効な数字です。\n"
+
+#: src/shhopt.c:238 src/shhopt.c:264
+#, c-format
+msgid "number `%s' to `%s' out of range\n"
+msgstr "オプション `%2$s' に指定された数字 `%1$s' は有効範囲を越えています。\n"
+
+#: src/shhopt.c:369
+#, c-format
+msgid "unrecognized option `%s'\n"
+msgstr "`%s' は認識できないオプションです。\n"
+
+#: src/shhopt.c:382 src/shhopt.c:420
+#, c-format
+msgid "option `%s' requires an argument\n"
+msgstr "オプション `%s' は引数を必要とします。\n"
+
+#: src/shhopt.c:388
+#, c-format
+msgid "option `%s' doesn't allow an argument\n"
+msgstr "オプション `%s' に引数は指定できません。\n"
+
+#: src/shhopt.c:410
+#, c-format
+msgid "unrecognized option `-%c'\n"
+msgstr "`-%c' は認識できないオプションです。\n"
+
+#: src/benchmark.c:70 src/benchmark.c:170 src/benchmark.c:446
+#: src/benchmark.c:657
+msgid "Cannot fork.\n"
+msgstr "fork できません。\n"
+
+#: src/benchmark.c:233
+msgid "Color depth is not 16bit. Don't measure IMAGE or restart X in 16bpp."
+msgstr ""
+"色の深さが 16 ビットではありません。IMAGE を計測しないか、あるいは X を "
+"16bpp で再起動してください。"
+
+#: src/benchmark.c:510 src/benchmark.c:550 src/benchmark.c:581
+#, c-format
+msgid "Cannot create temporary file `%s'.\n"
+msgstr "テンポラリファイル `%s' を作成できません。\n"
+
+#: src/benchmark.c:520 src/benchmark.c:561
+#, c-format
+msgid "Writing temporary file `%s' failed.\n"
+msgstr "テンポラリファイル `%s' の書き込みに失敗。\n"
+
+#: src/benchmark.c:554
+msgid "Cannot get memory infomation.\n"
+msgstr "メモリ情報を取得できません。\n"
+
+#: src/benchmark.c:591
+#, c-format
+msgid "Reading temporary file `%s' failed.\n"
+msgstr "テンポラリファイル `%s' の読み込みに失敗。\n"
+
+#: src/benchmark.c:783
+msgid "HDBENCH clone"
+msgstr ""
+
+#: src/benchmark.c:794
+msgid "Cannot allocate color.\n"
+msgstr "カラーを割り当てられません。\n"
+
+#: src/benchmark.c:802
+#, c-format
+msgid "Cannot load font `%s'.\n"
+msgstr "フォント `%s' がロードできません。\n"
+
+#: src/benchmark.c:845
+msgid "Cannot install a signal handler of SIGALRM.\n"
+msgstr "SIGALRM にシグナルハンドラを設定できません。\n"
+
+#: src/hdbench.c:79
+msgid "HDBENCH clone Ver "
+msgstr ""
+
+#: src/hdbench.c:96
+msgid "EXIT"
+msgstr "終了"
+
+#: src/hdbench.c:104
+msgid "COPY"
+msgstr "コピー"
+
+#: src/hdbench.c:112
+msgid "PRINT"
+msgstr "印刷"
+
+#: src/hdbench.c:120 src/hdbench.c:885
+msgid "SYSTEM"
+msgstr "システム"
+
+#: src/hdbench.c:128
+msgid "GRAPH"
+msgstr "グラフ"
+
+#: src/hdbench.c:136
+msgid "ALL"
+msgstr ""
+
+#: src/hdbench.c:144
+msgid "CPU"
+msgstr ""
+
+#: src/hdbench.c:152
+msgid "VIDEO"
+msgstr ""
+
+#: src/hdbench.c:160
+msgid "DISK"
+msgstr ""
+
+#: src/hdbench.c:168 src/hdbench.c:775
+msgid "HELP"
+msgstr "ヘルプ"
+
+#: src/hdbench.c:183
+msgid "TEXT"
+msgstr "テキスト"
+
+#: src/hdbench.c:197
+msgid "MEMORY"
+msgstr "メモリ"
+
+#: src/hdbench.c:211
+msgid "SCROLL"
+msgstr "スクロール"
+
+#: src/hdbench.c:225
+msgid "IMAGE"
+msgstr ""
+
+#: src/hdbench.c:299
+msgid "PLUGIN"
+msgstr ""
+
+#: src/hdbench.c:311
+msgid "Start"
+msgstr ""
+
+#: src/hdbench.c:318 src/hdbench.c:462
+msgid "OPTIONS"
+msgstr "オプション"
+
+#: src/hdbench.c:327
+msgid "Copy results"
+msgstr "結果コピー"
+
+#: src/hdbench.c:364
+msgid "CAPACITY"
+msgstr "使用容量"
+
+#: src/hdbench.c:378
+msgid "READ(KB/s)"
+msgstr ""
+
+#: src/hdbench.c:392
+msgid "RECTANGLE"
+msgstr "矩 形"
+
+#: src/hdbench.c:406
+msgid "FLOAT"
+msgstr "浮動小数点"
+
+#: src/hdbench.c:420
+msgid "INTEGER"
+msgstr "整数演算"
+
+#: src/hdbench.c:434
+msgid "CIRCLE"
+msgstr "円"
+
+#: src/hdbench.c:448
+msgid "TOTAL"
+msgstr "総  合"
+
+#: src/hdbench.c:479
+msgid "measure READ first(e.g. IDE busmaster)"
+msgstr "READ から測定 (IDE バスマスタ等)"
+
+#: src/hdbench.c:485
+msgid "copy the drive infomation,too"
+msgstr "ドライブ情報もコピーする。"
+
+#: src/hdbench.c:491
+msgid "copy the only results"
+msgstr "結果のみコピーする。"
+
+#: src/hdbench.c:496
+msgid "CD-ROM method(reading existent files)"
+msgstr "CD-ROM 方式 (既存ファイルリード)"
+
+#: src/hdbench.c:501
+msgid "measure IMAGE,too"
+msgstr "IMAGE も測定する。"
+
+#: src/hdbench.c:507
+msgid "WRITE(KB/s)"
+msgstr ""
+
+#: src/hdbench.c:522
+msgid "DRIVE"
+msgstr ""
+
+#: src/hdbench.c:547 src/hdbench.c:554 src/hdbench.c:561 src/hdbench.c:568
+msgid "Mesuring"
+msgstr "計測中"
+
+#: src/hdbench.c:638
+msgid "Not implemented"
+msgstr "未実装"
+
+#: src/hdbench.c:647
+msgid ""
+"\n"
+"\n"
+"  This function is not implemented.  \n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"  この機能は実装されていません。\n"
+"\n"
+
+#: src/hdbench.c:657
+msgid " Damn "
+msgstr " クソったれ "
+
+#: src/hdbench.c:683 src/hdbench.c:729
+msgid "No plugin"
+msgstr ""
+
+#: src/hdbench.c:692
+msgid ""
+"\n"
+"\n"
+"  Click to execute plugin DLL.  \n"
+"  But,there is no installed plugin.  \n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"  このボタンはプラグイン DLL 実行用です。\n"
+"  現在プラグインはインストールされていません。\n"
+"\n"
+
+#: src/hdbench.c:702 src/hdbench.c:748 src/hdbench.c:796 src/hdbench.c:1152
+msgid "   OK   "
+msgstr "   了解   "
+
+#: src/hdbench.c:738
+msgid ""
+"\n"
+"\n"
+"  There is no installed plugin.  \n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"  現在プラグインはインストールされていません。\n"
+"\n"
+
+#: src/hdbench.c:784
+msgid ""
+"\n"
+"HDBENCH clone\n"
+"\n"
+"a Graphical Benchmark Software\n"
+"\n"
+"Ver "
+msgstr ""
+"\n"
+"HDBENCH clone\n"
+"\n"
+"グラフィカルベンチマークソフトウェア\n"
+"\n"
+"バージョン "
+
+#: src/hdbench.c:784
+msgid ""
+"\n"
+"\n"
+"   Copyright (C) 1999 Yuuki NINOMIYA   \n"
+"\n"
+"Read the documents to use.\n"
+msgstr ""
+"\n"
+"\n"
+"Copyright (C) 1999 Yuuki NINOMIYA\n"
+"\n"
+"   使用法はドキュメントを参照してください。   \n"
+
+#: src/hdbench.c:910
+#, c-format
+msgid "HDBENCH clone Ver %s"
+msgstr ""
+
+#: src/hdbench.c:928
+msgid " OS"
+msgstr ""
+
+#: src/hdbench.c:957
+msgid " CPU"
+msgstr ""
+
+#: src/hdbench.c:981
+msgid " Vendor"
+msgstr ""
+
+#: src/hdbench.c:1005
+msgid " Family"
+msgstr ""
+
+#: src/hdbench.c:1029
+msgid " Model"
+msgstr ""
+
+#: src/hdbench.c:1053
+msgid " Stepping"
+msgstr ""
+
+#: src/hdbench.c:1077
+msgid " Memory"
+msgstr ""
+
+#: src/hdbench.c:1088
+msgid "  Total"
+msgstr ""
+
+#: src/hdbench.c:1112
+msgid "  Free"
+msgstr ""
+
+#: src/hdbench.c:1158
+msgid "  Copy  "
+msgstr "  コピー  "
+
+#: src/hdbench.c:1164
+msgid "Copyright (C) 1999 Yuuki NINOMIYA"
+msgstr ""
+
+#: src/getinfo.c:45
+msgid "Cannot open `/proc/meminfo'.\n"
+msgstr "`/proc/meminfo' がオープンできません。\n"
+
+#: src/getinfo.c:72 src/getinfo.c:189
+msgid "Cannot execute `/sbin/sysctl'.\n"
+msgstr "`/sbin/sysctl' を実行できません。\n"
+
+#: src/getinfo.c:109
+msgid "Cannot open `/proc/cpuinfo'.\n"
+msgstr "`/proc/cpuinfo' がオープンできません。\n"
+
+#: src/getinfo.c:225
+msgid "Cannot get cpu infomation.\n"
+msgstr "CPU 情報を取得できません。\n"
+
+#: src/getinfo.c:238
+msgid "Cannot execute `uname'.\n"
+msgstr "`uname' を実行できません。\n"
+
+#: src/getinfo.c:263
+msgid "Cannot execute `grep' or open `XF86Config'.\n"
+msgstr "`grep' が実行できないか、`XF86Config' がオープンできません。\n"
+
+#: src/getinfo.c:386
+msgid "Cannot execute `df'.\n"
+msgstr "`df' を実行できません。\n"
