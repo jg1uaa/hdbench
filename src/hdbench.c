@@ -245,52 +245,62 @@ create_main_window ()
   capacity_option_menu_menu = gtk_menu_new ();
   glade_menuitem = gtk_menu_item_new_with_label ("2000MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
-                      capacity_option_menu_set, (gpointer)2000);
+                      GTK_SIGNAL_FUNC (capacity_option_menu_set),
+                      (gpointer)2000);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   glade_menuitem = gtk_menu_item_new_with_label ("1024MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
-                      capacity_option_menu_set, (gpointer)1024);
+                      GTK_SIGNAL_FUNC (capacity_option_menu_set),
+                      (gpointer)1024);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   glade_menuitem = gtk_menu_item_new_with_label ("512MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
-                      capacity_option_menu_set, (gpointer)512);
+                      GTK_SIGNAL_FUNC (capacity_option_menu_set),
+                      (gpointer)512);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   glade_menuitem = gtk_menu_item_new_with_label ("100MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
-                      capacity_option_menu_set, (gpointer)100);
+                      GTK_SIGNAL_FUNC (capacity_option_menu_set),
+                      (gpointer)100);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   glade_menuitem = gtk_menu_item_new_with_label ("20MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
-                      capacity_option_menu_set, (gpointer)20);
+                      GTK_SIGNAL_FUNC (capacity_option_menu_set),
+                      (gpointer)20);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   glade_menuitem = gtk_menu_item_new_with_label ("10MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
-                      capacity_option_menu_set, (gpointer)10);
+                      GTK_SIGNAL_FUNC (capacity_option_menu_set),
+                      (gpointer)10);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   glade_menuitem = gtk_menu_item_new_with_label ("5MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
-                      capacity_option_menu_set, (gpointer)5);
+                      GTK_SIGNAL_FUNC (capacity_option_menu_set),
+                      (gpointer)5);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   glade_menuitem = gtk_menu_item_new_with_label ("3MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
-                      capacity_option_menu_set, (gpointer)3);
+                      GTK_SIGNAL_FUNC (capacity_option_menu_set),
+                      (gpointer)3);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   glade_menuitem = gtk_menu_item_new_with_label ("2MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
-                      capacity_option_menu_set, (gpointer)2);
+                      GTK_SIGNAL_FUNC (capacity_option_menu_set),
+                      (gpointer)2);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   glade_menuitem = gtk_menu_item_new_with_label ("1MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
-                      capacity_option_menu_set, (gpointer)1);
+                      GTK_SIGNAL_FUNC (capacity_option_menu_set),
+                      (gpointer)1);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   gtk_option_menu_set_menu (GTK_OPTION_MENU (capacity_option_menu), capacity_option_menu_menu);

@@ -59,7 +59,7 @@ GLOBAL gint done_flag;
 GLOBAL gint disk_capacity GLOBAL_VAL(10);
 GLOBAL gchar *font_name GLOBAL_VAL("-adobe-helvetica-medium-r-*--14-*");
 GLOBAL gchar *video_text GLOBAL_VAL("HDBENCH clone");
-GLOBAL gchar *disk_drive;
+GLOBAL const gchar *disk_drive;
 GLOBAL gint32 result_all;
 GLOBAL gint32 result_integer;
 GLOBAL gint32 result_float;
