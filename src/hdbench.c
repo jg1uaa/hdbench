@@ -644,7 +644,7 @@ create_damn_dialog ()
 
   damn_dialog = gtk_dialog_new ();
   gtk_object_set_data (GTK_OBJECT (damn_dialog), "damn_dialog", damn_dialog);
-  GTK_WINDOW (damn_dialog)->type = GTK_WINDOW_DIALOG;
+  GTK_WINDOW (damn_dialog)->type = GTK_WINDOW_POPUP;
   gtk_window_set_title (GTK_WINDOW (damn_dialog), _("Not implemented"));
   gtk_window_set_position (GTK_WINDOW (damn_dialog), GTK_WIN_POS_MOUSE);
   gtk_window_set_policy (GTK_WINDOW (damn_dialog), TRUE, TRUE, FALSE);
@@ -689,7 +689,7 @@ create_plugin_start_dialog ()
 
   plugin_start_dialog = gtk_dialog_new ();
   gtk_object_set_data (GTK_OBJECT (plugin_start_dialog), "plugin_start_dialog", plugin_start_dialog);
-  GTK_WINDOW (plugin_start_dialog)->type = GTK_WINDOW_DIALOG;
+  GTK_WINDOW (plugin_start_dialog)->type = GTK_WINDOW_POPUP;
   gtk_window_set_title (GTK_WINDOW (plugin_start_dialog), _("No plugin"));
   gtk_window_set_position (GTK_WINDOW (plugin_start_dialog), GTK_WIN_POS_MOUSE);
   gtk_window_set_policy (GTK_WINDOW (plugin_start_dialog), TRUE, TRUE, FALSE);
@@ -735,7 +735,7 @@ create_plugin_copy_dialog ()
 
   plugin_copy_dialog = gtk_dialog_new ();
   gtk_object_set_data (GTK_OBJECT (plugin_copy_dialog), "plugin_copy_dialog", plugin_copy_dialog);
-  GTK_WINDOW (plugin_copy_dialog)->type = GTK_WINDOW_DIALOG;
+  GTK_WINDOW (plugin_copy_dialog)->type = GTK_WINDOW_POPUP;
   gtk_window_set_title (GTK_WINDOW (plugin_copy_dialog), _("No plugin"));
   gtk_window_set_position (GTK_WINDOW (plugin_copy_dialog), GTK_WIN_POS_MOUSE);
   gtk_window_set_policy (GTK_WINDOW (plugin_copy_dialog), TRUE, TRUE, FALSE);
@@ -781,7 +781,7 @@ create_help_dialog ()
 
   help_dialog = gtk_dialog_new ();
   gtk_object_set_data (GTK_OBJECT (help_dialog), "help_dialog", help_dialog);
-  GTK_WINDOW (help_dialog)->type = GTK_WINDOW_DIALOG;
+  GTK_WINDOW (help_dialog)->type = GTK_WINDOW_POPUP;
   gtk_window_set_title (GTK_WINDOW (help_dialog), _("HELP"));
   gtk_window_set_position (GTK_WINDOW (help_dialog), GTK_WIN_POS_MOUSE);
   gtk_window_set_policy (GTK_WINDOW (help_dialog), TRUE, TRUE, FALSE);
@@ -891,7 +891,7 @@ create_system_dialog ()
   system_dialog = gtk_dialog_new ();
   gtk_object_set_data (GTK_OBJECT (system_dialog), "system_dialog", system_dialog);
   gtk_widget_set_usize (system_dialog, 450, -2);
-  GTK_WINDOW (system_dialog)->type = GTK_WINDOW_DIALOG;
+  GTK_WINDOW (system_dialog)->type = GTK_WINDOW_POPUP;
   gtk_window_set_title (GTK_WINDOW (system_dialog), _("SYSTEM"));
   gtk_window_set_position (GTK_WINDOW (system_dialog), GTK_WIN_POS_MOUSE);
   gtk_window_set_policy (GTK_WINDOW (system_dialog), TRUE, TRUE, FALSE);
