@@ -120,6 +120,10 @@ void get_cpuinfo(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar 
 		}
 
 		ptr=strchr(buf,'\t');
+		if(ptr==NULL){
+			g_free(buf);
+			continue;
+		}
 		*ptr='\0';
 		item=g_strdup(buf);
 
