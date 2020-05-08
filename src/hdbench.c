@@ -54,7 +54,7 @@ create_main_window ()
   GtkWidget *capacity_option_menu_menu;
   GtkWidget *glade_menuitem;
   GtkWidget *plugins;
-  GtkWidget *fixed2;
+  GtkWidget *table1;
   GtkWidget *plugin_option_menu_menu;
   GtkWidget *label_capacity;
   GtkWidget *bench_plugin;
@@ -313,50 +313,51 @@ create_main_window ()
   gtk_widget_set_uposition (plugins, 16, 312);
   gtk_widget_set_usize (plugins, 296, 136);
 
-  fixed2 = gtk_fixed_new ();
-  gtk_object_set_data (GTK_OBJECT (main_window), "fixed2", fixed2);
-  gtk_widget_show (fixed2);
-  gtk_container_add (GTK_CONTAINER (plugins), fixed2);
+  table1 = gtk_table_new (4, 4, FALSE);
+  gtk_object_set_data (GTK_OBJECT (main_window), "table1", table1);
+  gtk_widget_show (table1);
+  gtk_container_add (GTK_CONTAINER (plugins), table1);
+
+  gtk_table_set_col_spacing (GTK_TABLE (table1), 0, 8);
+  gtk_table_set_col_spacing (GTK_TABLE (table1), 1, 14);
+  gtk_table_set_col_spacing (GTK_TABLE (table1), 2, 14);
+  gtk_table_set_row_spacing (GTK_TABLE (table1), 0, 8);
+  gtk_table_set_row_spacing (GTK_TABLE (table1), 2, 16);
 
   plugin_start = gtk_button_new_with_label (_("Start"));
   gtk_object_set_data (GTK_OBJECT (main_window), "plugin_start", plugin_start);
   gtk_widget_show (plugin_start);
-  gtk_fixed_put (GTK_FIXED (fixed2), plugin_start, 8, 16);
-  gtk_widget_set_uposition (plugin_start, 8, 16);
   gtk_widget_set_usize (plugin_start, 72, 32);
+  gtk_table_attach (GTK_TABLE (table1), plugin_start, 1, 2, 1, 3, 0, 0, 0, 0);
 
   plugin_option = gtk_button_new_with_label (_("OPTIONS"));
   gtk_object_set_data (GTK_OBJECT (main_window), "plugin_option", plugin_option);
   gtk_widget_show (plugin_option);
-  gtk_fixed_put (GTK_FIXED (fixed2), plugin_option, 184, 8);
-  gtk_widget_set_uposition (plugin_option, 184, 8);
   gtk_widget_set_usize (plugin_option, 96, 25);
+  gtk_table_attach (GTK_TABLE (table1), plugin_option, 3, 4, 1, 2, 0, 0, 0, 0);
   gtk_container_set_border_width (GTK_CONTAINER (plugin_option), 1);
   gtk_widget_set_sensitive (plugin_option, FALSE);
 
   plugin_copy = gtk_button_new_with_label (_("Copy results"));
   gtk_object_set_data (GTK_OBJECT (main_window), "plugin_copy", plugin_copy);
   gtk_widget_show (plugin_copy);
-  gtk_fixed_put (GTK_FIXED (fixed2), plugin_copy, 184, 32);
-  gtk_widget_set_uposition (plugin_copy, 184, 32);
   gtk_widget_set_usize (plugin_copy, 96, 24);
+  gtk_table_attach (GTK_TABLE (table1), plugin_copy, 3, 4, 2, 3, 0, 0, 0, 0);
   gtk_container_set_border_width (GTK_CONTAINER (plugin_copy), 1);
 
   plugin_option_menu = gtk_option_menu_new ();
   gtk_object_set_data (GTK_OBJECT (main_window), "plugin_option_menu", plugin_option_menu);
   gtk_widget_show (plugin_option_menu);
-  gtk_fixed_put (GTK_FIXED (fixed2), plugin_option_menu, 8, 72);
-  gtk_widget_set_uposition (plugin_option_menu, 8, 72);
   gtk_widget_set_usize (plugin_option_menu, 272, 32);
+  gtk_table_attach (GTK_TABLE (table1), plugin_option_menu, 1, 4, 3, 4, 0, 0, 0, 0);
   plugin_option_menu_menu = gtk_menu_new ();
   gtk_option_menu_set_menu (GTK_OPTION_MENU (plugin_option_menu), plugin_option_menu_menu);
 
   bench_plugin = gtk_frame_new (NULL);
   gtk_object_set_data (GTK_OBJECT (main_window), "bench_plugin", bench_plugin);
   gtk_widget_show (bench_plugin);
-  gtk_fixed_put (GTK_FIXED (fixed2), bench_plugin, 96, 16);
-  gtk_widget_set_uposition (bench_plugin, 96, 16);
   gtk_widget_set_usize (bench_plugin, 72, 32);
+  gtk_table_attach (GTK_TABLE (table1), bench_plugin, 2, 3, 1, 3, 0, 0, 0, 0);
 
   bench_plugin_score = gtk_label_new ("0");
   gtk_object_set_data (GTK_OBJECT (main_window), "bench_plugin_score", bench_plugin_score);
