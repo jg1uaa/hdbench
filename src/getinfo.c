@@ -139,8 +139,8 @@ void get_cpuinfo(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar 
 	FILE *fp;
 	gchar *model_name,*clock;
 	gchar *buf;
-	gchar *item=NULL,*val=NULL,*processor;
 	gchar *ptr;
+	gchar *val,*processor;
 
 	get_cpuinfo_nothing(NULL, vendor, family, model, stepping);
 
@@ -162,41 +162,41 @@ void get_cpuinfo(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar 
 			continue;
 		}
 
+		// this replaces ':' to '\0', preceeding '\t' still remains
+		val=getvalue(buf);
+
 		ptr=strchr(buf,'\t');
 		if(ptr==NULL){
 			g_free(buf);
 			continue;
 		}
 		*ptr='\0';
-		item=g_strdup(buf);
 
-		val=g_strdup(strchr(ptr+1,':')+2);
-
-		if(strcmp(item,"model")==0){
+		if(strcmp(buf,"model")==0){
 			g_free(*model);
 			*model=g_strdup(val);
 		}
-		if(strcmp(item,"model name")==0){
+		if(strcmp(buf,"model name")==0){
 			g_free(model_name);
 			model_name=g_strdup(val);
 		}
-		if(strcmp(item,"cpu MHz")==0){
+		if(strcmp(buf,"cpu MHz")==0){
 			g_free(clock);
 			clock=g_strdup(val);
 		}
-		if(strcmp(item,"vendor_id")==0){
+		if(strcmp(buf,"vendor_id")==0){
 			g_free(*vendor);
 			*vendor=g_strdup(val);
 		}
-		if(strcmp(item,"cpu family")==0){
+		if(strcmp(buf,"cpu family")==0){
 			g_free(*family);
 			*family=g_strdup(val);
 		}
-		if(strcmp(item,"stepping")==0){
+		if(strcmp(buf,"stepping")==0){
 			g_free(*stepping);
 			*stepping=g_strdup(val);
 		}
-		if(strcmp(item,"processor")==0){
+		if(strcmp(buf,"processor")==0){
 			g_free(processor);
 			processor=g_strdup(val);
 		}
@@ -221,8 +221,6 @@ void get_cpuinfo(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar 
 	g_free(model_name);
 	g_free(processor);
 	g_free(clock);
-	g_free(item);
-	g_free(val);
 
 	return;
 }
