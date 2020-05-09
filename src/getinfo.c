@@ -232,7 +232,6 @@ void get_cpuinfo(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar 
 	guint32 processor;
 	guint64 clock_temp;
 	gfloat clock_val;
-	gint i;
 #if defined(__FreeBSD__)
 	gchar parg[]="/sbin/sysctl hw.model machdep.tsc_freq hw.ncpu";
 #elif defined(__OpenBSD__)
