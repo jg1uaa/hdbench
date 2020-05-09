@@ -70,7 +70,7 @@ gint32 bench_memory(char *src,char *dest);
 
 /* getinfo.c */
 
-gint get_meminfo(gint32 *totalmem,gint32 *freemem);
+gint get_meminfo(gint64 *totalmem,gint64 *freemem);
 void get_cpuinfo(char **name,char **vendor,char **family,char **model,char **stepping);
 void get_osinfo(char **name);
 guint32 lpow(gint x,gint y);

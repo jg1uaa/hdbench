@@ -25,6 +25,7 @@
 #endif
 
 #include <time.h>
+#include <inttypes.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 #include <X11/Xlib.h>
@@ -61,7 +62,7 @@ gchar *format_result(void)
   gchar *model;
   gchar *stepping;
   gchar *os_name;
-  gint32 freemem,totalmem;
+  gint64 freemem,totalmem;
   struct tm *nowtime;
   time_t t;
   gchar *machine_info1,*machine_info2,*bench_result;
@@ -96,7 +97,7 @@ lpow(2,DefaultDepth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY()))),
 DefaultDepth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())));
 
 	machine_info2=g_strdup_printf("\
-Memory      %dKBytes\n\
+Memory      %"PRId64"KBytes\n\
 OS          %s\n\
 Date        %d/%02d/%02d %02d:%02d\n\n",
 totalmem/1024,os_name,

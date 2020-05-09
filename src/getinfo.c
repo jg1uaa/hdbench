@@ -34,52 +34,91 @@
 #include "variable.h"
 
 
-gint get_meminfo(gint32 *totalmem,gint32 *freemem)
+static gchar *getvalue(gchar *str)
+{
+	gchar *p;
+
+	if(strtok_r(str, "=:", &p)==NULL){
+		return str;
+	}
+
+	for(;*p==' ';p++);
+	return p;
+}
+
+
+gint get_meminfo(gint64 *totalmem,gint64 *freemem)
+#if defined(__linux__)
 {
 	FILE *fp;
 	gchar *buf;
-
-#ifdef INFO_PROC		/* by proc filesystem */
-	gint32 buffers,cached;
+	gchar *val;
 
 	if((fp=fopen("/proc/meminfo","r"))==NULL){
 		fprintf(stderr,_("Cannot open `/proc/meminfo'.\n"));
 		return(FALSE);
 	}
-	str_skip_fgets(fp);
-	buf=str_fgets(fp);
-	sscanf(buf,"%*s %d %*d %d %*d %d %d",totalmem,freemem,&buffers,&cached);
-	g_free(buf);
+
+	for(;;){
+		buf=str_fgets(fp);
+		if(buf==NULL){
+			break;
+		}
+		if(buf[0]=='\0' || strchr(buf,':')==NULL){
+			g_free(buf);
+			continue;
+		}
+
+		val=getvalue(buf);
+
+		if(strcmp(buf,"MemTotal")==0){
+			sscanf(val,"%"SCNd64,totalmem);
+			*totalmem*=1024;
+		}
+		if(strcmp(buf,"MemAvailable")==0){
+			sscanf(val,"%"SCNd64,freemem);
+			*freemem*=1024;
+		}
+		g_free(buf);
+	}
 	fclose(fp);
 
-	*freemem+=(buffers+cached);
-
 	return(TRUE);
+}
+#elif defined(__FreeBSD__) || defined(__OpenBSD__)
+{
+	FILE *fp;
+	gchar *buf;
+#if defined(__FreeBSD__)
+	gchar parg[]="/sbin/sysctl hw.physmem hw.usermem";
+#elif defined(__OpenBSD__)
+	gchar parg[]="/usr/sbin/sysctl hw.physmem hw.usermem";
 #endif
 
-#ifdef INFO_SYSCTL	/* by sysctl command */
-	if((fp=popen("/sbin/sysctl hw.physmem hw.usermem","r"))==NULL){
+	if((fp=popen(parg,"r"))==NULL){
 		fprintf(stderr,_("Cannot create a pipe.\n"));
 		return(FALSE);
 	}
 	buf=str_fgets(fp);
-	sscanf(buf,"%*s %d",totalmem);
+	sscanf(getvalue(buf),"%"SCNd64,totalmem);
 	g_free(buf);
 
 	buf=str_fgets(fp);
-	sscanf(buf,"%*s %d",freemem);
+	sscanf(getvalue(buf),"%"SCNd64,freemem);
 	g_free(buf);
 	if(feof(fp)){
-		fprintf(stderr,_("Cannot execute `/sbin/sysctl'.\n"));
+		fprintf(stderr,_("Cannot execute `sysctl'.\n"));
 		return(FALSE);
 	}
 	pclose(fp);
 
 	return(TRUE);
-#endif	
-
+}
+#else
+{
 	return(FALSE);
 }
+#endif
 
 
 static void get_cpuinfo_nothing(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar **stepping)
@@ -201,13 +240,6 @@ void get_cpuinfo(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar 
 #elif defined(__OpenBSD__)
 	gchar parg[]="/usr/sbin/sysctl hw.model machdep.tscfreq hw.ncpu";
 #endif
-	gchar *getvalue(gchar *str)
-	{
-		gchar *p;
-		if(strtok_r(str, "=:", &p)==NULL) return str;
-		for(; *p==' '; p++);
-		return p;
-	}
 
 	if((fp=popen(parg,"r"))==NULL){
 		g_error(_("Cannot create a pipe.\n"));
@@ -247,6 +279,7 @@ void get_cpuinfo(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar 
 	return;
 }
 #endif
+
 
 void get_osinfo(gchar **name)
 {

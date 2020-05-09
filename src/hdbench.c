@@ -29,6 +29,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <inttypes.h>
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
@@ -872,7 +873,7 @@ create_system_dialog ()
   GtkWidget *system_copy_button;
   GtkWidget *label5;
 
-  gint32 total_mem,free_mem;
+  gint64 total_mem,free_mem;
   gchar *name;
   gchar *total_mem_str,*free_mem_str;
   gchar *vendor;
@@ -886,8 +887,8 @@ create_system_dialog ()
   get_cpuinfo(&name,&vendor,&family,&model,&stepping);
   get_osinfo(&os_name);
 
-  total_mem_str=g_strdup_printf("%d Bytes",total_mem);
-  free_mem_str=g_strdup_printf("%d Bytes",free_mem);
+  total_mem_str=g_strdup_printf("%"PRId64" KBytes",total_mem/1024);
+  free_mem_str=g_strdup_printf("%"PRId64" KBytes",free_mem/1024);
 
   system_dialog = gtk_dialog_new ();
   gtk_object_set_data (GTK_OBJECT (system_dialog), "system_dialog", system_dialog);

@@ -547,7 +547,7 @@ void bench_cache_flash(gchar *buf,gchar *temp)
 	gint fd;
 	gchar *err_mes_temp;
 	gint i;
-	gint32 totalmem,freemem;
+	gint64 totalmem,freemem;
 
 	if((fd=open(temp,O_CREAT | O_TRUNC | O_RDWR,S_IRWXU))==-1){
 		kill(getppid(),SIGTERM);
