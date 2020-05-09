@@ -30,7 +30,11 @@
 #include <signal.h>
 #include <unistd.h>
 #include <fcntl.h>
+#ifdef HAVE_SYS_WAIT_H
+#include <sys/wait.h>
+#else
 #include <wait.h>
+#endif
 #include <sys/time.h>
 #include <sys/stat.h>
 #include <sys/types.h>
