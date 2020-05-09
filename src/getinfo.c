@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gtk/gtk.h>
+#include <inttypes.h>
 #include "intl.h"
 #include "proto.h"
 #include "variable.h"
@@ -81,26 +82,29 @@ gint get_meminfo(gint32 *totalmem,gint32 *freemem)
 }
 
 
+static void get_cpuinfo_nothing(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar **stepping)
+{
+	if(name!=NULL) *name=g_strdup("unknown");
+	if(vendor!=NULL) *vendor=g_strdup("unknown");
+	if(family!=NULL) *family=g_strdup("unknown");
+	if(model!=NULL) *model=g_strdup("unknown");
+	if(stepping!=NULL) *stepping=g_strdup("unknown");
+
+	return;
+}
+
+
 void get_cpuinfo(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar **stepping)
+#if defined(__linux__)
 {
 	FILE *fp;
 	gchar *model_name,*clock;
 	gchar *buf;
-
-#ifdef INFO_SYSCTL	/* by sysctl command */
-	gint processor;
-	gchar *clock_temp;
-	gint i;
-#endif
-
-#ifdef INFO_PROC	/* by proc filesystem */
 	gchar *item=NULL,*val=NULL,*processor;
 	gchar *ptr;
 
-	*vendor=g_strdup("unknown");
-	*family=g_strdup("unknown");
-	*model=g_strdup("unknown");
-	*stepping=g_strdup("unknown");
+	get_cpuinfo_nothing(NULL, vendor, family, model, stepping);
+
 	model_name=g_strdup("unknown");
 	clock=g_strdup("unknown");
 	processor=g_strdup("0");
@@ -182,53 +186,67 @@ void get_cpuinfo(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar 
 	g_free(val);
 
 	return;
+}
+#elif defined(__FreeBSD__) || defined(__OpenBSD__)
+{
+	FILE *fp;
+	gchar *model_name;
+	gchar *buf;
+	guint32 processor;
+	guint64 clock_temp;
+	gfloat clock_val;
+	gint i;
+#if defined(__FreeBSD__)
+	gchar parg[]="/sbin/sysctl hw.model machdep.tsc_freq hw.ncpu";
+#elif defined(__OpenBSD__)
+	gchar parg[]="/usr/sbin/sysctl hw.model machdep.tscfreq hw.ncpu";
 #endif
+	gchar *getvalue(gchar *str)
+	{
+		gchar *p;
+		if(strtok_r(str, "=:", &p)==NULL) return str;
+		for(; *p==' '; p++);
+		return p;
+	}
 
-#ifdef INFO_SYSCTL	/* by sysctl command */
-	if((fp=popen("/sbin/sysctl hw.model machdep.tsc_freq hw.ncpu","r"))==NULL){
+	if((fp=popen(parg,"r"))==NULL){
 		g_error(_("Cannot create a pipe.\n"));
 	}
 	buf=str_fgets(fp);
 	if(buf==NULL){
-		g_error(_("Cannot execute `/sbin/sysctl'.\n"));
+		g_error(_("Cannot execute `sysctl'.\n"));
 	}
-	model_name=g_strdup(buf+10);
+	model_name=g_strdup(getvalue(buf));
 	g_free(buf);
 
 	buf=str_fgets(fp);
-	sscanf(buf,"%*s %s",clock_temp);
+	sscanf(getvalue(buf),"%"SCNu64,&clock_temp);
 	g_free(buf);
 
 	buf=str_fgets(fp);
-	sscanf(buf,"%*s %d",&processor);
+	sscanf(getvalue(buf),"%"SCNu32,&processor);
 	g_free(buf);
 	pclose(fp);
 
-	for(i=strlen(clock_temp);i>strlen(clock_temp)-6;i--){
-		clock[i]=clock_temp[i-1];
-	}
-	clock[i]='.';
-	for(i=strlen(clock_temp)-7;i>=0;i--){
-		clock[i]=clock_temp[i];
-	}
-	clock[strlen(clock_temp)+1]='\0';
+	clock_val=clock_temp/(gfloat)1000000;
 
 	if(processor==1){
-		*name=g_strdup_printf("%s [%s MHz]",model_name,clock);
+		*name=g_strdup_printf("%s [%.3f MHz]",model_name,clock_val);
 	}else{
-		*name=g_strdup_printf("%s [%s MHz] %d processors",model_name,clock,processor);
+		*name=g_strdup_printf("%s [%.3f MHz] %d processors",model_name,clock_val,processor);
 	}
 
-	*vendor=g_strdup("unknown");
-	*family=g_strdup("unknown");
-	*model=g_strdup("unknown");
-	*stepping=g_strdup("unknown");
+	get_cpuinfo_nothing(NULL, vendor, family, model, stepping);
+	g_free(model_name);
 
 	return;
-#endif	
-	g_error(_("Cannot get cpu infomation.\n"));
 }
-
+#else
+{
+	get_cpuinfo_nothing(name, vendor, family, model, stepping);
+	return;
+}
+#endif
 
 void get_osinfo(gchar **name)
 {
