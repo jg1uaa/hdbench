@@ -275,7 +275,7 @@ msgid "DRIVE"
 msgstr ""
 
 #: src/hdbench.c:547 src/hdbench.c:554 src/hdbench.c:561 src/hdbench.c:568
-msgid "Mesuring"
+msgid "Measuring"
 msgstr "·×Â¬Ãæ"
 
 #: src/hdbench.c:638
