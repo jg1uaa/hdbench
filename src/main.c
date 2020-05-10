@@ -90,7 +90,7 @@ usage: hdbench [OPTIONS]\n\
 options:\n\
   -h | --help          display this help and exit\n\
   -f | --font=FONT     font name used in TEXT of VIDEO\n\
-  -t | --text=FONT     string written in TEXT of VIDEO\n\
+  -t | --text=TEXT     string written in TEXT of VIDEO\n\
   -V | --version       display version infomation and exit\n\
 \n"), VERSION);
 
