@@ -556,28 +556,28 @@ create_main_window ()
   g_list_free (drive_combo_items);
   disk_drive=gtk_entry_get_text( GTK_ENTRY( GTK_COMBO( drive_combo)->entry ) );
 
-  measuring_all = gtk_button_new_with_label (_("Measuring"));
+  measuring_all = gtk_button_new_with_label (_("Wait..."));
   gtk_object_set_data (GTK_OBJECT (main_window), "measuring_all", measuring_all);
   gtk_fixed_put (GTK_FIXED (fixed1), measuring_all, 48, 64);
   gtk_widget_set_uposition (measuring_all, 48, 64);
   gtk_widget_set_usize (measuring_all, 72, 32);
   gtk_container_set_border_width (GTK_CONTAINER (measuring_all), 2);
 
-  measuring_cpu = gtk_button_new_with_label (_("Measuring"));
+  measuring_cpu = gtk_button_new_with_label (_("Wait..."));
   gtk_object_set_data (GTK_OBJECT (main_window), "measuring_cpu", measuring_cpu);
   gtk_fixed_put (GTK_FIXED (fixed1), measuring_cpu, 48, 128);
   gtk_widget_set_uposition (measuring_cpu, 48, 128);
   gtk_widget_set_usize (measuring_cpu, 72, 32);
   gtk_container_set_border_width (GTK_CONTAINER (measuring_cpu), 2);
 
-  measuring_video = gtk_button_new_with_label (_("Measuring"));
+  measuring_video = gtk_button_new_with_label (_("Wait..."));
   gtk_object_set_data (GTK_OBJECT (main_window), "measuring_video", measuring_video);
   gtk_fixed_put (GTK_FIXED (fixed1), measuring_video, 48, 192);
   gtk_widget_set_uposition (measuring_video, 48, 192);
   gtk_widget_set_usize (measuring_video, 72, 32);
   gtk_container_set_border_width (GTK_CONTAINER (measuring_video), 2);
 
-  measuring_disk = gtk_button_new_with_label (_("Measuring"));
+  measuring_disk = gtk_button_new_with_label (_("Wait..."));
   gtk_object_set_data (GTK_OBJECT (main_window), "measuring_disk", measuring_disk);
   gtk_fixed_put (GTK_FIXED (fixed1), measuring_disk, 48, 264);
   gtk_widget_set_uposition (measuring_disk, 48, 264);

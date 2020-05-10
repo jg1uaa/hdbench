@@ -262,7 +262,7 @@ msgid "DRIVE"
 msgstr ""
 
 #: src/hdbench.c:547 src/hdbench.c:554 src/hdbench.c:561 src/hdbench.c:568
-msgid "Measuring"
+msgid "Wait..."
 msgstr ""
 
 #: src/hdbench.c:638

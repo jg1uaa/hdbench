@@ -75,7 +75,7 @@ options:\n\
   {"measure IMAGE,too", 53},
   {"WRITE(KB/s)", 54},
   {"DRIVE", 55},
-  {"Measuring", 56},
+  {"Wait...", 56},
   {"Not implemented", 57},
   {"\
 \n\
