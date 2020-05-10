@@ -265,7 +265,7 @@ void
 capacity_option_menu_set               (GtkWidget       *item,
                                         gpointer         user_data)
 {
-        disk_capacity=(int)user_data;
+        disk_capacity=(gintptr)user_data;
 }
 
 
