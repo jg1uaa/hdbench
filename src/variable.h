@@ -33,6 +33,8 @@
 
 
 #define SPRITES 1000
+#define SPRITE_SIZE 30
+#define SPRITE_BORDER 5
 #define VIDEO_WIN_X 640
 #define VIDEO_WIN_Y 480
 

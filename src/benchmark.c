@@ -199,9 +199,9 @@ void bench_video_and_write(gint write_fd)
 	GC gc;
 	guint32 palette[8];
 	gint width,height;
-	gint depth;
+	gint bpp;
 	XImage *image;
-	guint16 *buffer;
+	gpointer buffer;
 
 
 	initx(&d,&w,&gc,palette,&width,&height);
@@ -232,21 +232,27 @@ void bench_video_and_write(gint write_fd)
 	XClearWindow(d,w);
 
 	if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(opt_image))){
-		depth=DefaultDepth(d,DefaultScreen(d));
-		if(depth!=16){
-			g_warning(_("Color depth is not 16bit. Don't measure IMAGE or restart X in 16bpp."));
-			result.image=0;
-		}else{
-			buffer=(guint16 *)calloc(VIDEO_WIN_X*VIDEO_WIN_Y,2);
-			image=XCreateImage(d,DefaultVisual(d,DefaultScreen(d)),DefaultDepth(d,DefaultScreen(d)),ZPixmap,0,(gchar *)buffer,VIDEO_WIN_X,VIDEO_WIN_Y,8,0);
+		bpp=DefaultDepth(d,DefaultScreen(d));
+		switch(bpp){
+			default:
+				g_warning(_("Unsupported color depth."));
+				result.image=0;
+				break;
+			case 24:
+				bpp=32;
+				/*FALLTHROUGH*/
+			case 8:
+			case 16:
+			case 32:
+				buffer=calloc(VIDEO_WIN_X*VIDEO_WIN_Y,bpp/8);
+				image=XCreateImage(d,DefaultVisual(d,DefaultScreen(d)),DefaultDepth(d,DefaultScreen(d)),ZPixmap,0,buffer,VIDEO_WIN_X,VIDEO_WIN_Y,bpp,0);
 
-			set_sigalarm(5);
-			result.image=bench_image(d,w,gc,image,buffer)/5;
+				set_sigalarm(5);
+				result.image=bench_image(d,w,gc,image,bpp,buffer)/5;
 
-			free(buffer);
+				free(buffer);
+				break;
 		}
-	}else{
-		result.image=0;
 	}
 
 	XDestroyWindow(d,w);
@@ -342,41 +348,91 @@ gint32 bench_scroll(Display *d,Window w,GC gc,guint32 *palette)
 }
 
 
-gint32 bench_image(Display *d,Window w,GC gc,XImage *image,guint16 *buffer)
+static void sprite_renderer_8(gpointer buffer,gint x,gint y,gint color)
 {
-	gint i,j,k,l;
+	gint j,k;
+	guint8 *p=(guint8*)buffer;
+
+	for(j=0;j<SPRITE_SIZE;j++){
+		for(k=0;k<SPRITE_SIZE;k++){
+			*(p+(x+k)+(y+j)*VIDEO_WIN_X)=color;
+		}
+	}
+}
+
+
+static void sprite_renderer_16(gpointer buffer,gint x,gint y,gint color)
+{
+	gint j,k;
+	guint16 *p=(guint16*)buffer;
+
+	for(j=0;j<SPRITE_SIZE;j++){
+		for(k=0;k<SPRITE_SIZE;k++){
+			*(p+(x+k)+(y+j)*VIDEO_WIN_X)=color;
+		}
+	}
+}
+
+
+static void sprite_renderer_32(gpointer buffer,gint x,gint y,gint color)
+{
+	gint j,k;
+	guint32 c=((color&0xf800)<<8)|((color&0x07e0)<<5)|((color&0x001f)<<3);
+	guint32 *p=(guint32*)buffer;
+
+	for(j=0;j<SPRITE_SIZE;j++){
+		for(k=0;k<SPRITE_SIZE;k++){
+			*(p+(x+k)+(y+j)*VIDEO_WIN_X)=c;
+		}
+	}
+}
+
+
+gint32 bench_image(Display *d,Window w,GC gc,XImage *image,gint bpp,gpointer buffer)
+{
+	gint i,l;
 	gint x[SPRITES],y[SPRITES];
 	gint color[SPRITES];
 	gint x_vel[SPRITES],y_vel[SPRITES];
+	void (*renderer)(gpointer,gint,gint,gint);
 
+
+	switch(bpp){
+		case 8:
+			renderer=sprite_renderer_8;
+			break;
+		case 16:
+			renderer=sprite_renderer_16;
+			break;
+		default:
+			bpp=32;
+			renderer=sprite_renderer_32;
+			break;
+	}
 
 	for(i=0;i<SPRITES;i++){
-		x[i]=rand() % (VIDEO_WIN_X-35);
-		y[i]=rand() % (VIDEO_WIN_Y-35);
+		x[i]=rand() % (VIDEO_WIN_X-(SPRITE_SIZE+SPRITE_BORDER));
+		y[i]=rand() % (VIDEO_WIN_Y-(SPRITE_SIZE+SPRITE_BORDER));
 		color[i]=(rand() % 65536);
 		x_vel[i]=((rand() % 4)+1)*((rand() % 2)*2-1);
 		y_vel[i]=((rand() % 4)+1)*((rand() % 2)*2-1);
 	}
 
 	for(i=0;;i++){
-		memset(buffer,0,VIDEO_WIN_X*VIDEO_WIN_Y*2);
+		memset(buffer,0,VIDEO_WIN_X*VIDEO_WIN_Y*(bpp/8));
 		for(l=0;l<SPRITES;l++){
 			x[l]+=x_vel[l];
 			y[l]+=y_vel[l];
-			if(x[l]>VIDEO_WIN_X-35 || x[l]<0){
+			if(x[l]>VIDEO_WIN_X-(SPRITE_SIZE+SPRITE_BORDER) || x[l]<0){
 				x_vel[l]=-x_vel[l];
 				x[l]+=x_vel[l];
 			}
-			if(y[l]>VIDEO_WIN_Y-35 || y[l]<0){
+			if(y[l]>VIDEO_WIN_Y-(SPRITE_SIZE+SPRITE_BORDER) || y[l]<0){
 				y_vel[l]=-y_vel[l];
 				y[l]+=y_vel[l];
 			}
 
-			for(j=0;j<30;j++){
-				for(k=0;k<30;k++){
-					*(buffer+(x[l]+k)+(y[l]+j)*VIDEO_WIN_X)=color[l];
-				}
-			}
+			(*renderer)(buffer,x[l],y[l],color[l]);
 		}
 		XPutImage(d,w,gc,image,0,0,0,0,VIDEO_WIN_X,VIDEO_WIN_Y);
 

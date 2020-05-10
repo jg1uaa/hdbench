@@ -45,7 +45,7 @@ gint32 bench_rectangle(Display *d,Window w,GC gc,guint32 *palette);
 gint32 bench_circle(Display *d,Window w,GC gc,guint32 *palette);
 gint32 bench_text(Display *d,Window w,GC gc,guint32 *palette,gint width,gint height);
 gint32 bench_scroll(Display *d,Window w,GC gc,guint32 *palette);
-gint32 bench_image(Display *d,Window w,GC gc,XImage *image,guint16 *buffer);
+gint32 bench_image(Display *d,Window w,GC gc,XImage *image,gint bpp,gpointer buffer);
 void bench_video_update(gpointer userdata,gint read_fd,GdkInputCondition condition);
 void benchmark_disk(void);
 void bench_disk_and_write(gint write_fd);
