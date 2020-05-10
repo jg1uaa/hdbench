@@ -413,23 +413,23 @@ void bench_video_update(gpointer userdata,gint read_fd,GdkInputCondition conditi
 	gtk_label_set(GTK_LABEL(bench_rectangle_score),temp);
 	g_free(temp);
 
-	g_strdup_printf("%d",result_circle);
+	temp=g_strdup_printf("%d",result_circle);
 	gtk_label_set(GTK_LABEL(bench_circle_score),temp);
 	g_free(temp);
 
-	g_strdup_printf("%d",result_text);
+	temp=g_strdup_printf("%d",result_text);
 	gtk_label_set(GTK_LABEL(bench_text_score),temp);
 	g_free(temp);
 
-	g_strdup_printf("%d",result_scroll);
+	temp=g_strdup_printf("%d",result_scroll);
 	gtk_label_set(GTK_LABEL(bench_scroll_score),temp);
 	g_free(temp);
 
-	g_strdup_printf("%d",result_image);
+	temp=g_strdup_printf("%d",result_image);
 	gtk_label_set(GTK_LABEL(bench_image_score),temp);
 	g_free(temp);
 
-	g_strdup_printf("%d",result_all);
+	temp=g_strdup_printf("%d",result_all);
 	gtk_label_set(GTK_LABEL(bench_total_score),temp);
 	g_free(temp);
 }
