@@ -394,36 +394,66 @@ gchar *get_drive_data(void)
 	FILE *fp;
 	gchar *cmd;
 	gchar *buf;
-
+#if defined(__linux__)
+	gchar *parg="dmesg -t | grep '%s' | tac";
+#elif defined(__FreeBSD__) || defined(__OpenBSD__)
+	gchar *parg="dmesg | grep '%s' | tail -r";
+#endif
 	gchar *grep[]={
-		"^ide:",
-		"^scsi0 :",
-		"^scsi1 :",
-		"^scsi2 :",
-		"^scsi3 :",
-		"^hda:",
-		"^hdb:",
-		"^hdc:",
-		"^hdd:",
-		"^da0:",
-		"^da1:",
-		"^da2:",
-		"^da3:",
-		"^SCSI device sda:",
-		"^SCSI device sdb:",
-		"^SCSI device sdc:",
-		"^SCSI device sdd:",
-		"^sr0:",
-		"^sr1:",
-		"^sr2:",
-		"^sr3:",	/* 21 */
+#if defined(__linux__)
+		"^scsi 0:",
+		"^scsi 1:",
+		"^scsi 2:",
+		"^scsi 3:",
+		"^scsi 4:",
+		"^scsi 5:",
+		"^scsi 6:",
+		"^scsi 7:",
+		"^scsi 8:",
+		"^scsi 9:",
+#elif defined(__FreeBSD__)
+		"^da0: <",
+		"^da1: <",
+		"^da2: <",
+		"^da3: <",
+		"^da4: <",
+		"^da5: <",
+		"^da6: <",
+		"^da7: <",
+		"^da8: <",
+		"^da9: <",
+		"^ada0: <",
+		"^ada1: <",
+		"^ada2: <",
+		"^ada3: <",
+		"^cd0: <",
+		"^cd1: <",
+#elif defined(__OpenBSD__)
+		"^sd0 at ",
+		"^sd1 at ",
+		"^sd2 at ",
+		"^sd3 at ",
+		"^sd4 at ",
+		"^sd5 at ",
+		"^sd6 at ",
+		"^sd7 at ",
+		"^sd8 at ",
+		"^sd9 at ",
+		"^wd0 at ",
+		"^wd1 at ",
+		"^wd2 at ",
+		"^wd3 at ",
+		"^cd0 at ",
+		"^cd1 at ",
+#endif
+		NULL,
 	};
 
 
 	ret=g_strdup("");
 
-	for(i=0;i<21;i++){
-		cmd=g_strdup_printf("dmesg | grep '%s' | tac",grep[i]);
+	for(i=0;grep[i]!=NULL;i++){
+		cmd=g_strdup_printf(parg,grep[i]);
 		fp=popen(cmd,"r");
 		g_free(cmd);
 		if(fp==NULL){
