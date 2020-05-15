@@ -293,30 +293,46 @@ void get_osinfo(gchar **name)
 }
 
 
+static gchar *get_x_config(void)
+{
+	int i;
+	FILE *fp;
+	static gchar *file[]={
+		"/etc/X11/xorg.conf",
+		"/etc/xorg.conf",
+		"/etc/X11/XF86Config",
+		"/etc/XF86Config",
+		NULL,
+	};
+
+	for(i=0;file[i]!=NULL;i++){
+		if((fp=fopen(file[i],"r"))!=NULL){
+			fclose(fp);
+			return file[i];
+		}
+	}
+	return NULL;
+}
+
+
 gchar *get_display_name(void)
 {
 	FILE *fp;
-	gchar *temp;
+	gchar *file, *cmd;
 
-	fp=popen("grep BoardName /etc/X11/XF86Config","r");
+	file=get_x_config();
+	if(file==NULL){
+		g_warning(_("Cannot find X configuration file.\n"));
+		return(g_strdup("unknown"));
+	}
+
+	cmd=g_strdup_printf("grep BoardName %s",file);
+	fp=popen(cmd,"r");
+	g_free(cmd);
 	if(fp==NULL){
 		g_error(_("Cannot create a pipe.\n"));
 	}
-	temp=parse_display_name(fp);
-
-	if(strcmp(temp,"unknown")==0){
-		fp=popen("grep BoardName /etc/XF86Config","r");
-		if(fp==NULL){
-			g_error(_("Cannot create a pipe.\n"));
-		}
-		temp=parse_display_name(fp);
-
-		if(strcmp(temp,"unknown")==0){
-			g_warning(_("Cannot execute `grep' or open `XF86Config'.\n"));
-		}
-	}
-
-	return(temp);
+	return(parse_display_name(fp));
 }
 
 
