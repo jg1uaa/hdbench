@@ -47,7 +47,7 @@ GtkWidget*
 create_main_window ()
 {
   GtkWidget *vbox1;
-  GtkWidget *fixed1;
+  GtkWidget *table0;
   GtkWidget *bench_text;
   GtkWidget *bench_memory;
   GtkWidget *bench_scroll;
@@ -57,7 +57,7 @@ create_main_window ()
   GtkWidget *plugins;
   GtkWidget *table1;
   GtkWidget *plugin_option_menu_menu;
-  GtkWidget *label_capacity;
+  GtkWidget *frame_capacity;
   GtkWidget *bench_plugin;
   GtkWidget *cpu_xpm;
   GtkWidget *video_xpm;
@@ -70,9 +70,10 @@ create_main_window ()
   GtkWidget *bench_total;
   GtkWidget *options;
   GtkWidget *hbox1;
+  GtkWidget *hbox2;
   GtkWidget *vbox3;
   GtkWidget *bench_write;
-  GtkWidget *label_drive;
+  GtkWidget *frame_drive;
   GList *drive_combo_items = NULL;
   gchar *title;
 
@@ -82,6 +83,7 @@ create_main_window ()
   gtk_object_set_data (GTK_OBJECT (main_window), "main_window", main_window);
   gtk_window_set_title (GTK_WINDOW (main_window), title);
   gtk_window_set_policy (GTK_WINDOW (main_window), TRUE, TRUE, FALSE);
+  gtk_widget_set_size_request (main_window, VIDEO_WIN_X, VIDEO_WIN_Y);
   g_free(title);
 
   vbox1 = gtk_vbox_new (FALSE, 0);
@@ -89,119 +91,130 @@ create_main_window ()
   gtk_widget_show (vbox1);
   gtk_container_add (GTK_CONTAINER (main_window), vbox1);
 
-  fixed1 = gtk_fixed_new ();
-  gtk_object_set_data (GTK_OBJECT (main_window), "fixed1", fixed1);
-  gtk_widget_show (fixed1);
-  gtk_box_pack_start (GTK_BOX (vbox1), fixed1, TRUE, TRUE, 0);
+  table0 = gtk_table_new (5, 19, TRUE);
+  gtk_object_set_data (GTK_OBJECT (main_window), "table0", table0);
+  gtk_widget_show (table0);
+  gtk_box_pack_start (GTK_BOX (vbox1), table0, TRUE, TRUE, 0);
 
   main_func_exit = gtk_button_new_with_label (_("EXIT"));
   gtk_object_set_data (GTK_OBJECT (main_window), "main_func_exit", main_func_exit);
   gtk_widget_show (main_func_exit);
-  gtk_fixed_put (GTK_FIXED (fixed1), main_func_exit, 0, 0);
-  gtk_widget_set_uposition (main_func_exit, 0, 0);
-  gtk_widget_set_usize (main_func_exit, 72, 32);
   gtk_container_set_border_width (GTK_CONTAINER (main_func_exit), 2);
+  gtk_table_attach (GTK_TABLE (table0), main_func_exit, 0, 2, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 0, 16);
 
   main_func_copy = gtk_button_new_with_label (_("COPY"));
   gtk_object_set_data (GTK_OBJECT (main_window), "main_func_copy", main_func_copy);
   gtk_widget_show (main_func_copy);
-  gtk_fixed_put (GTK_FIXED (fixed1), main_func_copy, 72, 0);
-  gtk_widget_set_uposition (main_func_copy, 72, 0);
-  gtk_widget_set_usize (main_func_copy, 72, 32);
   gtk_container_set_border_width (GTK_CONTAINER (main_func_copy), 2);
+  gtk_table_attach (GTK_TABLE (table0), main_func_copy, 2, 4, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 0, 16);
 
   main_func_print = gtk_button_new_with_label (_("PRINT"));
   gtk_object_set_data (GTK_OBJECT (main_window), "main_func_print", main_func_print);
   gtk_widget_show (main_func_print);
-  gtk_fixed_put (GTK_FIXED (fixed1), main_func_print, 144, 0);
-  gtk_widget_set_uposition (main_func_print, 144, 0);
-  gtk_widget_set_usize (main_func_print, 72, 32);
   gtk_container_set_border_width (GTK_CONTAINER (main_func_print), 2);
+  gtk_table_attach (GTK_TABLE (table0), main_func_print, 4, 6, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 0, 16);
 
   main_func_system = gtk_button_new_with_label (_("SYSTEM"));
   gtk_object_set_data (GTK_OBJECT (main_window), "main_func_system", main_func_system);
   gtk_widget_show (main_func_system);
-  gtk_fixed_put (GTK_FIXED (fixed1), main_func_system, 216, 0);
-  gtk_widget_set_uposition (main_func_system, 216, 0);
-  gtk_widget_set_usize (main_func_system, 72, 32);
   gtk_container_set_border_width (GTK_CONTAINER (main_func_system), 2);
+  gtk_table_attach (GTK_TABLE (table0), main_func_system, 6, 8, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 0, 16);
 
   main_func_graph = gtk_button_new_with_label (_("GRAPH"));
   gtk_object_set_data (GTK_OBJECT (main_window), "main_func_graph", main_func_graph);
   gtk_widget_show (main_func_graph);
-  gtk_fixed_put (GTK_FIXED (fixed1), main_func_graph, 288, 0);
-  gtk_widget_set_uposition (main_func_graph, 288, 0);
-  gtk_widget_set_usize (main_func_graph, 72, 32);
   gtk_container_set_border_width (GTK_CONTAINER (main_func_graph), 2);
-
-  bench_func_all = gtk_button_new_with_label (_("ALL"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_func_all", bench_func_all);
-  gtk_widget_show (bench_func_all);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_func_all, 48, 64);
-  gtk_widget_set_uposition (bench_func_all, 48, 64);
-  gtk_widget_set_usize (bench_func_all, 72, 32);
-  gtk_container_set_border_width (GTK_CONTAINER (bench_func_all), 2);
-
-  bench_func_cpu = gtk_button_new_with_label (_("CPU"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_func_cpu", bench_func_cpu);
-  gtk_widget_show (bench_func_cpu);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_func_cpu, 48, 128);
-  gtk_widget_set_uposition (bench_func_cpu, 48, 128);
-  gtk_widget_set_usize (bench_func_cpu, 72, 32);
-  gtk_container_set_border_width (GTK_CONTAINER (bench_func_cpu), 2);
-
-  bench_func_video = gtk_button_new_with_label (_("VIDEO"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_func_video", bench_func_video);
-  gtk_widget_show (bench_func_video);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_func_video, 48, 192);
-  gtk_widget_set_uposition (bench_func_video, 48, 192);
-  gtk_widget_set_usize (bench_func_video, 72, 32);
-  gtk_container_set_border_width (GTK_CONTAINER (bench_func_video), 2);
-
-  bench_func_disk = gtk_button_new_with_label (_("DISK"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_func_disk", bench_func_disk);
-  gtk_widget_show (bench_func_disk);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_func_disk, 48, 264);
-  gtk_widget_set_uposition (bench_func_disk, 48, 264);
-  gtk_widget_set_usize (bench_func_disk, 72, 32);
-  gtk_container_set_border_width (GTK_CONTAINER (bench_func_disk), 2);
+  gtk_table_attach (GTK_TABLE (table0), main_func_graph, 8, 10, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 0, 16);
 
   main_func_help = gtk_button_new_with_label (_("HELP"));
   gtk_object_set_data (GTK_OBJECT (main_window), "main_func_help", main_func_help);
   gtk_widget_show (main_func_help);
-  gtk_fixed_put (GTK_FIXED (fixed1), main_func_help, 360, 0);
-  gtk_widget_set_uposition (main_func_help, 360, 0);
-  gtk_widget_set_usize (main_func_help, 72, 32);
   gtk_container_set_border_width (GTK_CONTAINER (main_func_help), 2);
+  gtk_table_attach (GTK_TABLE (table0), main_func_help, 10, 12, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 0, 16);
+
+  cpu_xpm = create_pixmap (main_window, "cpu.xpm");
+  gtk_object_set_data (GTK_OBJECT (main_window), "cpu_xpm", cpu_xpm);
+  gtk_widget_show (cpu_xpm);
+  gtk_widget_set_usize (cpu_xpm, 32, 32);
+  gtk_table_attach_defaults (GTK_TABLE (table0), cpu_xpm, 0, 1, 2, 3);
 
   video_xpm = create_pixmap (main_window, "video.xpm");
   gtk_object_set_data (GTK_OBJECT (main_window), "video_xpm", video_xpm);
   gtk_widget_show (video_xpm);
-  gtk_fixed_put (GTK_FIXED (fixed1), video_xpm, 8, 192);
-  gtk_widget_set_uposition (video_xpm, 8, 192);
   gtk_widget_set_usize (video_xpm, 32, 32);
+  gtk_table_attach_defaults (GTK_TABLE (table0), video_xpm, 0, 1, 3, 4);
 
-  bench_text = gtk_frame_new (_("TEXT"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_text", bench_text);
-  gtk_widget_show (bench_text);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_text, 344, 176);
-  gtk_widget_set_uposition (bench_text, 344, 176);
-  gtk_widget_set_usize (bench_text, 96, 48);
-  gtk_frame_set_label_align (GTK_FRAME (bench_text), 0.5, 0.5);
+  disk_xpm = create_pixmap (main_window, "disk.xpm");
+  gtk_object_set_data (GTK_OBJECT (main_window), "disk_xpm", disk_xpm);
+  gtk_widget_show (disk_xpm);
+  gtk_widget_set_usize (disk_xpm, 32, 32);
+  gtk_table_attach_defaults (GTK_TABLE (table0), disk_xpm, 0, 1, 4, 5);
 
-  bench_text_score = gtk_label_new ("0");
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_text_score", bench_text_score);
-  gtk_widget_show (bench_text_score);
-  gtk_container_add (GTK_CONTAINER (bench_text), bench_text_score);
-  gtk_misc_set_alignment (GTK_MISC (bench_text_score), 0.9, 0.5);
+  bench_func_all = gtk_button_new_with_label (_("ALL"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_func_all", bench_func_all);
+  gtk_widget_show (bench_func_all);
+  gtk_container_set_border_width (GTK_CONTAINER (bench_func_all), 2);
+  gtk_table_attach (GTK_TABLE (table0), bench_func_all, 1, 4, 1, 2, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 16, 16);
+
+  bench_func_cpu = gtk_button_new_with_label (_("CPU"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_func_cpu", bench_func_cpu);
+  gtk_widget_show (bench_func_cpu);
+  gtk_container_set_border_width (GTK_CONTAINER (bench_func_cpu), 2);
+  gtk_table_attach (GTK_TABLE (table0), bench_func_cpu, 1, 4, 2, 3, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 16, 16);
+
+  bench_func_video = gtk_button_new_with_label (_("VIDEO"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_func_video", bench_func_video);
+  gtk_widget_show (bench_func_video);
+  gtk_container_set_border_width (GTK_CONTAINER (bench_func_video), 2);
+  gtk_table_attach (GTK_TABLE (table0), bench_func_video, 1, 4, 3, 4, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 16, 16);
+
+  bench_func_disk = gtk_button_new_with_label (_("DISK"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_func_disk", bench_func_disk);
+  gtk_widget_show (bench_func_disk);
+  gtk_container_set_border_width (GTK_CONTAINER (bench_func_disk), 2);
+  gtk_table_attach (GTK_TABLE (table0), bench_func_disk, 1, 4, 4, 5, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 16, 16);
+
+  bench_total = gtk_frame_new (_("TOTAL"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_total", bench_total);
+  gtk_widget_show (bench_total);
+  gtk_frame_set_label_align (GTK_FRAME (bench_total), 0.5, 0.5);
+  gtk_table_attach (GTK_TABLE (table0), bench_total, 4, 7, 1, 2, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
+
+  bench_total_score = gtk_label_new ("0");
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_total_score", bench_total_score);
+  gtk_widget_show (bench_total_score);
+  gtk_container_add (GTK_CONTAINER (bench_total), bench_total_score);
+  gtk_misc_set_alignment (GTK_MISC (bench_total_score), 0.9, 0.5);
+
+  bench_float = gtk_frame_new (_("FLOAT"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_float", bench_float);
+  gtk_widget_show (bench_float);
+  gtk_frame_set_label_align (GTK_FRAME (bench_float), 0.5, 0.5);
+  gtk_table_attach (GTK_TABLE (table0), bench_float, 4, 7, 2, 3, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
+
+  bench_float_score = gtk_label_new ("0");
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_float_score", bench_float_score);
+  gtk_widget_show (bench_float_score);
+  gtk_container_add (GTK_CONTAINER (bench_float), bench_float_score);
+  gtk_misc_set_alignment (GTK_MISC (bench_float_score), 0.9, 0.5);
+
+  bench_integer = gtk_frame_new (_("INTEGER"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_integer", bench_integer);
+  gtk_widget_show (bench_integer);
+  gtk_frame_set_label_align (GTK_FRAME (bench_integer), 0.5, 0.5);
+  gtk_table_attach (GTK_TABLE (table0), bench_integer, 7, 10, 2, 3, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
+
+  bench_integer_score = gtk_label_new ("0");
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_integer_score", bench_integer_score);
+  gtk_widget_show (bench_integer_score);
+  gtk_container_add (GTK_CONTAINER (bench_integer), bench_integer_score);
+  gtk_misc_set_alignment (GTK_MISC (bench_integer_score), 0.9, 0.5);
 
   bench_memory = gtk_frame_new (_("MEMORY"));
   gtk_object_set_data (GTK_OBJECT (main_window), "bench_memory", bench_memory);
   gtk_widget_show (bench_memory);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_memory, 448, 112);
-  gtk_widget_set_uposition (bench_memory, 448, 112);
-  gtk_widget_set_usize (bench_memory, 96, 48);
   gtk_frame_set_label_align (GTK_FRAME (bench_memory), 0.5, 0.5);
+  gtk_table_attach (GTK_TABLE (table0), bench_memory, 13, 16, 2, 3, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
 
   bench_memory_score = gtk_label_new ("0");
   gtk_object_set_data (GTK_OBJECT (main_window), "bench_memory_score", bench_memory_score);
@@ -209,13 +222,47 @@ create_main_window ()
   gtk_container_add (GTK_CONTAINER (bench_memory), bench_memory_score);
   gtk_misc_set_alignment (GTK_MISC (bench_memory_score), 0.9, 0.5);
 
+  bench_rectangle = gtk_frame_new (_("RECTANGLE"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_rectangle", bench_rectangle);
+  gtk_widget_show (bench_rectangle);
+  gtk_frame_set_label_align (GTK_FRAME (bench_rectangle), 0.5, 0.5);
+  gtk_table_attach (GTK_TABLE (table0), bench_rectangle, 4, 7, 3, 4, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
+
+  bench_rectangle_score = gtk_label_new ("0");
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_rectangle_score", bench_rectangle_score);
+  gtk_widget_show (bench_rectangle_score);
+  gtk_container_add (GTK_CONTAINER (bench_rectangle), bench_rectangle_score);
+  gtk_misc_set_alignment (GTK_MISC (bench_rectangle_score), 0.9, 0.5);
+
+  bench_circle = gtk_frame_new (_("CIRCLE"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_circle", bench_circle);
+  gtk_widget_show (bench_circle);
+  gtk_frame_set_label_align (GTK_FRAME (bench_circle), 0.5, 0.5);
+  gtk_table_attach (GTK_TABLE (table0), bench_circle, 7, 10, 3, 4, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
+
+  bench_circle_score = gtk_label_new ("0");
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_circle_score", bench_circle_score);
+  gtk_widget_show (bench_circle_score);
+  gtk_container_add (GTK_CONTAINER (bench_circle), bench_circle_score);
+  gtk_misc_set_alignment (GTK_MISC (bench_circle_score), 0.9, 0.5);
+  
+  bench_text = gtk_frame_new (_("TEXT"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_text", bench_text);
+  gtk_widget_show (bench_text);
+  gtk_frame_set_label_align (GTK_FRAME (bench_text), 0.5, 0.5);
+  gtk_table_attach (GTK_TABLE (table0), bench_text, 10, 13, 3, 4, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
+
+  bench_text_score = gtk_label_new ("0");
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_text_score", bench_text_score);
+  gtk_widget_show (bench_text_score);
+  gtk_container_add (GTK_CONTAINER (bench_text), bench_text_score);
+  gtk_misc_set_alignment (GTK_MISC (bench_text_score), 0.9, 0.5);
+
   bench_scroll = gtk_frame_new (_("SCROLL"));
   gtk_object_set_data (GTK_OBJECT (main_window), "bench_scroll", bench_scroll);
   gtk_widget_show (bench_scroll);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_scroll, 448, 176);
-  gtk_widget_set_uposition (bench_scroll, 448, 176);
-  gtk_widget_set_usize (bench_scroll, 96, 48);
   gtk_frame_set_label_align (GTK_FRAME (bench_scroll), 0.5, 0.5);
+  gtk_table_attach (GTK_TABLE (table0), bench_scroll, 13, 16, 3, 4, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
 
   bench_scroll_score = gtk_label_new ("0");
   gtk_object_set_data (GTK_OBJECT (main_window), "bench_scroll_score", bench_scroll_score);
@@ -226,10 +273,8 @@ create_main_window ()
   bench_image = gtk_frame_new (_("IMAGE"));
   gtk_object_set_data (GTK_OBJECT (main_window), "bench_image", bench_image);
   gtk_widget_show (bench_image);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_image, 552, 176);
-  gtk_widget_set_uposition (bench_image, 552, 176);
-  gtk_widget_set_usize (bench_image, 96, 48);
   gtk_frame_set_label_align (GTK_FRAME (bench_image), 0.5, 0.5);
+  gtk_table_attach (GTK_TABLE (table0), bench_image, 16, 19, 3, 4, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
 
   bench_image_score = gtk_label_new ("0");
   gtk_object_set_data (GTK_OBJECT (main_window), "bench_image_score", bench_image_score);
@@ -237,12 +282,63 @@ create_main_window ()
   gtk_container_add (GTK_CONTAINER (bench_image), bench_image_score);
   gtk_misc_set_alignment (GTK_MISC (bench_image_score), 0.9, 0.5);
 
+  bench_read = gtk_frame_new (_("READ(KB/s)"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_read", bench_read);
+  gtk_widget_show (bench_read);
+  gtk_frame_set_label_align (GTK_FRAME (bench_read), 0.5, 0.5);
+  gtk_table_attach (GTK_TABLE (table0), bench_read, 4, 7, 4, 5, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
+
+  bench_read_score = gtk_label_new ("0");
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_read_score", bench_read_score);
+  gtk_widget_show (bench_read_score);
+  gtk_container_add (GTK_CONTAINER (bench_read), bench_read_score);
+  gtk_misc_set_alignment (GTK_MISC (bench_read_score), 0.9, 0.5);
+
+  bench_write = gtk_frame_new (_("WRITE(KB/s)"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_write", bench_write);
+  gtk_widget_show (bench_write);
+  gtk_frame_set_label_align (GTK_FRAME (bench_write), 0.5, 0.5);
+  gtk_table_attach (GTK_TABLE (table0), bench_write, 7, 10, 4, 5, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
+
+  bench_write_score = gtk_label_new ("0");
+  gtk_object_set_data (GTK_OBJECT (main_window), "bench_write_score", bench_write_score);
+  gtk_widget_show (bench_write_score);
+  gtk_container_add (GTK_CONTAINER (bench_write), bench_write_score);
+  gtk_label_set_justify (GTK_LABEL (bench_write_score), GTK_JUSTIFY_RIGHT);
+  gtk_misc_set_alignment (GTK_MISC (bench_write_score), 0.9, 0.5);
+
+  frame_drive = gtk_frame_new (_("DRIVE"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "frame_drive", frame_drive);
+  gtk_widget_show (frame_drive);
+  gtk_frame_set_shadow_type (GTK_FRAME (frame_drive), GTK_SHADOW_NONE);
+  gtk_table_attach (GTK_TABLE (table0), frame_drive, 11, 16, 4, 5, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
+
+  drive_combo = gtk_combo_new ();
+  gtk_object_set_data (GTK_OBJECT (main_window), "drive_combo", drive_combo);
+  gtk_widget_show (drive_combo);
+  gtk_container_add (GTK_CONTAINER (frame_drive), drive_combo);
+
+  if(getenv("TMPDIR")==NULL){
+    drive_combo_items = g_list_append (drive_combo_items, "/tmp");
+  }else{
+    drive_combo_items = g_list_append (drive_combo_items, getenv("TMPDIR"));
+  }
+  drive_combo_items = g_list_append (drive_combo_items, getenv("HOME"));
+  gtk_combo_set_popdown_strings (GTK_COMBO (drive_combo), drive_combo_items);
+  g_list_free (drive_combo_items);
+  disk_drive=gtk_entry_get_text( GTK_ENTRY( GTK_COMBO( drive_combo)->entry ) );
+
+  frame_capacity = gtk_frame_new (_("CAPACITY"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "frame_capacity", frame_capacity);
+  gtk_widget_show (frame_capacity);
+  gtk_frame_set_shadow_type (GTK_FRAME (frame_capacity), GTK_SHADOW_NONE);
+  gtk_table_attach (GTK_TABLE (table0), frame_capacity, 16, 19, 4, 5, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
+
   capacity_option_menu = gtk_option_menu_new ();
   gtk_object_set_data (GTK_OBJECT (main_window), "capacity_option_menu", capacity_option_menu);
   gtk_widget_show (capacity_option_menu);
-  gtk_fixed_put (GTK_FIXED (fixed1), capacity_option_menu, 552, 264);
-  gtk_widget_set_uposition (capacity_option_menu, 552, 264);
-  gtk_widget_set_usize (capacity_option_menu, 96, 32);
+  gtk_container_add (GTK_CONTAINER (frame_capacity), capacity_option_menu);
+
   capacity_option_menu_menu = gtk_menu_new ();
   glade_menuitem = gtk_menu_item_new_with_label ("2000MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
@@ -307,58 +403,31 @@ create_main_window ()
   gtk_option_menu_set_menu (GTK_OPTION_MENU (capacity_option_menu), capacity_option_menu_menu);
   gtk_option_menu_set_history (GTK_OPTION_MENU (capacity_option_menu), 5);
 
+  hbox2 = gtk_hbox_new (TRUE, 0);
+  gtk_object_set_data (GTK_OBJECT (main_window), "hbox2", hbox2);
+  gtk_widget_show (hbox2);
+  gtk_box_pack_start (GTK_BOX (vbox1), hbox2, TRUE, TRUE, 0);
+
   plugins = gtk_frame_new (_("PLUGIN"));
   gtk_object_set_data (GTK_OBJECT (main_window), "plugins", plugins);
   gtk_widget_show (plugins);
-  gtk_fixed_put (GTK_FIXED (fixed1), plugins, 16, 312);
-  gtk_widget_set_uposition (plugins, 16, 312);
-  gtk_widget_set_usize (plugins, 296, 136);
+  gtk_box_pack_start (GTK_BOX (hbox2), plugins, TRUE, TRUE, 0);
 
-  table1 = gtk_table_new (4, 4, FALSE);
+  table1 = gtk_table_new (3, 3, TRUE);
   gtk_object_set_data (GTK_OBJECT (main_window), "table1", table1);
   gtk_widget_show (table1);
   gtk_container_add (GTK_CONTAINER (plugins), table1);
 
-  gtk_table_set_col_spacing (GTK_TABLE (table1), 0, 8);
-  gtk_table_set_col_spacing (GTK_TABLE (table1), 1, 14);
-  gtk_table_set_col_spacing (GTK_TABLE (table1), 2, 14);
-  gtk_table_set_row_spacing (GTK_TABLE (table1), 0, 8);
-  gtk_table_set_row_spacing (GTK_TABLE (table1), 2, 16);
-
   plugin_start = gtk_button_new_with_label (_("Start"));
   gtk_object_set_data (GTK_OBJECT (main_window), "plugin_start", plugin_start);
   gtk_widget_show (plugin_start);
-  gtk_widget_set_usize (plugin_start, 72, 32);
-  gtk_table_attach (GTK_TABLE (table1), plugin_start, 1, 2, 1, 3, 0, 0, 0, 0);
-
-  plugin_option = gtk_button_new_with_label (_("OPTIONS"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "plugin_option", plugin_option);
-  gtk_widget_show (plugin_option);
-  gtk_widget_set_usize (plugin_option, 96, 25);
-  gtk_table_attach (GTK_TABLE (table1), plugin_option, 3, 4, 1, 2, 0, 0, 0, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (plugin_option), 1);
-  gtk_widget_set_sensitive (plugin_option, FALSE);
-
-  plugin_copy = gtk_button_new_with_label (_("Copy results"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "plugin_copy", plugin_copy);
-  gtk_widget_show (plugin_copy);
-  gtk_widget_set_usize (plugin_copy, 96, 24);
-  gtk_table_attach (GTK_TABLE (table1), plugin_copy, 3, 4, 2, 3, 0, 0, 0, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (plugin_copy), 1);
-
-  plugin_option_menu = gtk_option_menu_new ();
-  gtk_object_set_data (GTK_OBJECT (main_window), "plugin_option_menu", plugin_option_menu);
-  gtk_widget_show (plugin_option_menu);
-  gtk_widget_set_usize (plugin_option_menu, 272, 32);
-  gtk_table_attach (GTK_TABLE (table1), plugin_option_menu, 1, 4, 3, 4, 0, 0, 0, 0);
-  plugin_option_menu_menu = gtk_menu_new ();
-  gtk_option_menu_set_menu (GTK_OPTION_MENU (plugin_option_menu), plugin_option_menu_menu);
+  gtk_container_set_border_width (GTK_CONTAINER (plugin_start), 2);
+  gtk_table_attach (GTK_TABLE (table1), plugin_start, 0, 1, 0, 2, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 8, 32);
 
   bench_plugin = gtk_frame_new (NULL);
   gtk_object_set_data (GTK_OBJECT (main_window), "bench_plugin", bench_plugin);
   gtk_widget_show (bench_plugin);
-  gtk_widget_set_usize (bench_plugin, 72, 32);
-  gtk_table_attach (GTK_TABLE (table1), bench_plugin, 2, 3, 1, 3, 0, 0, 0, 0);
+  gtk_table_attach (GTK_TABLE (table1), bench_plugin, 1, 2, 0, 2, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 8, 32);
 
   bench_plugin_score = gtk_label_new ("0");
   gtk_object_set_data (GTK_OBJECT (main_window), "bench_plugin_score", bench_plugin_score);
@@ -366,117 +435,30 @@ create_main_window ()
   gtk_container_add (GTK_CONTAINER (bench_plugin), bench_plugin_score);
   gtk_misc_set_alignment (GTK_MISC (bench_plugin_score), 0.9, 0.5);
 
-  disk_xpm = create_pixmap (main_window, "disk.xpm");
-  gtk_object_set_data (GTK_OBJECT (main_window), "disk_xpm", disk_xpm);
-  gtk_widget_show (disk_xpm);
-  gtk_fixed_put (GTK_FIXED (fixed1), disk_xpm, 8, 264);
-  gtk_widget_set_uposition (disk_xpm, 8, 264);
-  gtk_widget_set_usize (disk_xpm, 32, 32);
+  plugin_option = gtk_button_new_with_label (_("OPTIONS"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "plugin_option", plugin_option);
+  gtk_widget_show (plugin_option);
+  gtk_container_set_border_width (GTK_CONTAINER (plugin_option), 2);
+  gtk_table_attach (GTK_TABLE (table1), plugin_option, 2, 3, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
+  gtk_widget_set_sensitive (plugin_option, FALSE);
 
-  label_capacity = gtk_label_new (_("CAPACITY"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "label_capacity", label_capacity);
-  gtk_widget_show (label_capacity);
-  gtk_fixed_put (GTK_FIXED (fixed1), label_capacity, 552, 240);
-  gtk_widget_set_uposition (label_capacity, 552, 240);
-  gtk_widget_set_usize (label_capacity, 80, 24);
+  plugin_copy = gtk_button_new_with_label (_("Copy results"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "plugin_copy", plugin_copy);
+  gtk_widget_show (plugin_copy);
+  gtk_container_set_border_width (GTK_CONTAINER (plugin_copy), 2);
+  gtk_table_attach (GTK_TABLE (table1), plugin_copy, 2, 3, 1, 2, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
 
-  cpu_xpm = create_pixmap (main_window, "cpu.xpm");
-  gtk_object_set_data (GTK_OBJECT (main_window), "cpu_xpm", cpu_xpm);
-  gtk_widget_show (cpu_xpm);
-  gtk_fixed_put (GTK_FIXED (fixed1), cpu_xpm, 8, 128);
-  gtk_widget_set_uposition (cpu_xpm, 8, 128);
-  gtk_widget_set_usize (cpu_xpm, 32, 32);
-
-  bench_read = gtk_frame_new (_("READ(KB/s)"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_read", bench_read);
-  gtk_widget_show (bench_read);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_read, 136, 248);
-  gtk_widget_set_uposition (bench_read, 136, 248);
-  gtk_widget_set_usize (bench_read, 96, 48);
-  gtk_frame_set_label_align (GTK_FRAME (bench_read), 0.5, 0.5);
-
-  bench_read_score = gtk_label_new ("0");
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_read_score", bench_read_score);
-  gtk_widget_show (bench_read_score);
-  gtk_container_add (GTK_CONTAINER (bench_read), bench_read_score);
-  gtk_misc_set_alignment (GTK_MISC (bench_read_score), 0.9, 0.5);
-
-  bench_rectangle = gtk_frame_new (_("RECTANGLE"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_rectangle", bench_rectangle);
-  gtk_widget_show (bench_rectangle);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_rectangle, 136, 176);
-  gtk_widget_set_uposition (bench_rectangle, 136, 176);
-  gtk_widget_set_usize (bench_rectangle, 96, 48);
-  gtk_frame_set_label_align (GTK_FRAME (bench_rectangle), 0.5, 0.5);
-
-  bench_rectangle_score = gtk_label_new ("0");
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_rectangle_score", bench_rectangle_score);
-  gtk_widget_show (bench_rectangle_score);
-  gtk_container_add (GTK_CONTAINER (bench_rectangle), bench_rectangle_score);
-  gtk_misc_set_alignment (GTK_MISC (bench_rectangle_score), 0.9, 0.5);
-
-  bench_float = gtk_frame_new (_("FLOAT"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_float", bench_float);
-  gtk_widget_show (bench_float);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_float, 136, 112);
-  gtk_widget_set_uposition (bench_float, 136, 112);
-  gtk_widget_set_usize (bench_float, 96, 48);
-  gtk_frame_set_label_align (GTK_FRAME (bench_float), 0.5, 0.5);
-
-  bench_float_score = gtk_label_new ("0");
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_float_score", bench_float_score);
-  gtk_widget_show (bench_float_score);
-  gtk_container_add (GTK_CONTAINER (bench_float), bench_float_score);
-  gtk_misc_set_alignment (GTK_MISC (bench_float_score), 0.9, 0.5);
-
-  bench_integer = gtk_frame_new (_("INTEGER"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_integer", bench_integer);
-  gtk_widget_show (bench_integer);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_integer, 240, 112);
-  gtk_widget_set_uposition (bench_integer, 240, 112);
-  gtk_widget_set_usize (bench_integer, 96, 48);
-  gtk_frame_set_label_align (GTK_FRAME (bench_integer), 0.5, 0.5);
-
-  bench_integer_score = gtk_label_new ("0");
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_integer_score", bench_integer_score);
-  gtk_widget_show (bench_integer_score);
-  gtk_container_add (GTK_CONTAINER (bench_integer), bench_integer_score);
-  gtk_misc_set_alignment (GTK_MISC (bench_integer_score), 0.9, 0.5);
-
-  bench_circle = gtk_frame_new (_("CIRCLE"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_circle", bench_circle);
-  gtk_widget_show (bench_circle);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_circle, 240, 176);
-  gtk_widget_set_uposition (bench_circle, 240, 176);
-  gtk_widget_set_usize (bench_circle, 96, 48);
-  gtk_frame_set_label_align (GTK_FRAME (bench_circle), 0.5, 0.5);
-
-  bench_circle_score = gtk_label_new ("0");
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_circle_score", bench_circle_score);
-  gtk_widget_show (bench_circle_score);
-  gtk_container_add (GTK_CONTAINER (bench_circle), bench_circle_score);
-  gtk_misc_set_alignment (GTK_MISC (bench_circle_score), 0.9, 0.5);
-
-  bench_total = gtk_frame_new (_("TOTAL"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_total", bench_total);
-  gtk_widget_show (bench_total);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_total, 136, 48);
-  gtk_widget_set_uposition (bench_total, 136, 48);
-  gtk_widget_set_usize (bench_total, 96, 48);
-  gtk_frame_set_label_align (GTK_FRAME (bench_total), 0.5, 0.5);
-
-  bench_total_score = gtk_label_new ("0");
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_total_score", bench_total_score);
-  gtk_widget_show (bench_total_score);
-  gtk_container_add (GTK_CONTAINER (bench_total), bench_total_score);
-  gtk_misc_set_alignment (GTK_MISC (bench_total_score), 0.9, 0.5);
+  plugin_option_menu = gtk_option_menu_new ();
+  gtk_object_set_data (GTK_OBJECT (main_window), "plugin_option_menu", plugin_option_menu);
+  gtk_widget_show (plugin_option_menu);
+  gtk_table_attach (GTK_TABLE (table1), plugin_option_menu, 0, 3, 2, 3, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
+  plugin_option_menu_menu = gtk_menu_new ();
+  gtk_option_menu_set_menu (GTK_OPTION_MENU (plugin_option_menu), plugin_option_menu_menu);
 
   options = gtk_frame_new (_("OPTIONS"));
   gtk_object_set_data (GTK_OBJECT (main_window), "options", options);
   gtk_widget_show (options);
-  gtk_fixed_put (GTK_FIXED (fixed1), options, 328, 312);
-  gtk_widget_set_uposition (options, 328, 312);
-  gtk_widget_set_usize (options, 320, 136);
+  gtk_box_pack_start (GTK_BOX (hbox2), options, TRUE, TRUE, 0);
 
   hbox1 = gtk_hbox_new (FALSE, 0);
   gtk_object_set_data (GTK_OBJECT (main_window), "hbox1", hbox1);
@@ -516,73 +498,25 @@ create_main_window ()
   gtk_box_pack_start (GTK_BOX (vbox3), opt_image, TRUE, TRUE, 0);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (opt_image), TRUE);
 
-  bench_write = gtk_frame_new (_("WRITE(KB/s)"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_write", bench_write);
-  gtk_widget_show (bench_write);
-  gtk_fixed_put (GTK_FIXED (fixed1), bench_write, 240, 248);
-  gtk_widget_set_uposition (bench_write, 240, 248);
-  gtk_widget_set_usize (bench_write, 96, 48);
-  gtk_frame_set_label_align (GTK_FRAME (bench_write), 0.5, 0.5);
-
-  bench_write_score = gtk_label_new ("0");
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_write_score", bench_write_score);
-  gtk_widget_show (bench_write_score);
-  gtk_container_add (GTK_CONTAINER (bench_write), bench_write_score);
-  gtk_label_set_justify (GTK_LABEL (bench_write_score), GTK_JUSTIFY_RIGHT);
-  gtk_misc_set_alignment (GTK_MISC (bench_write_score), 0.9, 0.5);
-
-  label_drive = gtk_label_new (_("DRIVE"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "label_drive", label_drive);
-  gtk_widget_show (label_drive);
-  gtk_fixed_put (GTK_FIXED (fixed1), label_drive, 384, 240);
-  gtk_widget_set_uposition (label_drive, 384, 240);
-  gtk_widget_set_usize (label_drive, 56, 24);
-
-  drive_combo = gtk_combo_new ();
-  gtk_object_set_data (GTK_OBJECT (main_window), "drive_combo", drive_combo);
-  gtk_widget_show (drive_combo);
-  gtk_fixed_put (GTK_FIXED (fixed1), drive_combo, 384, 264);
-  gtk_widget_set_uposition (drive_combo, 384, 264);
-  gtk_widget_set_usize (GTK_COMBO (drive_combo)->entry, 135, 32);
-  gtk_widget_set_usize (drive_combo, 151, 32);
-
-  if(getenv("TMPDIR")==NULL){
-    drive_combo_items = g_list_append (drive_combo_items, "/tmp");
-  }else{
-    drive_combo_items = g_list_append (drive_combo_items, getenv("TMPDIR"));
-  }
-  drive_combo_items = g_list_append (drive_combo_items, getenv("HOME"));
-  gtk_combo_set_popdown_strings (GTK_COMBO (drive_combo), drive_combo_items);
-  g_list_free (drive_combo_items);
-  disk_drive=gtk_entry_get_text( GTK_ENTRY( GTK_COMBO( drive_combo)->entry ) );
-
   measuring_all = gtk_button_new_with_label (_("Wait..."));
   gtk_object_set_data (GTK_OBJECT (main_window), "measuring_all", measuring_all);
-  gtk_fixed_put (GTK_FIXED (fixed1), measuring_all, 48, 64);
-  gtk_widget_set_uposition (measuring_all, 48, 64);
-  gtk_widget_set_usize (measuring_all, 72, 32);
   gtk_container_set_border_width (GTK_CONTAINER (measuring_all), 2);
+  gtk_table_attach (GTK_TABLE (table0), measuring_all, 1, 4, 1, 2, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 16, 16);
 
   measuring_cpu = gtk_button_new_with_label (_("Wait..."));
   gtk_object_set_data (GTK_OBJECT (main_window), "measuring_cpu", measuring_cpu);
-  gtk_fixed_put (GTK_FIXED (fixed1), measuring_cpu, 48, 128);
-  gtk_widget_set_uposition (measuring_cpu, 48, 128);
-  gtk_widget_set_usize (measuring_cpu, 72, 32);
   gtk_container_set_border_width (GTK_CONTAINER (measuring_cpu), 2);
+  gtk_table_attach (GTK_TABLE (table0), measuring_cpu, 1, 4, 2, 3, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 16, 16);
 
   measuring_video = gtk_button_new_with_label (_("Wait..."));
   gtk_object_set_data (GTK_OBJECT (main_window), "measuring_video", measuring_video);
-  gtk_fixed_put (GTK_FIXED (fixed1), measuring_video, 48, 192);
-  gtk_widget_set_uposition (measuring_video, 48, 192);
-  gtk_widget_set_usize (measuring_video, 72, 32);
   gtk_container_set_border_width (GTK_CONTAINER (measuring_video), 2);
+  gtk_table_attach (GTK_TABLE (table0), measuring_video, 1, 4, 3, 4, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 16, 16);
 
   measuring_disk = gtk_button_new_with_label (_("Wait..."));
   gtk_object_set_data (GTK_OBJECT (main_window), "measuring_disk", measuring_disk);
-  gtk_fixed_put (GTK_FIXED (fixed1), measuring_disk, 48, 264);
-  gtk_widget_set_uposition (measuring_disk, 48, 264);
-  gtk_widget_set_usize (measuring_disk, 72, 32);
   gtk_container_set_border_width (GTK_CONTAINER (measuring_disk), 2);
+  gtk_table_attach (GTK_TABLE (table0), measuring_disk, 1, 4, 4, 5, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 16, 16);
 
   gtk_signal_connect (GTK_OBJECT (main_window), "delete_event",
                       GTK_SIGNAL_FUNC (on_main_window_delete_event),
