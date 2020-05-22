@@ -72,7 +72,7 @@ gchar *format_result(void)
 
 
   if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(opt_resultonly))){
-  	formated=g_strdup_printf("%6d%6d%6d%6d%6d%6d%6d%6d%6d%6d%6d %s:%dMB\n"
+  	formated=g_strdup_printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%s:%dMB\n"
 ,result_all,result_float,result_integer,result_memory,
 result_rectangle,result_circle,result_text,result_scroll,result_image,
 result_read,result_write,
@@ -89,15 +89,14 @@ disk_drive,disk_capacity);
 Machine Infomation\n\
 Processor   %s\n\
             Vendor %s Family %s Model %s Stepping %s\n\
-Resolution  %dx%d %ucolors(%dbit)\n",
+Resolution  %dx%d (%dbit color)\n",
 VERSION,name,vendor,family,model,stepping,
 DisplayWidth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
 DisplayHeight(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
-lpow(2,DefaultDepth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY()))),
 DefaultDepth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())));
 
 	machine_info2=g_strdup_printf("\
-Memory      %"PRId64"KBytes\n\
+Memory      %"PRId64" KBytes\n\
 OS          %s\n\
 Date        %d/%02d/%02d %02d:%02d\n\n",
 totalmem/1024,os_name,
@@ -111,8 +110,11 @@ nowtime->tm_year+1900,nowtime->tm_mon+1,nowtime->tm_mday,nowtime->tm_hour,nowtim
         g_free(os_name);
 
 	bench_result=g_strdup_printf("\
- TOTAL FLOAT INTGR MEMRY  RECT CIRCL  TEXT  SCRL IMAGE  READ WRITE DRIVE\n\
-%6d%6d%6d%6d%6d%6d%6d%6d%6d%6d%6d %s:%dMB\n",
+    TOTAL     FLOAT   INTEGER    MEMORY\n\
+%9d %9d %9d %9d\n\
+\n\
+   RECT  CIRCLE    TEXT  SCROLL   IMAGE     READ    WRITE DRIVE\n\
+%7d %7d %7d %7d %7d %8d %8d %s:%dMB\n",
 result_all,result_float,result_integer,result_memory,
 result_rectangle,result_circle,result_text,result_scroll,result_image,
 result_read,result_write,
