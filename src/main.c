@@ -52,11 +52,6 @@ int main(int argc, char *argv[])
 	};
 
 
-#ifdef ENABLE_NLS
-	bindtextdomain(PACKAGE, PACKAGE_LOCALE_DIR);
-	textdomain(PACKAGE);
-#endif
-
 	optParseOptions(&argc, argv, opt, 0);
 
 	gtk_set_locale();
