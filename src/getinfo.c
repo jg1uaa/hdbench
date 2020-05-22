@@ -281,15 +281,26 @@ void get_cpuinfo(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar 
 void get_osinfo(gchar **name)
 {
 	FILE *fp;
+	gchar *osname=NULL,*ccname;
 
-	if((fp=popen("uname -s -r","r"))==NULL){
-		g_error(_("Cannot create a pipe.\n"));
+	if((fp=popen("uname -s -r","r"))!=NULL){
+		osname=str_fgets(fp);
+		pclose(fp);
 	}
-	*name=str_fgets(fp);
-	if(*name==NULL){
-		g_error(_("Cannot execute `uname'.\n"));
+	if(osname==NULL){
+		osname=g_strdup("unknown OS");
 	}
-	pclose(fp);
+
+#if __clang__
+	ccname=g_strdup_printf("clang-%d.%d.%d",__clang_major__,__clang_minor__,__clang_patchlevel__);
+#elif __GNUC__
+	ccname=g_strdup_printf("gcc-%d.%d.%d",__GNUC__,__GNUC_MINOR__,__GNUC_PATCHLEVEL__);
+#else
+	ccname=g_strdup("unknown compiler");
+#endif
+	*name=g_strdup_printf("%s (%s)",osname,ccname);
+	g_free(osname);
+	g_free(ccname);
 }
 
 
