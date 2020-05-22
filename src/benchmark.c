@@ -239,11 +239,11 @@ void bench_video_and_write(gint write_fd)
 				result.image=0;
 				break;
 			case 24:
+			case 30:
 				bpp=32;
 				/*FALLTHROUGH*/
 			case 8:
 			case 16:
-			case 32:
 				buffer=calloc(VIDEO_WIN_X*VIDEO_WIN_Y,bpp/8);
 				image=XCreateImage(d,DefaultVisual(d,DefaultScreen(d)),DefaultDepth(d,DefaultScreen(d)),ZPixmap,0,buffer,VIDEO_WIN_X,VIDEO_WIN_Y,bpp,0);
 
