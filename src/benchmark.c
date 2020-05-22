@@ -253,6 +253,8 @@ void bench_video_and_write(gint write_fd)
 				free(buffer);
 				break;
 		}
+	}else{
+		result.image=0;
 	}
 
 	XDestroyWindow(d,w);
