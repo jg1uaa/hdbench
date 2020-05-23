@@ -54,11 +54,9 @@ create_main_window ()
   GtkWidget *bench_image;
   GtkWidget *capacity_option_menu_menu;
   GtkWidget *glade_menuitem;
-  GtkWidget *plugins;
-  GtkWidget *table1;
-  GtkWidget *plugin_option_menu_menu;
+  GtkWidget *format;
+  GtkWidget *vbox2;
   GtkWidget *frame_capacity;
-  GtkWidget *bench_plugin;
   GtkWidget *cpu_xpm;
   GtkWidget *video_xpm;
   GtkWidget *disk_xpm;
@@ -409,57 +407,6 @@ create_main_window ()
   gtk_widget_show (hbox2);
   gtk_box_pack_start (GTK_BOX (vbox1), hbox2, TRUE, TRUE, 0);
 
-  plugins = gtk_frame_new (_("PLUGIN"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "plugins", plugins);
-  gtk_widget_show (plugins);
-  gtk_box_pack_start (GTK_BOX (hbox2), plugins, TRUE, TRUE, 0);
-
-  table1 = gtk_table_new (3, 3, TRUE);
-  gtk_object_set_data (GTK_OBJECT (main_window), "table1", table1);
-  gtk_widget_show (table1);
-  gtk_container_add (GTK_CONTAINER (plugins), table1);
-
-  plugin_start = gtk_button_new_with_label (_("Start"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "plugin_start", plugin_start);
-  gtk_widget_show (plugin_start);
-  gtk_container_set_border_width (GTK_CONTAINER (plugin_start), 2);
-  gtk_table_attach (GTK_TABLE (table1), plugin_start, 0, 1, 0, 2, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 8, 32);
-  gtk_widget_set_sensitive (plugin_start, FALSE);
-
-  bench_plugin = gtk_frame_new (NULL);
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_plugin", bench_plugin);
-  gtk_widget_show (bench_plugin);
-  gtk_table_attach (GTK_TABLE (table1), bench_plugin, 1, 2, 0, 2, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 8, 32);
-  gtk_widget_set_sensitive (bench_plugin, FALSE);
-
-  bench_plugin_score = gtk_label_new ("0");
-  gtk_object_set_data (GTK_OBJECT (main_window), "bench_plugin_score", bench_plugin_score);
-  gtk_widget_show (bench_plugin_score);
-  gtk_container_add (GTK_CONTAINER (bench_plugin), bench_plugin_score);
-  gtk_misc_set_alignment (GTK_MISC (bench_plugin_score), 0.9, 0.5);
-
-  plugin_option = gtk_button_new_with_label (_("OPTIONS"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "plugin_option", plugin_option);
-  gtk_widget_show (plugin_option);
-  gtk_container_set_border_width (GTK_CONTAINER (plugin_option), 2);
-  gtk_table_attach (GTK_TABLE (table1), plugin_option, 2, 3, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
-  gtk_widget_set_sensitive (plugin_option, FALSE);
-
-  plugin_copy = gtk_button_new_with_label (_("Copy results"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "plugin_copy", plugin_copy);
-  gtk_widget_show (plugin_copy);
-  gtk_container_set_border_width (GTK_CONTAINER (plugin_copy), 2);
-  gtk_table_attach (GTK_TABLE (table1), plugin_copy, 2, 3, 1, 2, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
-  gtk_widget_set_sensitive (plugin_copy, FALSE);
-
-  plugin_option_menu = gtk_option_menu_new ();
-  gtk_object_set_data (GTK_OBJECT (main_window), "plugin_option_menu", plugin_option_menu);
-  gtk_widget_show (plugin_option_menu);
-  gtk_table_attach (GTK_TABLE (table1), plugin_option_menu, 0, 3, 2, 3, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
-  plugin_option_menu_menu = gtk_menu_new ();
-  gtk_option_menu_set_menu (GTK_OPTION_MENU (plugin_option_menu), plugin_option_menu_menu);
-  gtk_widget_set_sensitive (plugin_option_menu, FALSE);
-
   options = gtk_frame_new (_("OPTIONS"));
   gtk_object_set_data (GTK_OBJECT (main_window), "options", options);
   gtk_widget_show (options);
@@ -475,13 +422,6 @@ create_main_window ()
   gtk_widget_show (vbox3);
   gtk_box_pack_start (GTK_BOX (hbox1), vbox3, TRUE, TRUE, 0);
 
-  opt_read = gtk_check_button_new_with_label (_("perform READ test before WRITE"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "opt_read", opt_read);
-  gtk_widget_show (opt_read);
-  gtk_box_pack_start (GTK_BOX (vbox3), opt_read, TRUE, TRUE, 0);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (opt_read), FALSE);
-  gtk_widget_set_sensitive (opt_read, FALSE);
-
   opt_drivecopy = gtk_check_button_new_with_label (_("copy results with drive infomation"));
   gtk_object_set_data (GTK_OBJECT (main_window), "opt_drivecopy", opt_drivecopy);
   gtk_widget_show (opt_drivecopy);
@@ -493,17 +433,37 @@ create_main_window ()
   gtk_widget_show (opt_resultonly);
   gtk_box_pack_start (GTK_BOX (vbox3), opt_resultonly, TRUE, TRUE, 0);
 
-  opt_cdrom = gtk_check_button_new_with_label (_("READ test for CD-ROM (file read)"));
-  gtk_object_set_data (GTK_OBJECT (main_window), "opt_cdrom", opt_cdrom);
-  gtk_widget_show (opt_cdrom);
-  gtk_box_pack_start (GTK_BOX (vbox3), opt_cdrom, TRUE, TRUE, 0);
-  gtk_widget_set_sensitive (opt_cdrom, FALSE);
-
   opt_image = gtk_check_button_new_with_label (_("perform IMAGE test"));
   gtk_object_set_data (GTK_OBJECT (main_window), "opt_image", opt_image);
   gtk_widget_show (opt_image);
   gtk_box_pack_start (GTK_BOX (vbox3), opt_image, TRUE, TRUE, 0);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (opt_image), TRUE);
+
+  format = gtk_frame_new (_("FORMAT"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "format", format);
+  gtk_widget_show (format);
+  gtk_box_pack_start (GTK_BOX (hbox2), format, TRUE, TRUE, 0);
+
+  vbox2 = gtk_vbox_new (FALSE, 0);
+  gtk_object_set_data (GTK_OBJECT (main_window), "vbox2", vbox2);
+  gtk_widget_show (vbox2);
+  gtk_container_add (GTK_CONTAINER (format), vbox2);
+
+  format_standard = gtk_radio_button_new_with_label (NULL, _("HDBENCH standard"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "format_standard", format_standard);
+  gtk_widget_show (format_standard);
+  gtk_box_pack_start (GTK_BOX (vbox2), format_standard, TRUE, TRUE, 0);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (format_standard), TRUE);
+
+  format_csv_multi = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (format_standard), _("CSV multi column"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "format_csv_multi", format_csv_multi);
+  gtk_widget_show (format_csv_multi);
+  gtk_box_pack_start (GTK_BOX (vbox2), format_csv_multi, TRUE, TRUE, 0);
+  
+  format_csv_single = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (format_csv_multi),  _("CSV single column"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "format_csv_single", format_csv_single);
+  gtk_widget_show (format_csv_single);
+  gtk_box_pack_start (GTK_BOX (vbox2), format_csv_single, TRUE, TRUE, 0);
 
   measuring_all = gtk_button_new_with_label (_("Wait..."));
   gtk_object_set_data (GTK_OBJECT (main_window), "measuring_all", measuring_all);
@@ -558,12 +518,15 @@ create_main_window ()
   gtk_signal_connect (GTK_OBJECT (main_func_help), "clicked",
                       GTK_SIGNAL_FUNC (on_help_clicked),
                       GTK_OBJECT (main_func_help));
-  gtk_signal_connect (GTK_OBJECT (plugin_start), "clicked",
-                      GTK_SIGNAL_FUNC (on_plugin_start_clicked),
-                      NULL);
-  gtk_signal_connect (GTK_OBJECT (plugin_copy), "clicked",
-                      GTK_SIGNAL_FUNC (on_plugin_copy_clicked),
-                      NULL);
+  gtk_signal_connect (GTK_OBJECT (format_standard), "toggled",
+                      GTK_SIGNAL_FUNC (format_toggled),
+                      (gpointer) FORMAT_STANDARD);
+  gtk_signal_connect (GTK_OBJECT (format_csv_multi), "toggled",
+                      GTK_SIGNAL_FUNC (format_toggled),
+                      (gpointer) FORMAT_CSV_MULTI);
+  gtk_signal_connect (GTK_OBJECT (format_csv_single), "toggled",
+                      GTK_SIGNAL_FUNC (format_toggled),
+                      (gpointer) FORMAT_CSV_SINGLE);
   gtk_signal_connect( GTK_OBJECT( GTK_COMBO( drive_combo )->entry ), "changed",
                       GTK_SIGNAL_FUNC( drive_combo_set_changed ), (gpointer) drive_combo );
 
@@ -619,97 +582,6 @@ create_damn_dialog ()
                       GTK_OBJECT (damn_dialog));
 
   return damn_dialog;
-}
-
-GtkWidget*
-create_plugin_start_dialog ()
-{
-  GtkWidget *plugin_start_dialog;
-  GtkWidget *dialog_vbox3;
-  GtkWidget *label2;
-  GtkWidget *dialog_action_area3;
-  GtkWidget *button2;
-
-  plugin_start_dialog = gtk_dialog_new ();
-  gtk_object_set_data (GTK_OBJECT (plugin_start_dialog), "plugin_start_dialog", plugin_start_dialog);
-  GTK_WINDOW (plugin_start_dialog)->type = GTK_WINDOW_POPUP;
-  gtk_window_set_title (GTK_WINDOW (plugin_start_dialog), _("No plugin"));
-  gtk_window_set_position (GTK_WINDOW (plugin_start_dialog), GTK_WIN_POS_MOUSE);
-  gtk_window_set_policy (GTK_WINDOW (plugin_start_dialog), TRUE, TRUE, FALSE);
-
-  dialog_vbox3 = GTK_DIALOG (plugin_start_dialog)->vbox;
-  gtk_object_set_data (GTK_OBJECT (plugin_start_dialog), "dialog_vbox3", dialog_vbox3);
-  gtk_widget_show (dialog_vbox3);
-  gtk_container_set_border_width (GTK_CONTAINER (dialog_vbox3), 2);
-
-  label2 = gtk_label_new (_("\n\n  Click to execute plugin DLL.  \n  But,there is no installed plugin.  \n\n"));
-  gtk_object_set_data (GTK_OBJECT (plugin_start_dialog), "label2", label2);
-  gtk_widget_show (label2);
-  gtk_box_pack_start (GTK_BOX (dialog_vbox3), label2, TRUE, TRUE, 0);
-
-  dialog_action_area3 = GTK_DIALOG (plugin_start_dialog)->action_area;
-  gtk_object_set_data (GTK_OBJECT (plugin_start_dialog), "dialog_action_area3", dialog_action_area3);
-  gtk_widget_show (dialog_action_area3);
-  gtk_container_set_border_width (GTK_CONTAINER (dialog_action_area3), 10);
-
-  button2 = gtk_button_new_with_label (_("   OK   "));
-  gtk_object_set_data (GTK_OBJECT (plugin_start_dialog), "button2", button2);
-  gtk_widget_show (button2);
-  gtk_box_pack_start (GTK_BOX (dialog_action_area3), button2, FALSE, FALSE, 0);
-
-  gtk_window_set_modal(GTK_WINDOW(plugin_start_dialog), TRUE);
-
-  gtk_signal_connect (GTK_OBJECT (button2), "clicked",
-                      GTK_SIGNAL_FUNC (on_close_clicked),
-                      GTK_OBJECT (plugin_start_dialog));
-
-
-  return plugin_start_dialog;
-}
-
-GtkWidget*
-create_plugin_copy_dialog ()
-{
-  GtkWidget *plugin_copy_dialog;
-  GtkWidget *dialog_vbox4;
-  GtkWidget *label3;
-  GtkWidget *dialog_action_area4;
-  GtkWidget *button3;
-
-  plugin_copy_dialog = gtk_dialog_new ();
-  gtk_object_set_data (GTK_OBJECT (plugin_copy_dialog), "plugin_copy_dialog", plugin_copy_dialog);
-  GTK_WINDOW (plugin_copy_dialog)->type = GTK_WINDOW_POPUP;
-  gtk_window_set_title (GTK_WINDOW (plugin_copy_dialog), _("No plugin"));
-  gtk_window_set_position (GTK_WINDOW (plugin_copy_dialog), GTK_WIN_POS_MOUSE);
-  gtk_window_set_policy (GTK_WINDOW (plugin_copy_dialog), TRUE, TRUE, FALSE);
-
-  dialog_vbox4 = GTK_DIALOG (plugin_copy_dialog)->vbox;
-  gtk_object_set_data (GTK_OBJECT (plugin_copy_dialog), "dialog_vbox4", dialog_vbox4);
-  gtk_widget_show (dialog_vbox4);
-  gtk_container_set_border_width (GTK_CONTAINER (dialog_vbox4), 2);
-
-  label3 = gtk_label_new (_("\n\n  There is no installed plugin.  \n\n"));
-  gtk_object_set_data (GTK_OBJECT (plugin_copy_dialog), "label3", label3);
-  gtk_widget_show (label3);
-  gtk_box_pack_start (GTK_BOX (dialog_vbox4), label3, TRUE, TRUE, 0);
-
-  dialog_action_area4 = GTK_DIALOG (plugin_copy_dialog)->action_area;
-  gtk_object_set_data (GTK_OBJECT (plugin_copy_dialog), "dialog_action_area4", dialog_action_area4);
-  gtk_widget_show (dialog_action_area4);
-  gtk_container_set_border_width (GTK_CONTAINER (dialog_action_area4), 10);
-
-  button3 = gtk_button_new_with_label (_("   OK   "));
-  gtk_object_set_data (GTK_OBJECT (plugin_copy_dialog), "button3", button3);
-  gtk_widget_show (button3);
-  gtk_box_pack_start (GTK_BOX (dialog_action_area4), button3, FALSE, FALSE, 0);
-
-  gtk_window_set_modal(GTK_WINDOW(plugin_copy_dialog), TRUE);
-
-  gtk_signal_connect (GTK_OBJECT (button3), "clicked",
-                      GTK_SIGNAL_FUNC (on_close_clicked),
-                      GTK_OBJECT (plugin_copy_dialog));
-
-  return plugin_copy_dialog;
 }
 
 GtkWidget*

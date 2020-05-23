@@ -885,15 +885,12 @@ void set_sensitive(gint val)
 	gtk_widget_set_sensitive (main_func_system, val);
 //	gtk_widget_set_sensitive (main_func_graph, val);
 	gtk_widget_set_sensitive (main_func_help, val);
-//	gtk_widget_set_sensitive (plugin_option_menu, val);
-//	gtk_widget_set_sensitive (plugin_start, val);
-/*	gtk_widget_set_sensitive (plugin_option, val); */
-//	gtk_widget_set_sensitive (plugin_copy, val);
-//	gtk_widget_set_sensitive (opt_read, val);
 	gtk_widget_set_sensitive (opt_drivecopy, val);
 	gtk_widget_set_sensitive (opt_resultonly, val);
-//	gtk_widget_set_sensitive (opt_cdrom, val);
 	gtk_widget_set_sensitive (opt_image, val);
+	gtk_widget_set_sensitive (format_standard, val);
+	gtk_widget_set_sensitive (format_csv_multi, val);
+	gtk_widget_set_sensitive (format_csv_single, val);
 	gtk_widget_set_sensitive (drive_combo, val);
 	gtk_widget_set_sensitive (capacity_option_menu, val);
 }

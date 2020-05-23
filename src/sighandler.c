@@ -234,28 +234,6 @@ on_help_clicked                        (GtkButton       *button,
 
 
 void
-on_plugin_start_clicked                (GtkButton       *button,
-                                        gpointer         user_data)
-{
-  GtkWidget *plugin_start_dialog;
-
-  plugin_start_dialog = create_plugin_start_dialog ();
-  gtk_widget_show (plugin_start_dialog);
-}
-
-
-void
-on_plugin_copy_clicked                 (GtkButton       *button,
-                                        gpointer         user_data)
-{
-  GtkWidget *plugin_copy_dialog;
-
-  plugin_copy_dialog = create_plugin_copy_dialog ();
-  gtk_widget_show (plugin_copy_dialog);
-}
- 
-
-void
 on_close_clicked                        (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -268,6 +246,14 @@ capacity_option_menu_set               (GtkWidget       *item,
                                         gpointer         user_data)
 {
         disk_capacity=(gintptr)user_data;
+}
+
+
+void
+format_toggled                         (GtkWidget       *item,
+                                        gpointer         user_data)
+{
+        output_format=(gintptr)user_data;
 }
 
 

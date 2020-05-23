@@ -90,8 +90,6 @@ void selection_get(GtkWidget *widget,GtkSelectionData *selection_data,guint info
 
 GtkWidget* create_main_window (void);
 GtkWidget* create_damn_dialog (void);
-GtkWidget* create_plugin_start_dialog (void);
-GtkWidget* create_plugin_copy_dialog (void);
 GtkWidget* create_help_dialog (void);
 GtkWidget* create_system_dialog (void);
 
@@ -144,14 +142,6 @@ on_help_clicked                        (GtkButton       *button,
                                         gpointer         user_data);
 
 void
-on_plugin_start_clicked                (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_plugin_copy_clicked                 (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
 on_button2_clicked                     (GtkButton       *button,
                                         gpointer         user_data);
 
@@ -161,6 +151,10 @@ on_close_clicked                        (GtkButton       *button,
 
 void
 capacity_option_menu_set               (GtkWidget       *item,
+                                        gpointer         user_data);
+
+void
+format_toggled                         (GtkWidget       *item,
                                         gpointer         user_data);
 
 void

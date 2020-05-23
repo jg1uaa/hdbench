@@ -38,6 +38,10 @@
 #define VIDEO_WIN_X 640
 #define VIDEO_WIN_Y 480
 
+#define FORMAT_STANDARD 0
+#define FORMAT_CSV_MULTI 1
+#define FORMAT_CSV_SINGLE 2
+
 struct CPU_Result{
 	gint32 integer;
 	gint32 floatp;
@@ -59,6 +63,7 @@ struct Disk_Result {
 
 GLOBAL volatile gint done_flag;
 GLOBAL gint disk_capacity GLOBAL_VAL(10);
+GLOBAL gint output_format GLOBAL_VAL(FORMAT_STANDARD);
 GLOBAL gchar *font_name GLOBAL_VAL("-adobe-helvetica-medium-r-*--14-*");
 GLOBAL gchar *video_text GLOBAL_VAL("HDBENCH clone");
 GLOBAL const gchar *disk_drive;
@@ -87,15 +92,12 @@ GLOBAL GtkWidget *main_func_print;
 GLOBAL GtkWidget *main_func_system;
 GLOBAL GtkWidget *main_func_graph;
 GLOBAL GtkWidget *main_func_help;
-GLOBAL GtkWidget *plugin_option_menu;
-GLOBAL GtkWidget *plugin_start;
-GLOBAL GtkWidget *plugin_option;
-GLOBAL GtkWidget *plugin_copy;
-GLOBAL GtkWidget *opt_read;
 GLOBAL GtkWidget *opt_drivecopy;
 GLOBAL GtkWidget *opt_resultonly;
-GLOBAL GtkWidget *opt_cdrom;
 GLOBAL GtkWidget *opt_image;
+GLOBAL GtkWidget *format_standard;
+GLOBAL GtkWidget *format_csv_multi;
+GLOBAL GtkWidget *format_csv_single;
 GLOBAL GtkWidget *drive_combo;
 GLOBAL GtkWidget *capacity_option_menu;
 
@@ -110,7 +112,6 @@ GLOBAL GtkWidget *bench_scroll_score;
 GLOBAL GtkWidget *bench_image_score;
 GLOBAL GtkWidget *bench_read_score;
 GLOBAL GtkWidget *bench_write_score;
-GLOBAL GtkWidget *bench_plugin_score;
 GLOBAL GtkWidget *measuring_all;
 GLOBAL GtkWidget *measuring_cpu;
 GLOBAL GtkWidget *measuring_video;
