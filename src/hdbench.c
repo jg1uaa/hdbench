@@ -125,6 +125,7 @@ create_main_window ()
   gtk_widget_show (main_func_graph);
   gtk_container_set_border_width (GTK_CONTAINER (main_func_graph), 2);
   gtk_table_attach (GTK_TABLE (table0), main_func_graph, 8, 10, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 0, 16);
+  gtk_widget_set_sensitive (main_func_graph, FALSE);
 
   main_func_help = gtk_button_new_with_label (_("HELP"));
   gtk_object_set_data (GTK_OBJECT (main_window), "main_func_help", main_func_help);
@@ -423,11 +424,13 @@ create_main_window ()
   gtk_widget_show (plugin_start);
   gtk_container_set_border_width (GTK_CONTAINER (plugin_start), 2);
   gtk_table_attach (GTK_TABLE (table1), plugin_start, 0, 1, 0, 2, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 8, 32);
+  gtk_widget_set_sensitive (plugin_start, FALSE);
 
   bench_plugin = gtk_frame_new (NULL);
   gtk_object_set_data (GTK_OBJECT (main_window), "bench_plugin", bench_plugin);
   gtk_widget_show (bench_plugin);
   gtk_table_attach (GTK_TABLE (table1), bench_plugin, 1, 2, 0, 2, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 8, 32);
+  gtk_widget_set_sensitive (bench_plugin, FALSE);
 
   bench_plugin_score = gtk_label_new ("0");
   gtk_object_set_data (GTK_OBJECT (main_window), "bench_plugin_score", bench_plugin_score);
@@ -447,6 +450,7 @@ create_main_window ()
   gtk_widget_show (plugin_copy);
   gtk_container_set_border_width (GTK_CONTAINER (plugin_copy), 2);
   gtk_table_attach (GTK_TABLE (table1), plugin_copy, 2, 3, 1, 2, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
+  gtk_widget_set_sensitive (plugin_copy, FALSE);
 
   plugin_option_menu = gtk_option_menu_new ();
   gtk_object_set_data (GTK_OBJECT (main_window), "plugin_option_menu", plugin_option_menu);
@@ -454,6 +458,7 @@ create_main_window ()
   gtk_table_attach (GTK_TABLE (table1), plugin_option_menu, 0, 3, 2, 3, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 4, 8);
   plugin_option_menu_menu = gtk_menu_new ();
   gtk_option_menu_set_menu (GTK_OPTION_MENU (plugin_option_menu), plugin_option_menu_menu);
+  gtk_widget_set_sensitive (plugin_option_menu, FALSE);
 
   options = gtk_frame_new (_("OPTIONS"));
   gtk_object_set_data (GTK_OBJECT (main_window), "options", options);
@@ -470,29 +475,31 @@ create_main_window ()
   gtk_widget_show (vbox3);
   gtk_box_pack_start (GTK_BOX (hbox1), vbox3, TRUE, TRUE, 0);
 
-  opt_read = gtk_check_button_new_with_label (_("measure READ first(e.g. IDE busmaster)"));
+  opt_read = gtk_check_button_new_with_label (_("perform READ test before WRITE"));
   gtk_object_set_data (GTK_OBJECT (main_window), "opt_read", opt_read);
   gtk_widget_show (opt_read);
   gtk_box_pack_start (GTK_BOX (vbox3), opt_read, TRUE, TRUE, 0);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (opt_read), TRUE);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (opt_read), FALSE);
+  gtk_widget_set_sensitive (opt_read, FALSE);
 
-  opt_drivecopy = gtk_check_button_new_with_label (_("copy the drive infomation,too"));
+  opt_drivecopy = gtk_check_button_new_with_label (_("copy results with drive infomation"));
   gtk_object_set_data (GTK_OBJECT (main_window), "opt_drivecopy", opt_drivecopy);
   gtk_widget_show (opt_drivecopy);
   gtk_box_pack_start (GTK_BOX (vbox3), opt_drivecopy, TRUE, TRUE, 0);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (opt_drivecopy), TRUE);
 
-  opt_resultonly = gtk_check_button_new_with_label (_("copy the only results"));
+  opt_resultonly = gtk_check_button_new_with_label (_("copy results only"));
   gtk_object_set_data (GTK_OBJECT (main_window), "opt_resultonly", opt_resultonly);
   gtk_widget_show (opt_resultonly);
   gtk_box_pack_start (GTK_BOX (vbox3), opt_resultonly, TRUE, TRUE, 0);
 
-  opt_cdrom = gtk_check_button_new_with_label (_("CD-ROM method(reading existent files)"));
+  opt_cdrom = gtk_check_button_new_with_label (_("READ test for CD-ROM (file read)"));
   gtk_object_set_data (GTK_OBJECT (main_window), "opt_cdrom", opt_cdrom);
   gtk_widget_show (opt_cdrom);
   gtk_box_pack_start (GTK_BOX (vbox3), opt_cdrom, TRUE, TRUE, 0);
+  gtk_widget_set_sensitive (opt_cdrom, FALSE);
 
-  opt_image = gtk_check_button_new_with_label (_("measure IMAGE,too"));
+  opt_image = gtk_check_button_new_with_label (_("perform IMAGE test"));
   gtk_object_set_data (GTK_OBJECT (main_window), "opt_image", opt_image);
   gtk_widget_show (opt_image);
   gtk_box_pack_start (GTK_BOX (vbox3), opt_image, TRUE, TRUE, 0);
