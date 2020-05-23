@@ -85,11 +85,11 @@ gint get_meminfo(gint64 *totalmem,gint64 *freemem)
 
 	return(TRUE);
 }
-#elif defined(__FreeBSD__) || defined(__OpenBSD__)
+#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__)
 {
 	FILE *fp;
 	gchar *buf;
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__NetBSD__)
 	gchar parg[]="/sbin/sysctl hw.physmem hw.usermem";
 #elif defined(__OpenBSD__)
 	gchar parg[]="/usr/sbin/sysctl hw.physmem hw.usermem";
@@ -224,7 +224,7 @@ void get_cpuinfo(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar 
 
 	return;
 }
-#elif defined(__FreeBSD__) || defined(__OpenBSD__)
+#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__)
 {
 	FILE *fp;
 	gchar *model_name;
@@ -236,6 +236,8 @@ void get_cpuinfo(gchar **name,gchar **vendor,gchar **family,gchar **model,gchar 
 	gchar parg[]="/sbin/sysctl hw.model machdep.tsc_freq hw.ncpu";
 #elif defined(__OpenBSD__)
 	gchar parg[]="/usr/sbin/sysctl hw.model machdep.tscfreq hw.ncpu";
+#elif defined(__NetBSD__)
+	gchar parg[]="/sbin/sysctl machdep.cpu_brand machdep.tsc_freq hw.ncpu";
 #endif
 
 	if((fp=popen(parg,"r"))==NULL){
@@ -409,6 +411,8 @@ gchar *get_drive_data(void)
 	gchar *parg="dmesg -t | grep '%s' | tac";
 #elif defined(__FreeBSD__) || defined(__OpenBSD__)
 	gchar *parg="dmesg | grep '%s' | tail -r";
+#elif defined(__NetBSD__)
+	gchar *parg="dmesg -t | grep '%s' | tail -r";
 #endif
 	gchar *grep[]={
 #if defined(__linux__)
@@ -454,6 +458,25 @@ gchar *get_drive_data(void)
 		"^wd1 at ",
 		"^wd2 at ",
 		"^wd3 at ",
+		"^cd0 at ",
+		"^cd1 at ",
+#elif defined(__NetBSD__)
+		"^sd0 at ",
+		"^sd1 at ",
+		"^sd2 at ",
+		"^sd3 at ",
+		"^sd4 at ",
+		"^sd5 at ",
+		"^sd6 at ",
+		"^sd7 at ",
+		"^wd0: <",
+		"^wd1: <",
+		"^wd2: <",
+		"^wd3: <",
+		"^wd4: <",
+		"^wd5: <",
+		"^wd6: <",
+		"^wd7: <",
 		"^cd0 at ",
 		"^cd1 at ",
 #endif
