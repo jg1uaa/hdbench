@@ -410,7 +410,6 @@ create_main_window ()
   options = gtk_frame_new (_("OPTIONS"));
   gtk_object_set_data (GTK_OBJECT (main_window), "options", options);
   gtk_widget_show (options);
-  gtk_box_pack_start (GTK_BOX (hbox2), options, TRUE, TRUE, 0);
 
   hbox1 = gtk_hbox_new (FALSE, 0);
   gtk_object_set_data (GTK_OBJECT (main_window), "hbox1", hbox1);
@@ -442,7 +441,6 @@ create_main_window ()
   format = gtk_frame_new (_("FORMAT"));
   gtk_object_set_data (GTK_OBJECT (main_window), "format", format);
   gtk_widget_show (format);
-  gtk_box_pack_start (GTK_BOX (hbox2), format, TRUE, TRUE, 0);
 
   vbox2 = gtk_vbox_new (FALSE, 0);
   gtk_object_set_data (GTK_OBJECT (main_window), "vbox2", vbox2);
@@ -464,6 +462,16 @@ create_main_window ()
   gtk_object_set_data (GTK_OBJECT (main_window), "format_csv_single", format_csv_single);
   gtk_widget_show (format_csv_single);
   gtk_box_pack_start (GTK_BOX (vbox2), format_csv_single, TRUE, TRUE, 0);
+
+#if 1
+  /* FORMAT/OPTIONS layout */
+  gtk_box_pack_start (GTK_BOX (hbox2), format, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox2), options, TRUE, TRUE, 0);
+#else
+  /* OPTIONS/FORMAT layout */
+  gtk_box_pack_start (GTK_BOX (hbox2), options, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox2), format, TRUE, TRUE, 0);
+#endif
 
   measuring_all = gtk_button_new_with_label (_("Wait..."));
   gtk_object_set_data (GTK_OBJECT (main_window), "measuring_all", measuring_all);
