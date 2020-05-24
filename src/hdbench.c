@@ -421,7 +421,7 @@ create_main_window ()
   gtk_widget_show (vbox3);
   gtk_box_pack_start (GTK_BOX (hbox1), vbox3, TRUE, TRUE, 0);
 
-  opt_drivecopy = gtk_check_button_new_with_label (_("copy results with drive infomation"));
+  opt_drivecopy = gtk_check_button_new_with_label (_("copy results with drive information"));
   gtk_object_set_data (GTK_OBJECT (main_window), "opt_drivecopy", opt_drivecopy);
   gtk_widget_show (opt_drivecopy);
   gtk_box_pack_start (GTK_BOX (vbox3), opt_drivecopy, TRUE, TRUE, 0);
