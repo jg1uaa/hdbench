@@ -65,79 +65,164 @@ gchar *format_result(void)
   gint64 freemem,totalmem;
   struct tm *nowtime;
   time_t t;
-  gchar *machine_info1,*machine_info2,*bench_result;
+  gchar *machine_info,*bench_result;
   gchar *display_name;
-  gchar *drive_data;
-  gchar *formated;
+  gchar *drive_data=NULL;
+  gchar *formatted;
+  gint sep;
 
+
+  get_cpuinfo(&name,&vendor,&family,&model,&stepping);
+  get_osinfo(&os_name);
+  get_meminfo(&totalmem,&freemem);
+  display_name=get_display_name();
+  t=time(NULL);
+  nowtime=localtime(&t);
+
+  if(output_format==FORMAT_STANDARD){
+	  /* standard format */
+	  if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(opt_drivecopy))&&
+	     !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(opt_resultonly))){
+		  drive_data=get_drive_data();
+	  }
+	  machine_info=g_strdup_printf(
+		  "* * *  HDBENCH clone Ver %s  * * *\n"
+		  "Machine Infomation\n"
+		  "Processor   %s\n"
+		  "            Vendor %s Family %s Model %s Stepping %s\n"
+		  "Resolution  %dx%d (%dbit color)\n"
+		  "Display     %s\n"
+		  "Memory      %"PRId64" KBytes\n"
+		  "OS          %s\n"
+		  "Date        %d/%02d/%02d %02d:%02d\n\n",
+		  VERSION,
+		  name,
+		  vendor,family,model,stepping,
+		  DisplayWidth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
+		  DisplayHeight(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
+		  DefaultDepth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
+		  display_name,
+		  totalmem/1024,
+		  os_name,
+		  nowtime->tm_year+1900,nowtime->tm_mon+1,nowtime->tm_mday,
+		  nowtime->tm_hour,nowtime->tm_min);
+	  bench_result=g_strdup_printf(
+		  "%s"
+		  "    TOTAL     FLOAT   INTEGER    MEMORY\n"
+		  "%9d %9d %9d %9d\n"
+		  "\n"
+		  "   RECT  CIRCLE    TEXT  SCROLL   IMAGE     READ    WRITE DRIVE\n"
+		  "%7d %7d %7d %7d %7d %8d %8d %s:%dMB\n\n",
+		  (drive_data==NULL)?"":"\n",
+		  result_all,result_float,result_integer,result_memory,
+		  result_rectangle,result_circle,result_text,
+		  result_scroll,result_image,
+		  result_read,result_write,disk_drive,disk_capacity);
+  }else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(opt_resultonly))){
+	  /* FORMAT_CSV_SINGLE/FORMAT_CSV_MULTI, result only */
+	  sep=(output_format==FORMAT_CSV_MULTI)?'\n':'\t';
+	  machine_info=g_strdup("");
+	  bench_result = g_strdup_printf(
+		  "%d%c" "%d%c" "%d%c"
+		  "%d%c" "%d%c" "%d%c"
+		  "%d%c" "%d%c" "%d%c"
+		  "%d%c" "%d%c" "%s:%dMB\n",
+		  result_all,sep, result_float,sep, result_integer,sep,
+		  result_memory,sep, result_rectangle,sep, result_circle,sep,
+		  result_text,sep, result_scroll,sep, result_image,sep,
+		  result_read,sep, result_write,sep, disk_drive,disk_capacity);
+  }else if(output_format==FORMAT_CSV_MULTI){
+	  /* FORMAT_CSV_MULTI with machine information */
+	  sep='\t';
+	  machine_info=g_strdup_printf(
+		  "Ver%c%s\n" "Processor%c%s\n" "Vendor%c%s\n" "Family%c%s\n"
+		  "Model%c%s\n" "Stepping%c%s\n"
+		  "Resolution%c%dx%d (%dbit color)\n"
+		  "Display%c%s\n" "Memory(KBytes)%c%"PRId64"\n" "OS%c%s\n"
+		  "Date%c%d/%02d/%02d %02d:%02d\n",
+		  sep,VERSION, sep,name, sep,vendor, sep,family,
+		  sep,model, sep,stepping,
+		  sep,DisplayWidth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
+		  DisplayHeight(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
+		  DefaultDepth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
+		  sep,display_name, sep,totalmem/1024, sep,os_name,
+		  sep,nowtime->tm_year+1900,nowtime->tm_mon+1,nowtime->tm_mday,
+		  nowtime->tm_hour,nowtime->tm_min);
+	  bench_result=g_strdup_printf(
+		  "TOTAL%c%d\n" "FLOAT%c%d\n" "INTEGER%c%d\n"
+		  "MEMORY%c%d\n" "RECT%c%d\n" "CIRCLE%c%d\n"
+		  "TEXT%c%d\n" "SCROLL%c%d\n" "IMAGE%c%d\n"
+		  "READ%c%d\n" "WRITE%c%d\n"
+		  "DRIVE%c%s:%dMB\n",
+		  sep,result_all, sep,result_float, sep,result_integer,
+		  sep,result_memory, sep,result_rectangle, sep,result_circle,
+		  sep,result_text, sep,result_scroll, sep,result_image,
+		  sep,result_read, sep,result_write,
+		  sep,disk_drive,disk_capacity);
+  }else{
+	  /* FORMAT_CSV_SINGLE with machine information */
+	  sep='\t';
+	  machine_info=g_strdup_printf(
+		  "Ver%c" "Processor%c" "Vendor%c" "Family%c" "Model%c"
+		  "Stepping%c" "Resolution%c" "Display%c" "Memory(KBytes)%c"
+		  "OS%c" "Date%c"
+		  "TOTAL%c" "FLOAT%c" "INTEGER%c" "MEMORY%c" "RECT%c"
+		  "CIRCLE%c" "TEXT%c" "SCROLL%c" "IMAGE%c"
+		  "READ%c" "WRITE%c" "DRIVE\n",
+		  sep,sep,sep,sep,sep,
+		  sep,sep,sep,sep,
+		  sep,sep,
+		  sep,sep,sep,sep,sep,
+		  sep,sep,sep,sep,
+		  sep,sep);
+	  bench_result=g_strdup_printf(
+		  "%s%c" "%s%c" "%s%c" "%s%c"
+		  "%s%c" "%s%c"
+		  "%dx%d (%dbit color)%c"
+		  "%s%c" "%"PRId64"%c" "%s%c"
+		  "%d/%02d/%02d %02d:%02d%c"
+		  "%d%c" "%d%c" "%d%c"
+		  "%d%c" "%d%c" "%d%c"
+		  "%d%c" "%d%c" "%d%c"
+		  "%d%c" "%d%c" "%s:%dMB\n",
+		  VERSION,sep, name,sep, vendor,sep, family,sep,
+		  model,sep, stepping,sep,
+		  DisplayWidth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
+		  DisplayHeight(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
+		  DefaultDepth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),sep,
+		  display_name,sep, totalmem/1024,sep, os_name,sep,
+		  nowtime->tm_year+1900,nowtime->tm_mon+1,nowtime->tm_mday,
+		  nowtime->tm_hour,nowtime->tm_min,sep,
+		  result_all,sep, result_float,sep, result_integer,sep,
+		  result_memory,sep, result_rectangle,sep, result_circle,sep,
+		  result_text,sep, result_scroll,sep, result_image,sep,
+		  result_read,sep, result_write,sep, disk_drive,disk_capacity);
+  }
+
+  if(drive_data==NULL){
+	  drive_data=g_strdup("");
+  }
 
   if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(opt_resultonly))){
-  	formated=g_strdup_printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%s:%dMB\n"
-,result_all,result_float,result_integer,result_memory,
-result_rectangle,result_circle,result_text,result_scroll,result_image,
-result_read,result_write,
-disk_drive,disk_capacity);
+	  formatted=g_strdup(bench_result);
   }else{
-	get_cpuinfo(&name,&vendor,&family,&model,&stepping);
-	get_osinfo(&os_name);
-	get_meminfo(&totalmem,&freemem);
-	t=time(NULL);
-	nowtime=localtime(&t);
-
-	machine_info1=g_strdup_printf("\
-* * *  HDBENCH clone Ver %s  * * *\n\
-Machine Infomation\n\
-Processor   %s\n\
-            Vendor %s Family %s Model %s Stepping %s\n\
-Resolution  %dx%d (%dbit color)\n",
-VERSION,name,vendor,family,model,stepping,
-DisplayWidth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
-DisplayHeight(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
-DefaultDepth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())));
-
-	machine_info2=g_strdup_printf("\
-Memory      %"PRId64" KBytes\n\
-OS          %s\n\
-Date        %d/%02d/%02d %02d:%02d\n\n",
-totalmem/1024,os_name,
-nowtime->tm_year+1900,nowtime->tm_mon+1,nowtime->tm_mday,nowtime->tm_hour,nowtime->tm_min);
-
-        g_free(name);
-        g_free(vendor);
-        g_free(family);
-        g_free(model);
-        g_free(stepping);
-        g_free(os_name);
-
-	bench_result=g_strdup_printf("\
-    TOTAL     FLOAT   INTEGER    MEMORY\n\
-%9d %9d %9d %9d\n\
-\n\
-   RECT  CIRCLE    TEXT  SCROLL   IMAGE     READ    WRITE DRIVE\n\
-%7d %7d %7d %7d %7d %8d %8d %s:%dMB\n",
-result_all,result_float,result_integer,result_memory,
-result_rectangle,result_circle,result_text,result_scroll,result_image,
-result_read,result_write,
-disk_drive,disk_capacity);
-
-	if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(opt_drivecopy))){
-		display_name=get_display_name();
-		drive_data=get_drive_data();
-
-		formated=g_strconcat(machine_info1,"Display     ",display_name,"\n",machine_info2,drive_data,"\n",bench_result,NULL);
-
-		g_free(display_name);
-		g_free(drive_data);
-	}else{
-		formated=g_strconcat(machine_info1,machine_info2,bench_result,NULL);
-	}
-
-	g_free(machine_info1);
-	g_free(machine_info2);
-	g_free(bench_result);
+	  formatted=g_strconcat(machine_info,drive_data,bench_result,NULL);
   }
-  return(formated);
+
+  g_free(name);
+  g_free(vendor);
+  g_free(family);
+  g_free(model);
+  g_free(stepping);
+  g_free(os_name);
+  g_free(display_name);
+  g_free(drive_data);
+  g_free(machine_info);
+  g_free(bench_result);
+
+  return(formatted);
 }
+
 
 void
 on_copy_clicked                        (GtkButton       *button,
