@@ -100,6 +100,7 @@ GLOBAL GtkWidget *format_csv_multi;
 GLOBAL GtkWidget *format_csv_single;
 GLOBAL GtkWidget *drive_combo;
 GLOBAL GtkWidget *capacity_option_menu;
+GLOBAL GtkWidget *mbname_entry;
 
 GLOBAL GtkWidget *bench_total_score;
 GLOBAL GtkWidget *bench_float_score;

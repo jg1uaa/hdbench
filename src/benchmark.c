@@ -893,6 +893,7 @@ void set_sensitive(gint val)
 	gtk_widget_set_sensitive (format_csv_single, val);
 	gtk_widget_set_sensitive (drive_combo, val);
 	gtk_widget_set_sensitive (capacity_option_menu, val);
+	gtk_widget_set_sensitive (mbname_entry, val);
 }
 
 

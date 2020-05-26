@@ -87,7 +87,7 @@ gchar *format_result(void)
 	  }
 	  machine_info=g_strdup_printf(
 		  "* * *  HDBENCH clone Ver %s  * * *\n"
-		  "Machine Infomation\n"
+		  "M/B Name    %s\n"
 		  "Processor   %s\n"
 		  "            Vendor %s Family %s Model %s Stepping %s\n"
 		  "Resolution  %dx%d (%dbit color)\n"
@@ -96,6 +96,7 @@ gchar *format_result(void)
 		  "OS          %s\n"
 		  "Date        %d/%02d/%02d %02d:%02d\n\n",
 		  VERSION,
+		  gtk_entry_get_text(GTK_ENTRY(mbname_entry)),
 		  name,
 		  vendor,family,model,stepping,
 		  DisplayWidth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
@@ -135,12 +136,14 @@ gchar *format_result(void)
 	  /* FORMAT_CSV_MULTI with machine information */
 	  sep='\t';
 	  machine_info=g_strdup_printf(
-		  "Ver%c%s\n" "Processor%c%s\n" "Vendor%c%s\n" "Family%c%s\n"
+		  "Ver%c%s\n" "M/B Name%c%s\n"
+		  "Processor%c%s\n" "Vendor%c%s\n" "Family%c%s\n"
 		  "Model%c%s\n" "Stepping%c%s\n"
 		  "Resolution%c%dx%d (%dbit color)\n"
 		  "Display%c%s\n" "Memory(KBytes)%c%"PRId64"\n" "OS%c%s\n"
 		  "Date%c%d/%02d/%02d %02d:%02d\n",
-		  sep,VERSION, sep,name, sep,vendor, sep,family,
+		  sep,VERSION, sep,gtk_entry_get_text(GTK_ENTRY(mbname_entry)),
+		  sep,name, sep,vendor, sep,family,
 		  sep,model, sep,stepping,
 		  sep,DisplayWidth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
 		  DisplayHeight(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
@@ -163,20 +166,23 @@ gchar *format_result(void)
 	  /* FORMAT_CSV_SINGLE with machine information */
 	  sep='\t';
 	  machine_info=g_strdup_printf(
-		  "Ver%c" "Processor%c" "Vendor%c" "Family%c" "Model%c"
+		  "Ver%c" "M/B Name%c"
+		  "Processor%c" "Vendor%c" "Family%c" "Model%c"
 		  "Stepping%c" "Resolution%c" "Display%c" "Memory(KBytes)%c"
 		  "OS%c" "Date%c"
 		  "TOTAL%c" "FLOAT%c" "INTEGER%c" "MEMORY%c" "RECT%c"
 		  "CIRCLE%c" "TEXT%c" "SCROLL%c" "IMAGE%c"
 		  "READ%c" "WRITE%c" "DRIVE\n",
-		  sep,sep,sep,sep,sep,
+		  sep,sep,
+		  sep,sep,sep,sep,
 		  sep,sep,sep,sep,
 		  sep,sep,
 		  sep,sep,sep,sep,sep,
 		  sep,sep,sep,sep,
 		  sep,sep);
 	  bench_result=g_strdup_printf(
-		  "%s%c" "%s%c" "%s%c" "%s%c"
+		  "%s%c" "%s%c"
+		  "%s%c" "%s%c" "%s%c"
 		  "%s%c" "%s%c"
 		  "%dx%d (%dbit color)%c"
 		  "%s%c" "%"PRId64"%c" "%s%c"
@@ -185,7 +191,8 @@ gchar *format_result(void)
 		  "%d%c" "%d%c" "%d%c"
 		  "%d%c" "%d%c" "%d%c"
 		  "%d%c" "%d%c" "%s:%dMB\n",
-		  VERSION,sep, name,sep, vendor,sep, family,sep,
+		  VERSION,sep, gtk_entry_get_text(GTK_ENTRY(mbname_entry)),sep,
+		  name,sep, vendor,sep, family,sep,
 		  model,sep, stepping,sep,
 		  DisplayWidth(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),
 		  DisplayHeight(GDK_DISPLAY(),DefaultScreen(GDK_DISPLAY())),

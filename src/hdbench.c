@@ -68,7 +68,8 @@ create_main_window ()
   GtkWidget *bench_total;
   GtkWidget *options;
   GtkWidget *hbox1;
-  GtkWidget *hbox2;
+  GtkWidget *table1;
+  GtkWidget *mbname;
   GtkWidget *vbox3;
   GtkWidget *bench_write;
   GtkWidget *frame_drive;
@@ -420,10 +421,10 @@ create_main_window ()
   gtk_option_menu_set_menu (GTK_OPTION_MENU (capacity_option_menu), capacity_option_menu_menu);
   gtk_option_menu_set_history (GTK_OPTION_MENU (capacity_option_menu), 4);
 
-  hbox2 = gtk_hbox_new (TRUE, 0);
-  gtk_object_set_data (GTK_OBJECT (main_window), "hbox2", hbox2);
-  gtk_widget_show (hbox2);
-  gtk_box_pack_start (GTK_BOX (vbox1), hbox2, TRUE, TRUE, 0);
+  table1 = gtk_table_new (3, 2, TRUE);
+  gtk_object_set_data (GTK_OBJECT (main_window), "table1", table1);
+  gtk_widget_show (table1);
+  gtk_box_pack_start (GTK_BOX (vbox1), table1, TRUE, TRUE, 0);
 
   options = gtk_frame_new (_("OPTIONS"));
   gtk_object_set_data (GTK_OBJECT (main_window), "options", options);
@@ -481,14 +482,25 @@ create_main_window ()
   gtk_widget_show (format_csv_single);
   gtk_box_pack_start (GTK_BOX (vbox2), format_csv_single, TRUE, TRUE, 0);
 
+  mbname = gtk_frame_new (_("M/B Name"));
+  gtk_object_set_data (GTK_OBJECT (main_window), "mbname", mbname);
+  gtk_widget_show (mbname);
+
+  mbname_entry = gtk_entry_new_with_max_length (64);
+  gtk_object_set_data (GTK_OBJECT (main_window), "mbname_entry", mbname);
+  gtk_widget_show (mbname_entry);
+  gtk_container_add (GTK_CONTAINER (mbname), mbname_entry);
+
 #if 1
   /* FORMAT/OPTIONS layout */
-  gtk_box_pack_start (GTK_BOX (hbox2), format, TRUE, TRUE, 0);
-  gtk_box_pack_start (GTK_BOX (hbox2), options, TRUE, TRUE, 0);
+  gtk_table_attach_defaults (GTK_TABLE (table1), mbname, 0, 1, 0, 1);
+  gtk_table_attach_defaults (GTK_TABLE (table1), format, 0, 1, 1, 3);
+  gtk_table_attach_defaults (GTK_TABLE (table1), options, 1, 2, 0, 3);
 #else
   /* OPTIONS/FORMAT layout */
-  gtk_box_pack_start (GTK_BOX (hbox2), options, TRUE, TRUE, 0);
-  gtk_box_pack_start (GTK_BOX (hbox2), format, TRUE, TRUE, 0);
+  gtk_table_attach_defaults (GTK_TABLE (table1), mbname, 1, 2, 0, 1);
+  gtk_table_attach_defaults (GTK_TABLE (table1), format, 1, 2, 1, 3);
+  gtk_table_attach_defaults (GTK_TABLE (table1), options, 0, 1, 0, 3);
 #endif
 
   measuring_all = gtk_button_new_with_label (_("Wait..."));
