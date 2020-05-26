@@ -62,7 +62,7 @@ struct Disk_Result {
 };
 
 GLOBAL volatile gint done_flag;
-GLOBAL gint disk_capacity GLOBAL_VAL(10);
+GLOBAL gint disk_capacity GLOBAL_VAL(100);
 GLOBAL gint output_format GLOBAL_VAL(FORMAT_STANDARD);
 GLOBAL gchar *font_name GLOBAL_VAL("-adobe-helvetica-medium-r-*--14-*");
 GLOBAL gchar *video_text GLOBAL_VAL("HDBENCH clone");

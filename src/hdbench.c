@@ -345,22 +345,40 @@ create_main_window ()
                       (gpointer)2000);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
-  glade_menuitem = gtk_menu_item_new_with_label ("1024MB");
+  glade_menuitem = gtk_menu_item_new_with_label ("1000MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
                       GTK_SIGNAL_FUNC (capacity_option_menu_set),
-                      (gpointer)1024);
+                      (gpointer)1000);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
-  glade_menuitem = gtk_menu_item_new_with_label ("512MB");
+  glade_menuitem = gtk_menu_item_new_with_label ("500MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
                       GTK_SIGNAL_FUNC (capacity_option_menu_set),
-                      (gpointer)512);
+                      (gpointer)500);
+  gtk_widget_show (glade_menuitem);
+  gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
+  glade_menuitem = gtk_menu_item_new_with_label ("200MB");
+  gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
+                      GTK_SIGNAL_FUNC (capacity_option_menu_set),
+                      (gpointer)200);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   glade_menuitem = gtk_menu_item_new_with_label ("100MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
                       GTK_SIGNAL_FUNC (capacity_option_menu_set),
                       (gpointer)100);
+  gtk_widget_show (glade_menuitem);
+  gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
+  glade_menuitem = gtk_menu_item_new_with_label ("50MB");
+  gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
+                      GTK_SIGNAL_FUNC (capacity_option_menu_set),
+                      (gpointer)50);
+  gtk_widget_show (glade_menuitem);
+  gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
+  glade_menuitem = gtk_menu_item_new_with_label ("40MB");
+  gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
+                      GTK_SIGNAL_FUNC (capacity_option_menu_set),
+                      (gpointer)40);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   glade_menuitem = gtk_menu_item_new_with_label ("20MB");
@@ -375,16 +393,16 @@ create_main_window ()
                       (gpointer)10);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
-  glade_menuitem = gtk_menu_item_new_with_label ("5MB");
+  glade_menuitem = gtk_menu_item_new_with_label ("8MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
                       GTK_SIGNAL_FUNC (capacity_option_menu_set),
-                      (gpointer)5);
+                      (gpointer)8);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
-  glade_menuitem = gtk_menu_item_new_with_label ("3MB");
+  glade_menuitem = gtk_menu_item_new_with_label ("4MB");
   gtk_signal_connect (GTK_OBJECT (glade_menuitem), "activate",
                       GTK_SIGNAL_FUNC (capacity_option_menu_set),
-                      (gpointer)3);
+                      (gpointer)4);
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   glade_menuitem = gtk_menu_item_new_with_label ("2MB");
@@ -400,7 +418,7 @@ create_main_window ()
   gtk_widget_show (glade_menuitem);
   gtk_menu_append (GTK_MENU (capacity_option_menu_menu), glade_menuitem);
   gtk_option_menu_set_menu (GTK_OPTION_MENU (capacity_option_menu), capacity_option_menu_menu);
-  gtk_option_menu_set_history (GTK_OPTION_MENU (capacity_option_menu), 5);
+  gtk_option_menu_set_history (GTK_OPTION_MENU (capacity_option_menu), 4);
 
   hbox2 = gtk_hbox_new (TRUE, 0);
   gtk_object_set_data (GTK_OBJECT (main_window), "hbox2", hbox2);
