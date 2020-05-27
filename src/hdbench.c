@@ -466,7 +466,7 @@ create_main_window ()
   gtk_widget_show (vbox2);
   gtk_container_add (GTK_CONTAINER (format), vbox2);
 
-  format_standard = gtk_radio_button_new_with_label (NULL, _("HDBENCH standard"));
+  format_standard = gtk_radio_button_new_with_label (NULL, _("HDBENCH clone standard"));
   gtk_object_set_data (GTK_OBJECT (main_window), "format_standard", format_standard);
   gtk_widget_show (format_standard);
   gtk_box_pack_start (GTK_BOX (vbox2), format_standard, TRUE, TRUE, 0);
