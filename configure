@@ -5077,12 +5077,13 @@ rm -f core conftest.err conftest.$ac_objext \
 
   rm -f conf.gtktest
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for library containing XClearWindow" >&5
-$as_echo_n "checking for library containing XClearWindow... " >&6; }
-if ${ac_cv_search_XClearWindow+:} false; then :
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for XClearWindow in -lX11" >&5
+$as_echo_n "checking for XClearWindow in -lX11... " >&6; }
+if ${ac_cv_lib_X11_XClearWindow+:} false; then :
   $as_echo_n "(cached) " >&6
 else
-  ac_func_search_save_LIBS=$LIBS
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lX11  $LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -5101,35 +5102,23 @@ return XClearWindow ();
   return 0;
 }
 _ACEOF
-for ac_lib in '' X11; do
-  if test -z "$ac_lib"; then
-    ac_res="none required"
-  else
-    ac_res=-l$ac_lib
-    LIBS="-l$ac_lib  $ac_func_search_save_LIBS"
-  fi
-  if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_search_XClearWindow=$ac_res
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_X11_XClearWindow=yes
+else
+  ac_cv_lib_X11_XClearWindow=no
 fi
 rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext
-  if ${ac_cv_search_XClearWindow+:} false; then :
-  break
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
 fi
-done
-if ${ac_cv_search_XClearWindow+:} false; then :
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_X11_XClearWindow" >&5
+$as_echo "$ac_cv_lib_X11_XClearWindow" >&6; }
+if test "x$ac_cv_lib_X11_XClearWindow" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBX11 1
+_ACEOF
 
-else
-  ac_cv_search_XClearWindow=no
-fi
-rm conftest.$ac_ext
-LIBS=$ac_func_search_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_search_XClearWindow" >&5
-$as_echo "$ac_cv_search_XClearWindow" >&6; }
-ac_res=$ac_cv_search_XClearWindow
-if test "$ac_res" != no; then :
-  test "$ac_res" = "none required" || LIBS="$ac_res $LIBS"
+  LIBS="-lX11 $LIBS"
 
 fi
 
@@ -5766,7 +5755,7 @@ fi
 done
 
 
-for ac_header in fcntl.h libintl.h limits.h stdlib.h string.h sys/time.h unistd.h
+for ac_header in fcntl.h inttypes.h limits.h stdlib.h string.h sys/time.h unistd.h
 do :
   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
 ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
@@ -6020,7 +6009,7 @@ fi
 done
 
 
-ac_config_files="$ac_config_files Makefile doc/Makefile src/Makefile"
+ac_config_files="$ac_config_files Makefile src/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -6753,7 +6742,6 @@ do
     "config.h") CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
-    "doc/Makefile") CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
