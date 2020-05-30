@@ -15,12 +15,12 @@ AC_PROG_INSTALL
 
 # Checks for libraries.
 AM_PATH_GTK_2_0([2.10.0],,AC_MSG_ERROR([Gtk+ 2.10.0 or higher required.]))
-AC_SEARCH_LIBS(XClearWindow, X11)
+AC_CHECK_LIB(X11, XClearWindow)
 
 # Checks for header files.
 AC_PATH_X
 AC_HEADER_SYS_WAIT
-AC_CHECK_HEADERS([fcntl.h libintl.h limits.h stdlib.h string.h sys/time.h unistd.h])
+AC_CHECK_HEADERS([fcntl.h inttypes.h limits.h stdlib.h string.h sys/time.h unistd.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 
@@ -29,6 +29,5 @@ AC_FUNC_FORK
 AC_CHECK_FUNCS([alarm gettimeofday memset strchr strstr strtol strtoul])
 
 AC_CONFIG_FILES([Makefile
-                 doc/Makefile
                  src/Makefile])
 AC_OUTPUT
