@@ -2,7 +2,7 @@
 
 AUTOMAKE_OPTIONS=foreign
 
-SUBDIRS = src doc
+SUBDIRS = src
 
 install-data-local:
 	test -d pixmaps \
@@ -13,5 +13,3 @@ dist-hook:
 	test -d pixmaps \
 	&& mkdir $(distdir)/pixmaps \
 	&& cp -p pixmaps/* $(distdir)/pixmaps
-
-EXTRA_DIST=hdbench.prj
