@@ -1,0 +1,20 @@
+* Known problems
+
+ + Accuracy of measuring disk access speed is low.
+
+ + Measuring disk access speed takes a few minutes.
+
+ + The following function is not implemented.
+   - GRAPH
+
+ + The following options are invalid.
+   - measure READ first
+   - CD-ROM method
+
+ + getinfo.c has dirty codes (many static arrays).
+
+ + When use PentiumIII on old Linux kernel, the processor name
+   in System Infomation is not output correctly.
+
+ + Cannot measure IMAGE, when the color depth is not 16bit.
+
