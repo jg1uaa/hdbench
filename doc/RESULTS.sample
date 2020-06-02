@@ -1,0 +1,105 @@
+* * *  HDBENCH clone Ver 0.20  * * *
+M/B Name    ASRock A88M-G/3.1
+Processor   AMD A10-7860K Radeon R7, 12 Compute Cores 4C+8G [3593.458 MHz] 4 processors
+            Vendor unknown Family unknown Model unknown Stepping unknown
+Resolution  1920x1080 (24bit color)
+Display     unknown
+Memory      15645740 KBytes
+OS          OpenBSD 6.7 (gcc-4.2.1)
+Date        2020/05/31 07:07
+
+sd0 at scsibus1 targ 0 lun 0: <ATA, Crucial_CT512MX1, MU02> naa.500a07510d8dfd96
+cd0 at scsibus2 targ 0 lun 0: <HL-DT-ST, BD-RE BH14NS48, 1.02> removable
+
+Filesystem  512-blocks      Used     Avail Capacity  Mounted on
+/dev/sd0a    957913000 149866448 760150904    16%    /
+
+    TOTAL     FLOAT   INTEGER    MEMORY
+   531786   2958509   1210306    283767
+
+   RECT  CIRCLE    TEXT  SCROLL   IMAGE     READ    WRITE DRIVE
+  76474   70894   71644     286     338   212692   433295 /tmp:100MB
+
+--------------------------------------------------------------------------
+* * *  HDBENCH clone Ver 0.20  * * *
+M/B Name    GIGABYTE GA-K8S760M
+Processor   AMD Athlon(tm) 64 Processor 3000+ [2000.000 MHz]
+            Vendor AuthenticAMD Family 15 Model 4 Stepping 8
+Resolution  1360x768 (24bit color)
+Display     unknown
+Memory      1011060 KBytes
+OS          Linux 4.19.0-9-amd64 (gcc-8.3.0)
+Date        2020/05/31 07:37
+
+scsi 0:0:0:0: CD-ROM            PIONEER  DVD-RW  DVR-105  1.33 PQ: 0 ANSI: 5
+scsi 2:0:0:0: Direct-Access     ATA      WDC WD5000AAKS-2 3B01 PQ: 0 ANSI: 5
+
+Filesystem         1024-blocks  Used Available Capacity Mounted on
+udev                480588       0    480588    0% /dev
+tmpfs               101108    6056     95052    6% /run
+/dev/sda2        464291576 6571580 434065596    2% /
+tmpfs               505528       0    505528    0% /dev/shm
+tmpfs                 5120       4      5116    1% /run/lock
+tmpfs               505528       0    505528    0% /sys/fs/cgroup
+tmpfs               101104      12    101092    1% /run/user/1000
+
+    TOTAL     FLOAT   INTEGER    MEMORY
+   114449    626440    213254     79857
+
+   RECT  CIRCLE    TEXT  SCROLL   IMAGE     READ    WRITE DRIVE
+  33795    2472   18283     123      21    91899    78368 /tmp:100MB
+
+--------------------------------------------------------------------------
+* * *  HDBENCH clone Ver 0.20  * * *
+M/B Name    VMware Workstation 15 Player
+Processor   AMD Athlon(tm) X4 845 Quad Core Processor       [3493.642 MHz]
+            Vendor unknown Family unknown Model unknown Stepping unknown
+Resolution  1280x768 (24bit color)
+Display     unknown
+Memory      1009132 KBytes
+OS          FreeBSD 12.1-RELEASE (clang-8.0.1)
+Date        2020/05/31 10:29
+
+da0: <VMware, VMware Virtual S 1.0> Fixed Direct Access SCSI-2 device
+cd0: <NECVMWar VMware IDE CDR10 1.00> Removable CD-ROM SCSI device
+
+Filesystem  512-blocks     Used     Avail Capacity  Mounted on
+/dev/da0s1a  154351352 15493200 126510048    11%    /
+devfs                2        2         0   100%    /dev
+
+    TOTAL     FLOAT   INTEGER    MEMORY
+   421649   2275374   1109492    371999
+
+   RECT  CIRCLE    TEXT  SCROLL   IMAGE     READ    WRITE DRIVE
+   8288   13366   61559     149     258   194541   181728 /tmp:100MB
+
+--------------------------------------------------------------------------
+* * *  HDBENCH clone Ver 0.20  * * *
+M/B Name    
+Processor   Intel(R) Atom(TM) CPU N270   @ 1.60GHz [805.529 MHz] 2 processors
+            Vendor GenuineIntel Family 6 Model 28 Stepping 2
+Resolution  1024x600 (24bit color)
+Display     unknown
+Memory      1988640 KBytes
+OS          Linux 4.19.0-9-686-pae (gcc-8.3.0)
+Date        2020/05/31 11:31
+
+scsi 2:0:0:0: Direct-Access     ATA      TOSHIBA MK1252GS 0M   PQ: 0 ANSI: 5
+scsi 6:0:0:0: Direct-Access     Generic- Multi-Card       1.00 PQ: 0 ANSI: 0 CCS
+
+Filesystem         1024-blocks  Used Available Capacity Mounted on
+udev                965172       0   965172    0% /dev
+tmpfs               198864    5716   193148    3% /run
+/dev/sda2        106979948 6049540 95453032    6% /
+tmpfs               994320       0   994320    0% /dev/shm
+tmpfs                 5120       4     5116    1% /run/lock
+tmpfs               994320       0   994320    0% /sys/fs/cgroup
+tmpfs               198864       0   198864    0% /run/user/1000
+
+    TOTAL     FLOAT   INTEGER    MEMORY
+    45964     78098    100545    102561
+
+   RECT  CIRCLE    TEXT  SCROLL   IMAGE     READ    WRITE DRIVE
+  31978   28435   33221      71      84    49414    35317 /tmp:100MB
+
+--------------------------------------------------------------------------
