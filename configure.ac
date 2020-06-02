@@ -29,5 +29,6 @@ AC_FUNC_FORK
 AC_CHECK_FUNCS([alarm gettimeofday memset strchr strstr strtol strtoul])
 
 AC_CONFIG_FILES([Makefile
+                 doc/Makefile
                  src/Makefile])
 AC_OUTPUT
