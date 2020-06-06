@@ -1,24 +1,26 @@
+(default setting: HDBENCH clone standard, with drive information)
+==========================================================================
 * * *  HDBENCH clone Ver 0.20  * * *
 M/B Name    ASRock A88M-G/3.1
-Processor   AMD A10-7860K Radeon R7, 12 Compute Cores 4C+8G [3593.458 MHz] 4 processors
+Processor   AMD A10-7860K Radeon R7, 12 Compute Cores 4C+8G [3593.463 MHz] 4 processors
             Vendor unknown Family unknown Model unknown Stepping unknown
 Resolution  1920x1080 (24bit color)
 Display     unknown
 Memory      15645740 KBytes
 OS          OpenBSD 6.7 (gcc-4.2.1)
-Date        2020/05/31 07:07
+Date        2020/06/07 07:57
 
 sd0 at scsibus1 targ 0 lun 0: <ATA, Crucial_CT512MX1, MU02> naa.500a07510d8dfd96
 cd0 at scsibus2 targ 0 lun 0: <HL-DT-ST, BD-RE BH14NS48, 1.02> removable
 
 Filesystem  512-blocks      Used     Avail Capacity  Mounted on
-/dev/sd0a    957913000 149866448 760150904    16%    /
+/dev/sd0a    957913000 145951440 764065912    16%    /
 
     TOTAL     FLOAT   INTEGER    MEMORY
-   531786   2958509   1210306    283767
+   531385   2957509   1207948    275911
 
    RECT  CIRCLE    TEXT  SCROLL   IMAGE     READ    WRITE DRIVE
-  76474   70894   71644     286     338   212692   433295 /tmp:100MB
+  77913   69094   71594     284     351   214872   438734 /tmp:100MB
 
 --------------------------------------------------------------------------
 * * *  HDBENCH clone Ver 0.20  * * *
@@ -102,4 +104,89 @@ tmpfs               198864       0   198864    0% /run/user/1000
    RECT  CIRCLE    TEXT  SCROLL   IMAGE     READ    WRITE DRIVE
   31978   28435   33221      71      84    49414    35317 /tmp:100MB
 
+--------------------------------------------------------------------------
+
+(HDBENCH clone standard, no drive information)
+==========================================================================
+* * *  HDBENCH clone Ver 0.20  * * *
+M/B Name    ASRock A88M-G/3.1
+Processor   AMD A10-7860K Radeon R7, 12 Compute Cores 4C+8G [3593.463 MHz] 4 processors
+            Vendor unknown Family unknown Model unknown Stepping unknown
+Resolution  1920x1080 (24bit color)
+Display     unknown
+Memory      15645740 KBytes
+OS          OpenBSD 6.7 (gcc-4.2.1)
+Date        2020/06/07 07:59
+
+    TOTAL     FLOAT   INTEGER    MEMORY
+   531385   2957509   1207948    275911
+
+   RECT  CIRCLE    TEXT  SCROLL   IMAGE     READ    WRITE DRIVE
+  77913   69094   71594     284     351   214872   438734 /tmp:100MB
+
+--------------------------------------------------------------------------
+
+(HDBENCH clone standard, results only)
+==========================================================================
+    TOTAL     FLOAT   INTEGER    MEMORY
+   531385   2957509   1207948    275911
+
+   RECT  CIRCLE    TEXT  SCROLL   IMAGE     READ    WRITE DRIVE
+  77913   69094   71594     284     351   214872   438734 /tmp:100MB
+
+--------------------------------------------------------------------------
+
+(CSV multi column)
+==========================================================================
+Ver	0.20
+M/B Name	ASRock A88M-G/3.1
+Processor	AMD A10-7860K Radeon R7, 12 Compute Cores 4C+8G [3593.463 MHz] 4 processors
+Vendor	unknown
+Family	unknown
+Model	unknown
+Stepping	unknown
+Resolution	1920x1080 (24bit color)
+Display	unknown
+Memory(KBytes)	15645740
+OS	OpenBSD 6.7 (gcc-4.2.1)
+Date	2020/06/07 08:03
+TOTAL	531385
+FLOAT	2957509
+INTEGER	1207948
+MEMORY	275911
+RECT	77913
+CIRCLE	69094
+TEXT	71594
+SCROLL	284
+IMAGE	351
+READ	214872
+WRITE	438734
+DRIVE	/tmp:100MB
+--------------------------------------------------------------------------
+
+(CSV multi column, results only)
+==========================================================================
+531385
+2957509
+1207948
+275911
+77913
+69094
+71594
+284
+351
+214872
+438734
+/tmp:100MB
+--------------------------------------------------------------------------
+
+(CSV single column)
+==========================================================================
+Ver	M/B Name	Processor	Vendor	Family	Model	Stepping	Resolution	Display	Memory(KBytes)	OS	Date	TOTAL	FLOAT	INTEGER	MEMORY	RECT	CIRCLE	TEXT	SCROLL	IMAGE	READ	WRITE	DRIVE
+0.20	ASRock A88M-G/3.1	AMD A10-7860K Radeon R7, 12 Compute Cores 4C+8G [3593.463 MHz] 4 processors	unknown	unknown	unknown	unknown	1920x1080 (24bit color)	unknown	15645740	OpenBSD 6.7 (gcc-4.2.1)	2020/06/07 08:04	531385	2957509	1207948	275911	77913	69094	71594	284	351	214872	438734	/tmp:100MB
+--------------------------------------------------------------------------
+
+(CSV single column, results only)
+==========================================================================
+531385	2957509	1207948	275911	77913	69094	71594	284	351	214872	438734	/tmp:100MB
 --------------------------------------------------------------------------
