@@ -86,7 +86,7 @@ options:\n\
   -h | --help          display this help and exit\n\
   -f | --font=FONT     font name used in TEXT of VIDEO\n\
   -t | --text=TEXT     string written in TEXT of VIDEO\n\
-  -V | --version       display version infomation and exit\n\
+  -V | --version       display version information and exit\n\
 \n"), VERSION);
 
 	exit(0);

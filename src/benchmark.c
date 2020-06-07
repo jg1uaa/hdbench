@@ -613,7 +613,7 @@ void bench_cache_flash(gchar *buf,gchar *temp)
 		g_error(err_mes_temp);
 	}
 	if(!get_meminfo(&totalmem,&freemem)){
-		g_error(_("Cannot get memory infomation.\n"));
+		g_error(_("Cannot get memory information.\n"));
 	}
 
 	for(i=0;i<totalmem/1024L/1024L;i++){
