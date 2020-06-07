@@ -6,33 +6,25 @@
 |                                                                       |
 +-----------------------------------------------------------------------+
 
-   * * *   Your results is invited now. See WANTED for details.   * * *
-
-
 * Description
 
- HDBENCH clone is a benchmark software like HDBENCH which is the most
-famous benchmark software for Windows in Japan.
+ HDBENCH clone is a benchmark software looks like HDBENCH which is the
+most famous benchmark software for Windows in Japan.
  It measures the performance of CPU (integer, floating point),
 video (rectangle, circle, text, scroll, image) and disk (read, write).
 
 
 * Features
 
- + It looks like HDBENCH very much.
-
- + A graphical benchmark software for Linux is rare.
-
- + It may be trustworthy because of open source.
-
- + Gettext is supported.
+ + HDBENCH look and feel
+ + Easy to use benchmark software for PC-UNIX
+ + Written with C code, portable
 
 
 * Requirements
 
- GTK+ 1.2.0 or above is required. Get it from `http://www.gtk.org/'.
- 4MB or above physical memory is required.
- This software uses assembly language. It may work only Intel PC.
+ + GTK+-2.10.0 or later (no GTK+3 support)
+ + 4MB RAM
 
 
 * How to install
@@ -41,7 +33,7 @@ video (rectangle, circle, text, scroll, image) and disk (read, write).
  % make
  # make install
 
- If you want to use Japanese, specify fontset in `~/.gtkrc'.
+ If you needed, create your own configure script by autoconf.
 
 
 * Details of command line options
@@ -50,76 +42,77 @@ usage: hdbench [OPTIONS]
 
 options:
   -h | --help          display this help and exit
-  -f | --font=FONT     font name used in TEXT of VIDEO
-  -t | --text=FONT     string written in TEXT of VIDEO
-  -V | --version       display version infomation and exit
+  -f | --font=FONT     font name used in FONT of VIDEO
+  -t | --text=TEXT     string written in TEXT of VIDEO
+  -V | --version       display version information and exit
 
 
 * How to use
 
- Exit all application programs before using HDBENCH clone.
- While measuring, don't touch keyboard and mouse.
+ Quit all unneeded programs before running HDBENCH clone.
+ While performing tests, do not touch any keys and pointing devices.
 
  + ALL
-   Measure DISK, CPU, VIDEO.
-   The value of TOTAL is all value divided by 10.
+   Perform all (CPU, VIDEO and DISK) test.
+   The value of TOTAL is (the sum of all scores / 10).
 
  + CPU
-   Measure the number of times calculating floating point and integer
-   per one second.
+   Perform CPU test. The score is the number of times calculating
+   floating point and integer per one second.
 
  + VIDEO
-   Measure the number of times drawing rectangle, circle and text per
-   one second, and scroll in 3 seconds, IMAGE in 5 seconds.
+   Perform video test. The score is the number of times drawing
+   rectangle, circle and text per one second, and scroll in 3 seconds,
+   IMAGE in 5 seconds.
 
  + DISK
-   Measure the transferring bytes of reading and writing per
-   one second.
-   Specify DRIVE and CAPACITY. CAPACITY is 10MB by default.
-   When use CD-ROM, CAPACITY is 1/10.
+   Perform disk test. The score is the transferring bytes of reading
+   and writing per one second.
+   Specify target DRIVE and CAPACITY. CAPACITY is 100MB by default.
 
  + EXIT
    Exit HDBENCH clone.
 
  + COPY
-   Copy results to selection.
+   Copy results to clipboard.
 
  + PRINT
-   Print results. Write simply to lpr.
+   Print results. Simply invoke lpr.
 
  + SYSTEM
    Display total memory, free memory, processor, OS, version of
    HDBENCH clone, and CPU clock (if possible).
-   Copy system infomation to selection to click COPY in dialog.
+   To copy OS and CPU information to clipboard, click "Copy" button.
 
  + GRAPH
-   Display graph of results database. It is not implemented.
+   This is disabled and no plan to implement.
 
  + HELP
-   About infomation.
+   Display author and copyright notice.
+
+ + M/B Name
+   Enter the name of your system or mainboard. It reflects M/B Name
+   section in result. There is no problem to leave blank.
+
+ + FORMAT
+   There is three styles, HDBENCH clone standard, CSV multi column and
+   CSV single column.
+
+   See RESULTS.sample to all result format example.
 
  + OPTIONS
-   Specify options. Now `copy the only results' and
-   `copy the drive infomation,too' are implemented.
+   - copy results with drive information
+     This enables the result contains disk drive information (from
+     dmesg). This options affects only both "HDBENCH clone standard"
+     format and unchecked "copy results only" option specified.
 
-   - measure READ first (e.g. IDE busmaster)
-     Check it if READ is too high.
+   - copy results only
+     This suppresses copying benchmark description to clipboard.
 
-   - copy the drive infomation,too
-     If check it and click COPY, copy the drive drive infomation
-     and video card name. 
-
-   - copy the only results
-     If check it and click COPY, copy the only results.
-
-   - CD-ROM method (reading existent files)
-     Measure only READ.
-
-   - measure IMAGE,too
-     Measure IMAGE.
-     Display 1000 rectangles using XPutImage. Its value is frame/sec.
-     The color depth must be 16bit to measure it. If the color depth
-     is not 16bit, display warning message and don't measure it.
+   - perform IMAGE test
+     This enables IMAGE test. Method is displaying 1000 rectangles by
+     XPutImage. Score is frame/sec.
+     Supported color depth is 8bit, 16bit and 24bit.
 
 
 * Limits
@@ -129,10 +122,11 @@ options:
 
 * Tested OS
 
- + Debian GNU/Linux 2.1
- + Vine Linux 1.0
- + Vine Linux 1.1
- + FreeBSD(98) 3.0-RELEASE
+ + Debian GNU/Linux 10.4 (amd64)
+ + Slackware 14.2 (i386)
+ + OpenBSD 6.7 (amd64)
+ + FreeBSD 12.1-RELEASE (amd64)
+ + NetBSD 9.0 (amd64)
 
 
 * Notice 
@@ -153,28 +147,16 @@ or (at your option) any later version.
 
 * Request to users
 
- I have an incomplete mastery of the English language, so please help
-correct the text of the documents and messages in this program.
- Comments, suggestions, bug reports and patches are welcome.
-Please mail them to me at the following address.
+ Comments, suggestions, bug reports and patches are welcomed.
 
 
-* Contact me
+* Original author (at 1999)
 
- e-mail : gm@smn.enjoy.ne.jp
-
-
-* The latest version
-
- http://www.enjoy.ne.jp/~gm/program/hdbench/
+  Yuuki NINOMIYA <gm@smn.enjoy.ne.jp>
+  http://www.enjoy.ne.jp/~gm/
 
 
-* My webpage
+* Maintainer (at 2020)
 
- Yuuki NINOMIYA's webpage
- http://www.enjoy.ne.jp/~gm/
-
-
------------------------------------
-Yuuki NINOMIYA <gm@smn.enjoy.ne.jp>
-
+  Takayoshi SASANO <uaa@uaa.org.uk>
+  https://github.com/jg1uaa/

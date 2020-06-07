@@ -1,5 +1,18 @@
 * History
 
+ + 20/06/07 Ver 0.20
+   - migrate to GTK+-2 from GTK+-1.2
+   - rewrite benchcpu with C code (no score compatibility with old code)
+   - add OpenBSD, NetBSD support
+   - abandon Japanese support
+   - large memory (over 4GB) support
+   - revise messages/documents
+   - add 8/24bpp IMAGE test
+   - remove plugin, CD-ROM read test menu
+   - add output format (HDBENCH clone standard/CSV)
+   - revise capacity menu and default capacity setting
+   - bug fix
+
  + 99/11/30 Ver 0.14.1
    - Documents are modified.
    - Remove static arrays in getinfo.c.
